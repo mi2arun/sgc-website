@@ -1,0 +1,139 @@
+"use client";
+
+import { useState } from "react";
+import Link from "next/link";
+import { Menu, X, ChevronDown, GraduationCap } from "lucide-react";
+import { NAV_ITEMS, SITE_CONFIG } from "@/lib/constants";
+import { cn } from "@/lib/utils";
+
+export default function Header() {
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+
+  return (
+    <header className="bg-white shadow-md sticky top-0 z-50">
+      {/* Main Header */}
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-20">
+          {/* Logo */}
+          <Link href="/" className="flex items-center gap-3 shrink-0 mr-6">
+            <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center shrink-0">
+              <GraduationCap className="w-7 h-7 text-accent" />
+            </div>
+            <div className="hidden sm:block">
+              <h1 className="text-base font-bold text-primary leading-tight">
+                {SITE_CONFIG.shortName}
+              </h1>
+              <p className="text-[10px] text-muted leading-tight max-w-[200px]">
+                Autonomous | Pondicherry University
+              </p>
+            </div>
+          </Link>
+
+          {/* Desktop Navigation */}
+          <nav className="hidden xl:flex items-center gap-0">
+            {NAV_ITEMS.map((item) => (
+              <div
+                key={item.label}
+                className="relative group"
+                onMouseEnter={() => setActiveDropdown(item.label)}
+                onMouseLeave={() => setActiveDropdown(null)}
+              >
+                <Link
+                  href={item.href}
+                  className={cn(
+                    "px-2.5 py-2 text-[13px] font-medium text-foreground/80 hover:text-primary transition-colors flex items-center gap-0.5 rounded-md hover:bg-primary/5 whitespace-nowrap",
+                    activeDropdown === item.label && "text-primary bg-primary/5"
+                  )}
+                >
+                  {item.label}
+                  {item.children && <ChevronDown className="w-3 h-3" />}
+                </Link>
+
+                {/* Dropdown */}
+                {item.children && activeDropdown === item.label && (
+                  <div className="absolute top-full left-0 pt-1 z-50">
+                    <div className="bg-white rounded-lg shadow-xl border border-border/50 py-2 min-w-[220px]">
+                      {item.children.map((child) => (
+                        <Link
+                          key={child.label}
+                          href={child.href}
+                          className="block px-4 py-2.5 text-sm text-foreground/70 hover:text-primary hover:bg-primary/5 transition-colors"
+                        >
+                          {child.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            ))}
+          </nav>
+
+          {/* CTA Button */}
+          <div className="hidden xl:block shrink-0 ml-4">
+            <Link
+              href="/admissions/apply"
+              className="bg-accent hover:bg-accent/90 text-primary-dark font-semibold px-5 py-2.5 rounded-lg text-sm transition-colors whitespace-nowrap"
+            >
+              Apply Now
+            </Link>
+          </div>
+
+          {/* Mobile Toggle */}
+          <button
+            className="xl:hidden p-2 text-foreground"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label="Toggle menu"
+          >
+            {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile Navigation */}
+      {mobileOpen && (
+        <div className="xl:hidden bg-white border-t border-border max-h-[70vh] overflow-y-auto">
+          <nav className="max-w-7xl mx-auto px-4 py-4 space-y-1">
+            {NAV_ITEMS.map((item) => (
+              <div key={item.label}>
+                <Link
+                  href={item.href}
+                  className="block px-3 py-2.5 text-sm font-medium text-foreground/80 hover:text-primary hover:bg-primary/5 rounded-md transition-colors"
+                  onClick={() => {
+                    if (!item.children) setMobileOpen(false);
+                  }}
+                >
+                  {item.label}
+                </Link>
+                {item.children && (
+                  <div className="ml-4 space-y-0.5">
+                    {item.children.map((child) => (
+                      <Link
+                        key={child.label}
+                        href={child.href}
+                        className="block px-3 py-2 text-sm text-foreground/60 hover:text-primary transition-colors"
+                        onClick={() => setMobileOpen(false)}
+                      >
+                        {child.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+            <div className="pt-3">
+              <Link
+                href="/admissions/apply"
+                className="block text-center bg-accent hover:bg-accent/90 text-primary-dark font-semibold px-5 py-2.5 rounded-lg text-sm transition-colors"
+                onClick={() => setMobileOpen(false)}
+              >
+                Apply Now
+              </Link>
+            </div>
+          </nav>
+        </div>
+      )}
+    </header>
+  );
+}

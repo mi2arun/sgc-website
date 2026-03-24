@@ -1,0 +1,20 @@
+/* Template D: Editorial / Magazine */
+.template-d {
+  --background: #fffdf7;
+  --foreground: #1a1a1a;
+  --accent: #b91c1c;
+  --secondary: #292524;
+  --muted: #78716c;
+  --border: #d6d3d1;
+  --surface: #f5f5f4;
+}
+
+.template-d .drop-cap::first-letter {
+  float: left;
+  font-size: 3.5em;
+  line-height: 0.8;
+  margin-right: 0.1em;
+  font-family: var(--font-playfair);
+  color: #b91c1c;
+  font-weight: 700;
+}

@@ -1,0 +1,25 @@
+/* Template F: Classic Emerald — Traditional Indian University */
+.template-f {
+  --tf-green: #155e3d;
+  --tf-green-dark: #0d3d28;
+  --tf-green-light: #1e7a50;
+  --tf-maroon: #7c1d3e;
+  --tf-gold: #d4a843;
+  --tf-cream: #fdf8f0;
+  --tf-text: #2d2d2d;
+  --tf-muted: #6b6b6b;
+  --tf-border: #e0d8c8;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.tf-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+.tf-marquee:hover {
+  animation-play-state: paused;
+}

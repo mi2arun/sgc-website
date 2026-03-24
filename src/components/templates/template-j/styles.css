@@ -1,0 +1,57 @@
+/* Template J: PortX-Inspired — Blue gradient, animated, clean SaaS-edu hybrid */
+.template-j {
+  --tj-primary: #1e40af;
+  --tj-secondary: #3730a3;
+  --tj-accent: #4f46e5;
+  --tj-bg: #f9fafb;
+  --tj-text: #111827;
+  --tj-muted: #6b7280;
+  --tj-border: #e5e7eb;
+}
+
+/* Gradient text shimmer */
+@keyframes tj-gradient-shift {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+.tj-gradient-text {
+  background: linear-gradient(90deg, #1e40af, #4f46e5, #7c3aed, #4f46e5, #1e40af);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: tj-gradient-shift 4s linear infinite;
+}
+
+/* Fade in up with stagger */
+@keyframes tj-fade-in-up {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.tj-fade-in { opacity: 0; animation: tj-fade-in-up 0.8s ease-out forwards; }
+.tj-delay-1 { animation-delay: 0.1s; }
+.tj-delay-2 { animation-delay: 0.2s; }
+.tj-delay-3 { animation-delay: 0.3s; }
+.tj-delay-4 { animation-delay: 0.4s; }
+.tj-delay-5 { animation-delay: 0.5s; }
+.tj-delay-6 { animation-delay: 0.6s; }
+
+/* Floating decoration */
+@keyframes tj-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+.tj-float { animation: tj-float 6s ease-in-out infinite; }
+.tj-float-delay { animation: tj-float 6s ease-in-out infinite 2s; }
+.tj-float-slow { animation: tj-float 8s ease-in-out infinite 1s; }
+
+/* Typewriter cursor */
+@keyframes tj-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.tj-cursor { animation: tj-blink 1s infinite; }
+
+/* Scroll-triggered reveal */
+.tj-reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.tj-reveal.tj-visible { opacity: 1; transform: translateY(0); }

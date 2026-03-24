@@ -1,0 +1,143 @@
+/* Template E — Immersive / Experimental Dark Theme */
+
+.template-e {
+  --te-bg: #0a0a0a;
+  --te-text: #ededed;
+  --te-accent-cyan: #22d3ee;
+  --te-accent-purple: #a855f7;
+  --te-surface: #141414;
+  --te-border: #262626;
+
+  background-color: var(--te-bg);
+  color: var(--te-text);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── Gradient Mesh ─────────────────────────────────── */
+@keyframes gradient-mesh {
+  0% {
+    background-position: 0% 50%, 100% 50%;
+  }
+  25% {
+    background-position: 50% 0%, 50% 100%;
+  }
+  50% {
+    background-position: 100% 50%, 0% 50%;
+  }
+  75% {
+    background-position: 50% 100%, 50% 0%;
+  }
+  100% {
+    background-position: 0% 50%, 100% 50%;
+  }
+}
+
+.te-gradient-mesh {
+  background:
+    radial-gradient(ellipse 600px 600px at 30% 40%, rgba(34, 211, 238, 0.12), transparent 70%),
+    radial-gradient(ellipse 500px 500px at 70% 60%, rgba(168, 85, 247, 0.10), transparent 70%);
+  background-size: 200% 200%, 200% 200%;
+  animation: gradient-mesh 20s ease infinite;
+}
+
+/* ── Rotating Ring ─────────────────────────────────── */
+@keyframes rotate-ring {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.te-rotate-ring {
+  animation: rotate-ring 60s linear infinite;
+}
+
+/* ── Typewriter Cursor ─────────────────────────────── */
+@keyframes typewriter-blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+.te-typewriter-cursor::after {
+  content: "|";
+  animation: typewriter-blink 0.8s step-end infinite;
+  color: var(--te-accent-cyan);
+  margin-left: 2px;
+}
+
+/* ── Blur In ───────────────────────────────────────── */
+@keyframes blur-in {
+  from {
+    filter: blur(10px);
+    opacity: 0;
+  }
+  to {
+    filter: blur(0);
+    opacity: 1;
+  }
+}
+
+.te-blur-in {
+  animation: blur-in 1s ease-out forwards;
+}
+
+/* ── Bounce Scroll Indicator ───────────────────────── */
+@keyframes bounce-subtle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(8px);
+  }
+}
+
+.te-bounce {
+  animation: bounce-subtle 2s ease-in-out infinite;
+}
+
+/* ── Grid Pattern Background ───────────────────────── */
+.te-grid-bg {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* ── Scroll Snap Container ─────────────────────────── */
+.te-snap-container {
+  scroll-snap-type: y mandatory;
+}
+
+.te-snap-child {
+  scroll-snap-align: start;
+}
+
+/* ── Horizontal Scroll Hide Scrollbar ──────────────── */
+.te-hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.te-hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ── Glassmorphism Pill ────────────────────────────── */
+.te-glass-pill {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ── Selection Color ───────────────────────────────── */
+.template-e ::selection {
+  background: rgba(34, 211, 238, 0.3);
+  color: #ededed;
+}

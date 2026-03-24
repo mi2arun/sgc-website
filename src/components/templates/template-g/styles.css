@@ -1,0 +1,21 @@
+/* Template G: Warm Academic — Stanford/MIT inspired */
+.template-g {
+  --tg-charcoal: #2c2c2c;
+  --tg-warm: #f5f0e8;
+  --tg-rust: #c45d3e;
+  --tg-rust-dark: #a04530;
+  --tg-sage: #5a7a64;
+  --tg-text: #333333;
+  --tg-muted: #7a7a7a;
+  --tg-border: #e2ddd4;
+}
+
+.template-g ::selection {
+  background: #c45d3e;
+  color: white;
+}
+
+@keyframes tg-line-grow {
+  from { height: 0; }
+  to { height: 100%; }
+}
