@@ -10,7 +10,7 @@ import PlacementSection from "@/components/sections/PlacementSection";
 import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import CTASection from "@/components/sections/CTASection";
 
-export default function HomePage() {
+export default function TemplateAPage() {
   return (
     <>
       <FlashNews />
