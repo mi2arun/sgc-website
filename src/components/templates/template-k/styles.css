@@ -192,3 +192,62 @@
 .tk-stagger-4 { transition-delay: 0.4s !important; }
 .tk-stagger-5 { transition-delay: 0.5s !important; }
 .tk-stagger-6 { transition-delay: 0.6s !important; }
+
+/* ═══════ Hero slide progress fill ═══════ */
+@keyframes tk-progress {
+  from { width: 0%; }
+  to { width: 100%; }
+}
+
+/* ═══════ Ripple click effect ═══════ */
+@keyframes tk-ripple {
+  0% { transform: scale(0); opacity: 0.5; }
+  100% { transform: scale(4); opacity: 0; }
+}
+
+/* ═══════ Wiggle for attention ═══════ */
+@keyframes tk-wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-3deg); }
+  75% { transform: rotate(3deg); }
+}
+.tk-wiggle:hover { animation: tk-wiggle 0.4s ease-in-out; }
+
+/* ═══════ Slide in from bottom for mobile nav ═══════ */
+@keyframes tk-slide-up {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+.tk-slide-up { animation: tk-slide-up 0.3s ease-out forwards; }
+
+/* ═══════ Icon bounce on hover ═══════ */
+.tk-icon-bounce:hover svg {
+  animation: tk-wiggle 0.5s ease-in-out;
+}
+
+/* ═══════ Underline slide in ═══════ */
+.tk-underline-hover {
+  position: relative;
+}
+.tk-underline-hover::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #c9a84c, #0c2340);
+  border-radius: 1px;
+  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.tk-underline-hover:hover::after {
+  width: 100%;
+}
+
+/* ═══════ Glow border on focus ═══════ */
+.tk-glow-border {
+  transition: box-shadow 0.3s ease;
+}
+.tk-glow-border:hover {
+  box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.15), 0 0 20px rgba(201, 168, 76, 0.1);
+}
