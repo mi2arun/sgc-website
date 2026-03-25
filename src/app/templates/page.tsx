@@ -81,6 +81,14 @@ const templates = [
     description: "Inspired by portx.in. Blue-indigo gradients, animated gradient text shimmer, typewriter code editor in hero, floating icons, staggered scroll-reveal animations, tilted gradient image border, glassmorphism contact form on deep blue gradient, bouncing scroll indicator.",
     tags: ["Animated", "PortX-style", "Blue gradient", "Typewriter"],
   },
+  {
+    id: "k",
+    name: "Polished Classic",
+    href: "/template-k",
+    colors: ["#0c2340", "#c9a84c", "#faf8f3"],
+    description: "Refined, premium clone of Template A. Deeper navy + richer gold, glassmorphism header on scroll, scroll-reveal animations on every section, gradient accent lines, campus photo backgrounds on stats, image-rich news cards, large testimonial photos, polished hover states.",
+    tags: ["Polished", "Premium", "Navy+Gold", "Scroll-reveal"],
+  },
 ];
 
 export default function TemplateSelectorPage() {
@@ -94,7 +102,7 @@ export default function TemplateSelectorPage() {
             Template Gallery
           </h1>
           <p className="text-base text-[#a1a1aa] max-w-xl mx-auto">
-            10 distinct design directions for the Saradha Gangadharan College website.
+            11 distinct design directions for the Saradha Gangadharan College website.
             Click any template to preview the full homepage.
           </p>
         </div>
