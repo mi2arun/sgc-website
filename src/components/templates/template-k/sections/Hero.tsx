@@ -61,48 +61,48 @@ export default function HeroK() {
       {/* Animated decorative elements with mouse parallax */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         {/* Morphing blobs — move opposite to mouse */}
-        <div className="absolute -top-20 -right-20 w-[400px] h-[400px] bg-[#c9a84c]/[0.08] tk-morph blur-3xl"
+        <div className="absolute -top-20 -right-20 w-[400px] h-[400px] bg-[#c9a84c]/20 tk-morph blur-3xl"
           style={{ transform: `translate(${mousePos.x * 20}px, ${mousePos.y * 20}px)`, transition: "transform 0.5s ease-out" }} />
-        <div className="absolute -bottom-32 -left-32 w-[500px] h-[500px] bg-white/[0.04] tk-morph blur-[100px]"
+        <div className="absolute -bottom-32 -left-32 w-[500px] h-[500px] bg-white/10 tk-morph blur-[100px]"
           style={{ transform: `translate(${mousePos.x * -15}px, ${mousePos.y * -15}px)`, transition: "transform 0.6s ease-out", animationDelay: "3s" }} />
 
-        {/* Floating particles */}
-        <div className="absolute top-[15%] left-[60%] w-2 h-2 bg-[#c9a84c]/40 rounded-full tk-particle-1" />
-        <div className="absolute top-[40%] left-[75%] w-1.5 h-1.5 bg-white/30 rounded-full tk-particle-2" />
-        <div className="absolute top-[60%] left-[55%] w-2.5 h-2.5 bg-[#c9a84c]/20 rounded-full tk-particle-3" />
-        <div className="absolute top-[25%] left-[85%] w-1 h-1 bg-white/40 rounded-full tk-particle-1" style={{ animationDelay: "2s" }} />
-        <div className="absolute top-[70%] left-[70%] w-1.5 h-1.5 bg-[#c9a84c]/30 rounded-full tk-particle-2" style={{ animationDelay: "4s" }} />
-        <div className="absolute top-[80%] left-[45%] w-1 h-1 bg-white/20 rounded-full tk-particle-3" style={{ animationDelay: "1s" }} />
-        <div className="absolute top-[10%] left-[50%] w-2 h-2 bg-[#c9a84c]/15 rounded-full tk-particle-1" style={{ animationDelay: "5s" }} />
+        {/* Floating particles — bigger and brighter */}
+        <div className="absolute top-[15%] left-[60%] w-3 h-3 bg-[#c9a84c]/60 rounded-full tk-particle-1" />
+        <div className="absolute top-[40%] left-[75%] w-2.5 h-2.5 bg-white/50 rounded-full tk-particle-2" />
+        <div className="absolute top-[60%] left-[55%] w-3.5 h-3.5 bg-[#c9a84c]/40 rounded-full tk-particle-3" />
+        <div className="absolute top-[25%] left-[85%] w-2 h-2 bg-white/60 rounded-full tk-particle-1" style={{ animationDelay: "2s" }} />
+        <div className="absolute top-[70%] left-[70%] w-2.5 h-2.5 bg-[#c9a84c]/50 rounded-full tk-particle-2" style={{ animationDelay: "4s" }} />
+        <div className="absolute top-[80%] left-[45%] w-2 h-2 bg-white/40 rounded-full tk-particle-3" style={{ animationDelay: "1s" }} />
+        <div className="absolute top-[10%] left-[50%] w-3 h-3 bg-[#c9a84c]/35 rounded-full tk-particle-1" style={{ animationDelay: "5s" }} />
 
-        {/* Rotating decorative rings — parallax with mouse */}
+        {/* Rotating decorative rings — parallax with mouse, much more visible */}
         <div className="hidden lg:block absolute right-16 top-1/2 -translate-y-1/2"
           style={{ transform: `translate(${mousePos.x * 12}px, ${mousePos.y * 12}px)`, transition: "transform 0.4s ease-out" }}>
-          <svg width="320" height="320" className="tk-spin-slow opacity-[0.06]">
-            <circle cx="160" cy="160" r="150" fill="none" stroke="#c9a84c" strokeWidth="1" strokeDasharray="8 12" />
-            <circle cx="160" cy="160" r="115" fill="none" stroke="white" strokeWidth="0.5" strokeDasharray="4 16" />
-            <circle cx="160" cy="160" r="80" fill="none" stroke="#c9a84c" strokeWidth="0.5" strokeDasharray="2 20" />
+          <svg width="340" height="340" className="tk-spin-slow opacity-20">
+            <circle cx="170" cy="170" r="160" fill="none" stroke="#c9a84c" strokeWidth="1.5" strokeDasharray="8 12" />
+            <circle cx="170" cy="170" r="120" fill="none" stroke="white" strokeWidth="1" strokeDasharray="4 16" />
+            <circle cx="170" cy="170" r="80" fill="none" stroke="#c9a84c" strokeWidth="0.8" strokeDasharray="2 20" />
           </svg>
           {/* Orbiting dot */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3 h-3 bg-[#c9a84c]/40 rounded-full tk-pulse-glow" />
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-4 h-4 bg-[#c9a84c]/60 rounded-full tk-pulse-glow" />
         </div>
 
-        {/* Floating icons with parallax */}
-        <div className="hidden md:block absolute top-[18%] right-[22%] tk-float opacity-[0.07]"
+        {/* Floating icons with parallax — much more visible */}
+        <div className="hidden md:block absolute top-[18%] right-[22%] tk-float opacity-20"
           style={{ transform: `translate(${mousePos.x * 25}px, ${mousePos.y * 25}px)`, transition: "transform 0.5s ease-out" }}>
-          <GraduationCap className="w-14 h-14 text-white" />
+          <GraduationCap className="w-16 h-16 text-white" />
         </div>
-        <div className="hidden md:block absolute bottom-[22%] right-[10%] tk-float-slow opacity-[0.06]"
+        <div className="hidden md:block absolute bottom-[22%] right-[10%] tk-float-slow opacity-[0.15]"
           style={{ transform: `translate(${mousePos.x * -18}px, ${mousePos.y * -18}px)`, transition: "transform 0.5s ease-out" }}>
-          <BookOpen className="w-10 h-10 text-[#c9a84c]" />
+          <BookOpen className="w-12 h-12 text-[#c9a84c]" />
         </div>
-        <div className="hidden lg:block absolute top-[45%] right-[35%] tk-float-fast opacity-[0.05]"
+        <div className="hidden lg:block absolute top-[45%] right-[35%] tk-float-fast opacity-[0.12]"
           style={{ transform: `translate(${mousePos.x * 30}px, ${mousePos.y * -20}px)`, transition: "transform 0.6s ease-out" }}>
-          <FlaskConical className="w-8 h-8 text-white" />
+          <FlaskConical className="w-10 h-10 text-white" />
         </div>
 
         {/* Grid pattern overlay */}
-        <div className="absolute inset-0 opacity-[0.02]" style={{ backgroundImage: "linear-gradient(rgba(201,168,76,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(201,168,76,0.3) 1px, transparent 1px)", backgroundSize: "60px 60px" }} />
+        <div className="absolute inset-0 opacity-[0.05]" style={{ backgroundImage: "linear-gradient(rgba(201,168,76,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(201,168,76,0.5) 1px, transparent 1px)", backgroundSize: "60px 60px" }} />
       </div>
 
       {/* Content with text animation */}
