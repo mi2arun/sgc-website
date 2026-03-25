@@ -26,8 +26,8 @@ export default function WhyJoinK() {
         </Reveal>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {reasons.map(({ icon: Icon, title, desc }, i) => (
-            <Reveal key={title} delay={i * 80}>
-              <div className="group bg-white rounded-xl p-7 border border-[#e8e4dc] hover:border-[#c9a84c]/30 hover:shadow-xl hover:shadow-[#c9a84c]/5 transition-all hover:-translate-y-1">
+            <Reveal key={title} delay={i * 80} direction="scale">
+              <div className="group bg-white rounded-xl p-7 border border-[#e8e4dc] tk-card-hover">
                 <div className="w-13 h-13 bg-[#0c2340]/5 rounded-xl flex items-center justify-center mb-5 group-hover:bg-[#0c2340] transition-colors w-[52px] h-[52px]">
                   <Icon className="w-6 h-6 text-[#0c2340] group-hover:text-[#c9a84c] transition-colors" />
                 </div>

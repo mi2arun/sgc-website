@@ -61,7 +61,7 @@ export default function PlacementsK() {
                     </div>
                     <div className="h-2.5 bg-[#e8e4dc]/50 rounded-full overflow-hidden">
                       <div
-                        className="h-full rounded-full transition-all duration-1000 ease-out bg-gradient-to-r from-[#0c2340] to-[#c9a84c]"
+                        className="h-full rounded-full transition-all duration-1000 ease-out bg-gradient-to-r from-[#0c2340] to-[#c9a84c] relative tk-bar-shine"
                         style={{ width: visible ? `${stat.percentage}%` : "0%", transitionDelay: `${i * 150}ms` }}
                       />
                     </div>

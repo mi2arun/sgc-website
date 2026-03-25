@@ -11,11 +11,7 @@
   --tk-border: #e8e4dc;
 }
 
-/* Scroll-triggered reveal */
-@keyframes tk-reveal {
-  from { opacity: 0; transform: translateY(32px); }
-  to { opacity: 1; transform: translateY(0); }
-}
+/* ═══════ Scroll-triggered reveal ═══════ */
 .tk-reveal {
   opacity: 0;
   transform: translateY(32px);
@@ -26,20 +22,120 @@
   transform: translateY(0);
 }
 
-/* Ticker */
+/* Reveal from left */
+.tk-reveal-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.tk-reveal-left.tk-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Reveal from right */
+.tk-reveal-right {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.tk-reveal-right.tk-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Reveal scale */
+.tk-reveal-scale {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.tk-reveal-scale.tk-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ═══════ Floating / Parallax ═══════ */
+@keyframes tk-float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  33% { transform: translateY(-15px) rotate(2deg); }
+  66% { transform: translateY(-8px) rotate(-1deg); }
+}
+.tk-float { animation: tk-float 6s ease-in-out infinite; }
+.tk-float-slow { animation: tk-float 8s ease-in-out infinite 1s; }
+.tk-float-fast { animation: tk-float 4s ease-in-out infinite 0.5s; }
+
+@keyframes tk-float-x {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(12px); }
+}
+.tk-float-x { animation: tk-float-x 7s ease-in-out infinite; }
+
+/* ═══════ Pulsing glow ═══════ */
+@keyframes tk-pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(201, 168, 76, 0.3); }
+  50% { box-shadow: 0 0 20px 8px rgba(201, 168, 76, 0.15); }
+}
+.tk-pulse-glow { animation: tk-pulse-glow 3s ease-in-out infinite; }
+
+/* ═══════ Rotating element ═══════ */
+@keyframes tk-spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.tk-spin-slow { animation: tk-spin-slow 20s linear infinite; }
+
+/* ═══════ Text shimmer ═══════ */
+@keyframes tk-shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+.tk-shimmer-text {
+  background: linear-gradient(90deg, #c9a84c, #ddc06e, #ffffff, #ddc06e, #c9a84c);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: tk-shimmer 4s linear infinite;
+}
+
+/* ═══════ Particle dots ═══════ */
+@keyframes tk-particle-1 {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.3; }
+  25% { transform: translate(30px, -40px) scale(1.2); opacity: 0.6; }
+  50% { transform: translate(-20px, -80px) scale(0.8); opacity: 0.2; }
+  75% { transform: translate(40px, -30px) scale(1.1); opacity: 0.5; }
+}
+@keyframes tk-particle-2 {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.2; }
+  33% { transform: translate(-40px, -50px) scale(1.3); opacity: 0.5; }
+  66% { transform: translate(25px, -70px) scale(0.7); opacity: 0.3; }
+}
+@keyframes tk-particle-3 {
+  0%, 100% { transform: translate(0, 0); opacity: 0.4; }
+  50% { transform: translate(50px, -60px); opacity: 0.1; }
+}
+.tk-particle-1 { animation: tk-particle-1 8s ease-in-out infinite; }
+.tk-particle-2 { animation: tk-particle-2 10s ease-in-out infinite 1s; }
+.tk-particle-3 { animation: tk-particle-3 12s ease-in-out infinite 2s; }
+
+/* ═══════ Morphing blob ═══════ */
+@keyframes tk-morph {
+  0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+  25% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+  50% { border-radius: 50% 60% 30% 60% / 30% 60% 70% 40%; }
+  75% { border-radius: 60% 40% 60% 30% / 70% 30% 50% 60%; }
+}
+.tk-morph { animation: tk-morph 8s ease-in-out infinite; }
+
+/* ═══════ Marquee ticker ═══════ */
 @keyframes tk-ticker {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
 .tk-ticker { animation: tk-ticker 30s linear infinite; }
 
-/* Smooth counter */
-@keyframes tk-count-in {
-  from { opacity: 0; transform: scale(0.8); }
-  to { opacity: 1; transform: scale(1); }
-}
-
-/* Gradient line accent */
+/* ═══════ Accent line ═══════ */
 .tk-accent-line {
   height: 3px;
   width: 48px;
@@ -47,13 +143,52 @@
   border-radius: 2px;
 }
 
-/* Image hover zoom */
-.tk-img-zoom {
-  overflow: hidden;
+/* ═══════ Animated accent line (grows on reveal) ═══════ */
+.tk-accent-line-animated {
+  height: 3px;
+  width: 0;
+  background: linear-gradient(90deg, #c9a84c, #0c2340);
+  border-radius: 2px;
+  transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s;
 }
-.tk-img-zoom img {
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+.tk-visible .tk-accent-line-animated {
+  width: 48px;
 }
-.tk-img-zoom:hover img {
-  transform: scale(1.05);
+
+/* ═══════ Image hover zoom ═══════ */
+.tk-img-zoom { overflow: hidden; }
+.tk-img-zoom img { transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+.tk-img-zoom:hover img { transform: scale(1.05); }
+
+/* ═══════ Card tilt on hover ═══════ */
+.tk-card-hover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+.tk-card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px -12px rgba(12, 35, 64, 0.15), 0 4px 16px -4px rgba(201, 168, 76, 0.1);
+}
+
+/* ═══════ Progress bar shine ═══════ */
+@keyframes tk-bar-shine {
+  0% { left: -100%; }
+  100% { left: 200%; }
+}
+.tk-bar-shine::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  animation: tk-bar-shine 2s ease-in-out infinite 1s;
+}
+
+/* ═══════ Stagger delays ═══════ */
+.tk-stagger-1 { transition-delay: 0.1s !important; }
+.tk-stagger-2 { transition-delay: 0.2s !important; }
+.tk-stagger-3 { transition-delay: 0.3s !important; }
+.tk-stagger-4 { transition-delay: 0.4s !important; }
+.tk-stagger-5 { transition-delay: 0.5s !important; }
+.tk-stagger-6 { transition-delay: 0.6s !important; }

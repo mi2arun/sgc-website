@@ -32,6 +32,17 @@ export default function StatsK() {
     <section ref={ref} className="py-20 relative overflow-hidden">
       <Image src={CAMPUS_IMAGES.building} alt="Campus" fill className="object-cover" />
       <div className="absolute inset-0 bg-[#0c2340]/90" />
+
+      {/* Animated particles */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute top-[10%] left-[10%] w-2 h-2 bg-[#c9a84c]/30 rounded-full tk-particle-1" />
+        <div className="absolute top-[30%] right-[15%] w-1.5 h-1.5 bg-white/20 rounded-full tk-particle-2" />
+        <div className="absolute bottom-[20%] left-[25%] w-2 h-2 bg-[#c9a84c]/20 rounded-full tk-particle-3" />
+        <div className="absolute top-[50%] right-[30%] w-1 h-1 bg-white/30 rounded-full tk-particle-1" style={{ animationDelay: "3s" }} />
+        <div className="absolute bottom-[30%] right-[10%] w-2.5 h-2.5 bg-[#c9a84c]/15 rounded-full tk-particle-2" style={{ animationDelay: "5s" }} />
+        <div className="absolute -top-10 left-1/2 w-[300px] h-[300px] bg-[#c9a84c]/[0.05] tk-morph blur-[80px]" />
+      </div>
+
       <div className="relative max-w-7xl mx-auto px-6">
         <div className="text-center mb-12">
           <div className="flex items-center justify-center gap-2.5 mb-4">

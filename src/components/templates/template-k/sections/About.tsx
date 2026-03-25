@@ -11,9 +11,9 @@ export default function AboutK() {
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left */}
           <div>
-            <Reveal>
+            <Reveal direction="left">
               <div className="flex items-center gap-2.5 mb-4">
-                <div className="tk-accent-line" />
+                <div className="tk-accent-line-animated" />
                 <span className="text-xs font-bold text-[#c9a84c] uppercase tracking-widest">Welcome to SGC</span>
               </div>
               <h2 className="text-3xl md:text-4xl font-bold text-[#0c2340] mb-6 leading-tight">

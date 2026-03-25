@@ -20,9 +20,18 @@ export default function TestimonialsK() {
 
   return (
     <section className="py-24 bg-gradient-to-br from-[#0c2340] to-[#163a5f] relative overflow-hidden">
-      <div className="absolute inset-0">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-[#c9a84c]/5 rounded-full blur-[120px]" />
-        <div className="absolute bottom-0 left-0 w-72 h-72 bg-white/5 rounded-full blur-[100px]" />
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-[#c9a84c]/5 rounded-full blur-[120px] tk-morph" />
+        <div className="absolute bottom-0 left-0 w-72 h-72 bg-white/5 rounded-full blur-[100px] tk-morph" style={{ animationDelay: "4s" }} />
+        {/* Particles */}
+        <div className="absolute top-[15%] left-[20%] w-1.5 h-1.5 bg-[#c9a84c]/30 rounded-full tk-particle-1" />
+        <div className="absolute top-[40%] right-[25%] w-2 h-2 bg-white/15 rounded-full tk-particle-2" />
+        <div className="absolute bottom-[20%] left-[40%] w-1 h-1 bg-[#c9a84c]/40 rounded-full tk-particle-3" />
+        <div className="absolute bottom-[35%] right-[15%] w-1.5 h-1.5 bg-white/10 rounded-full tk-particle-1" style={{ animationDelay: "3s" }} />
+        {/* Rotating ring */}
+        <svg width="200" height="200" className="absolute top-10 right-10 tk-spin-slow opacity-[0.04]">
+          <circle cx="100" cy="100" r="90" fill="none" stroke="#c9a84c" strokeWidth="0.5" strokeDasharray="6 10" />
+        </svg>
       </div>
 
       <div className="relative max-w-7xl mx-auto px-6">
