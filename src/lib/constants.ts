@@ -185,6 +185,150 @@ export const QUICK_LINKS = [
   { label: "Exam Results", href: "/examination/results", highlight: false },
 ];
 
+export const ANNOUNCEMENTS = [
+  {
+    title: "End Semester Examination Schedule — April 2026",
+    date: "2026-03-28",
+    category: "Examination",
+    isNew: true,
+    href: "/examination/schedule",
+  },
+  {
+    title: "Last Date to Pay Tuition Fees — 10th April 2026",
+    date: "2026-03-26",
+    category: "Fees",
+    isNew: true,
+    href: "/admissions/fees",
+  },
+  {
+    title: "UG/PG Admission Open for 2026–27 Academic Year",
+    date: "2026-03-22",
+    category: "Admission",
+    isNew: true,
+    href: "/admissions/apply",
+  },
+  {
+    title: "NAAC Peer Team Visit — 15th to 17th April 2026",
+    date: "2026-03-20",
+    category: "Accreditation",
+    isNew: false,
+    href: "/accreditation/naac",
+  },
+  {
+    title: "Revised Academic Calendar 2025–26 (Even Semester)",
+    date: "2026-03-18",
+    category: "Academic",
+    isNew: false,
+    href: "/academics/calendar",
+  },
+  {
+    title: "Results: Internal Assessment — March 2026",
+    date: "2026-03-15",
+    category: "Examination",
+    isNew: false,
+    href: "/examination/results",
+  },
+];
+
+export const PROMO_BANNERS = [
+  {
+    title: "Admissions Open 2026–27",
+    subtitle: "Apply now for UG & PG programmes. Limited seats available.",
+    cta: "Apply Now",
+    href: "/admissions/apply",
+    color: "primary",
+  },
+  {
+    title: "Merit Scholarships Available",
+    subtitle: "Up to 100% tuition fee waiver for toppers. Check eligibility.",
+    cta: "Learn More",
+    href: "/admissions/scholarships",
+    color: "gold",
+  },
+  {
+    title: "iTechnova 2026 — Register Now",
+    subtitle: "Annual tech fest. Hackathons, workshops, cash prizes worth ₹2,00,000.",
+    cta: "Register",
+    href: "/campus-life/events/itechnova",
+    color: "accent",
+  },
+];
+
+export const ACCREDITATIONS = [
+  { name: "NAAC", grade: "A+", label: "NAAC Accredited", description: "National Assessment & Accreditation Council" },
+  { name: "UGC", grade: "2(f) & 12(B)", label: "UGC Recognized", description: "University Grants Commission" },
+  { name: "ISO", grade: "9001:2015", label: "ISO Certified", description: "Quality Management System" },
+  { name: "NIRF", grade: "#142", label: "NIRF Ranked", description: "National Institutional Ranking Framework" },
+  { name: "AUTONOMOUS", grade: "", label: "Autonomous", description: "Affiliated to Pondicherry University" },
+];
+
+export const RECRUITERS = [
+  "TCS", "Infosys", "Wipro", "HCL Technologies", "Cognizant",
+  "Accenture", "Capgemini", "Tech Mahindra", "Zoho", "Freshworks",
+  "L&T Infotech", "Mphasis", "HDFC Bank", "ICICI Bank", "Axis Bank",
+  "Deloitte", "EY", "KPMG", "Amazon", "Flipkart",
+];
+
+export const ACTIVITY_FEED = [
+  {
+    title: "Workshop on AI & Machine Learning",
+    date: "2026-03-29",
+    type: "Workshop",
+    department: "Computer Science",
+    description: "Department of Computer Science conducted a two-day workshop in collaboration with IIT Madras.",
+  },
+  {
+    title: "Inter-College Basketball Tournament — Champions!",
+    date: "2026-03-27",
+    type: "Sports",
+    department: "Physical Education",
+    description: "SGC Men's Basketball team won the Pondicherry University Inter-College Championship.",
+  },
+  {
+    title: "Guest Lecture: Digital Marketing Trends",
+    date: "2026-03-25",
+    type: "Seminar",
+    department: "Commerce",
+    description: "Mr. Rajesh Kumar, CMO of Zoho Corp, delivered a guest lecture for BBA and B.Com students.",
+  },
+  {
+    title: "NSS Blood Donation Camp — 200+ Donors",
+    date: "2026-03-23",
+    type: "Service",
+    department: "NSS",
+    description: "Red Cross Youth Club organized a mega blood donation camp with participation from all departments.",
+  },
+  {
+    title: "MoU Signing with Infosys Springboard",
+    date: "2026-03-21",
+    type: "Collaboration",
+    department: "Placement Cell",
+    description: "SGC signed an MoU with Infosys Springboard for industry-ready certification programs.",
+  },
+];
+
+export const SCHOLARSHIPS = [
+  { name: "Merit Scholarship", amount: "Up to 100% tuition fee", eligibility: "90%+ in qualifying exam" },
+  { name: "SC/ST Scholarship", amount: "Full fee + stipend", eligibility: "Government of Puducherry scheme" },
+  { name: "Sports Quota", amount: "50% tuition fee", eligibility: "State/National level players" },
+  { name: "EWS Scholarship", amount: "75% tuition fee", eligibility: "Family income below ₹8 LPA" },
+];
+
+export const COMPLIANCE_LINKS = [
+  { label: "IQAC", href: "/accreditation/iqac", icon: "ClipboardCheck" },
+  { label: "NAAC", href: "/accreditation/naac", icon: "Award" },
+  { label: "NIRF", href: "/accreditation/nirf", icon: "BarChart3" },
+  { label: "RTI", href: "/rti", icon: "FileText" },
+  { label: "Anti-Ragging", href: "/anti-ragging", icon: "Shield" },
+  { label: "Grievance", href: "/grievance", icon: "MessageCircle" },
+  { label: "ICC / POSH", href: "/icc", icon: "Users" },
+  { label: "Mandatory Disclosure", href: "/disclosure", icon: "FileCheck" },
+  { label: "AICTE", href: "/accreditation/aicte", icon: "Building" },
+  { label: "Exam Results", href: "/examination/results", icon: "GraduationCap" },
+  { label: "Student Feedback", href: "/feedback", icon: "MessageSquare" },
+  { label: "Downloads", href: "/downloads", icon: "Download" },
+];
+
 export const FOOTER_LINKS = {
   quickLinks: [
     { label: "About SGC", href: "/about" },

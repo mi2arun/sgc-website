@@ -34,7 +34,7 @@ const actions = [
 
 export default function QuickAccess() {
   return (
-    <section className="py-6 -mt-20 relative z-10">
+    <section className="py-8 bg-[#f8f6f0] relative z-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
           {actions.map(({ icon: Icon, label, description, href, color }) => (

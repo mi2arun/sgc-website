@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { GraduationCap, Phone, Mail, MapPin, ArrowUp, ExternalLink } from "lucide-react";
+import { GraduationCap, Phone, Mail, MapPin, ArrowUp, ExternalLink, Send } from "lucide-react";
 import { SITE_CONFIG, FOOTER_LINKS } from "@/lib/constants";
 
 const socialLinks = [
@@ -110,6 +110,32 @@ export default function Footer() {
                 ))}
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Newsletter */}
+      <div className="border-t border-white/10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            <div>
+              <h3 className="font-semibold text-base mb-1">Stay Updated</h3>
+              <p className="text-sm text-white/60">Subscribe to receive news, events, and admission updates.</p>
+            </div>
+            <form className="flex w-full md:w-auto" onSubmit={(e) => e.preventDefault()}>
+              <input
+                type="email"
+                placeholder="Your email address"
+                className="flex-1 md:w-64 px-4 py-2.5 bg-white/10 border border-white/20 rounded-l-lg text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-accent"
+              />
+              <button
+                type="submit"
+                className="px-5 py-2.5 bg-accent text-primary-dark rounded-r-lg font-semibold text-sm hover:bg-accent/90 transition-colors flex items-center gap-2"
+              >
+                <Send className="w-4 h-4" />
+                Subscribe
+              </button>
+            </form>
           </div>
         </div>
       </div>
