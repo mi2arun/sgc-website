@@ -63,12 +63,18 @@ export default function AboutSection() {
                   builds a better tomorrow.&rdquo;
                 </blockquote>
                 <div className="flex items-center gap-4">
-                  <div className="w-14 h-14 rounded-full overflow-hidden relative">
-                    <Image src={PEOPLE_IMAGES.chairman} alt="Chairman" fill className="object-cover" />
+                  <div className="w-16 h-16 rounded-full overflow-hidden relative ring-2 ring-accent/50 ring-offset-2 ring-offset-primary">
+                    <Image
+                      src="/founder.jpg"
+                      alt="Founder - Shri. Swaminathan G"
+                      fill
+                      className="object-cover object-top"
+                      sizes="64px"
+                    />
                   </div>
                   <div>
-                    <p className="font-semibold">Shri. Saradha Gangadharan</p>
-                    <p className="text-white/60 text-sm">Chairman, SGC Trust</p>
+                    <p className="font-semibold">Shri. Swaminathan G</p>
+                    <p className="text-white/60 text-sm">Founder & Chairman, SGC Trust</p>
                   </div>
                 </div>
               </div>

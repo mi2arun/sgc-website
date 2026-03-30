@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Menu, X, ChevronDown, GraduationCap } from "lucide-react";
-import { NAV_ITEMS, SITE_CONFIG } from "@/lib/constants";
+import { Menu, X, ChevronDown } from "lucide-react";
+import { NAV_ITEMS } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
 export default function Header() {
@@ -11,27 +11,11 @@ export default function Header() {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
   return (
-    <header className="bg-white shadow-md sticky top-0 z-50">
-      {/* Main Header */}
+    <header className="bg-primary sticky top-0 z-50">
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 shrink-0 mr-6">
-            <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center shrink-0">
-              <GraduationCap className="w-7 h-7 text-accent" />
-            </div>
-            <div className="hidden sm:block">
-              <h1 className="text-base font-bold text-primary leading-tight">
-                {SITE_CONFIG.shortName}
-              </h1>
-              <p className="text-[10px] text-muted leading-tight max-w-[200px]">
-                Autonomous | Pondicherry University
-              </p>
-            </div>
-          </Link>
-
+        <div className="flex items-center justify-between h-12">
           {/* Desktop Navigation */}
-          <nav className="hidden xl:flex items-center gap-0">
+          <nav className="hidden xl:flex items-center gap-0 flex-1">
             {NAV_ITEMS.map((item) => (
               <div
                 key={item.label}
@@ -42,8 +26,8 @@ export default function Header() {
                 <Link
                   href={item.href}
                   className={cn(
-                    "px-2.5 py-2 text-[13px] font-medium text-foreground/80 hover:text-primary transition-colors flex items-center gap-0.5 rounded-md hover:bg-primary/5 whitespace-nowrap",
-                    activeDropdown === item.label && "text-primary bg-primary/5"
+                    "px-2.5 py-2 text-[13px] font-medium text-white/85 hover:text-accent transition-colors flex items-center gap-0.5 rounded-md hover:bg-white/10 whitespace-nowrap",
+                    activeDropdown === item.label && "text-accent bg-white/10"
                   )}
                 >
                   {item.label}
@@ -74,7 +58,7 @@ export default function Header() {
           <div className="hidden xl:block shrink-0 ml-4">
             <Link
               href="/admissions/apply"
-              className="bg-accent hover:bg-accent/90 text-primary-dark font-semibold px-5 py-2.5 rounded-lg text-sm transition-colors whitespace-nowrap"
+              className="bg-accent hover:bg-accent-light text-primary-dark font-semibold px-5 py-2 rounded-lg text-xs transition-colors whitespace-nowrap"
             >
               Apply Now
             </Link>
@@ -82,7 +66,7 @@ export default function Header() {
 
           {/* Mobile Toggle */}
           <button
-            className="xl:hidden p-2 text-foreground"
+            className="xl:hidden p-2 text-white"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Toggle menu"
           >

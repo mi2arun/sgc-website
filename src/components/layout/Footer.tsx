@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { GraduationCap, Phone, Mail, MapPin, ArrowUp, ExternalLink, Send } from "lucide-react";
+import Image from "next/image";
+import { Phone, Mail, MapPin, ArrowUp, ExternalLink, Send } from "lucide-react";
 import { SITE_CONFIG, FOOTER_LINKS } from "@/lib/constants";
 
 const socialLinks = [
@@ -25,9 +26,13 @@ export default function Footer() {
           {/* About Column */}
           <div>
             <div className="flex items-center gap-3 mb-5">
-              <div className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center">
-                <GraduationCap className="w-7 h-7 text-accent" />
-              </div>
+              <Image
+                src="/logo.png"
+                alt={SITE_CONFIG.name}
+                width={48}
+                height={48}
+                className="shrink-0"
+              />
               <div>
                 <h3 className="font-bold text-lg leading-tight">{SITE_CONFIG.shortName}</h3>
                 <p className="text-xs text-white/60">Est. 2010</p>
