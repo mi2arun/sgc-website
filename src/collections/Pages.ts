@@ -1,14 +1,22 @@
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig, Access } from 'payload'
 import { blocks } from '../blocks'
+
+const publishedOnly: Access = ({ req: { user } }) => {
+  if (user) return true
+  return { _status: { equals: 'published' } }
+}
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
   access: {
-    read: () => true,
+    read: publishedOnly,
+  },
+  versions: {
+    drafts: true,
   },
   admin: {
     useAsTitle: 'title',
-    defaultColumns: ['title', 'slug', 'status', 'updatedAt'],
+    defaultColumns: ['title', 'slug', '_status', 'updatedAt'],
   },
   fields: [
     {
@@ -21,18 +29,6 @@ export const Pages: CollectionConfig = {
       type: 'text',
       required: true,
       unique: true,
-      admin: {
-        position: 'sidebar',
-      },
-    },
-    {
-      name: 'status',
-      type: 'select',
-      defaultValue: 'draft',
-      options: [
-        { label: 'Draft', value: 'draft' },
-        { label: 'Published', value: 'published' },
-      ],
       admin: {
         position: 'sidebar',
       },

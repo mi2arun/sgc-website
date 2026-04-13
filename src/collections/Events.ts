@@ -1,13 +1,21 @@
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig, Access } from 'payload'
+
+const publishedOnly: Access = ({ req: { user } }) => {
+  if (user) return true
+  return { _status: { equals: 'published' } }
+}
 
 export const Events: CollectionConfig = {
   slug: 'events',
   access: {
-    read: () => true,
+    read: publishedOnly,
+  },
+  versions: {
+    drafts: true,
   },
   admin: {
     useAsTitle: 'title',
-    defaultColumns: ['title', 'category', 'date', 'status'],
+    defaultColumns: ['title', 'category', 'date', '_status'],
   },
   fields: [
     { name: 'title', type: 'text', required: true },
@@ -15,7 +23,6 @@ export const Events: CollectionConfig = {
     { name: 'date', type: 'date', required: true, admin: { position: 'sidebar' } },
     { name: 'time', type: 'text', admin: { position: 'sidebar' } },
     { name: 'venue', type: 'text' },
-    { name: 'status', type: 'select', defaultValue: 'draft', options: [{ label: 'Draft', value: 'draft' }, { label: 'Published', value: 'published' }], admin: { position: 'sidebar' } },
     { name: 'category', type: 'select', options: ['Academic', 'Cultural', 'Sports', 'Service', 'Festival'], admin: { position: 'sidebar' } },
     { name: 'images', type: 'array', fields: [{ name: 'image', type: 'upload', relationTo: 'media', required: true }] },
     { name: 'description', type: 'richText', required: true },

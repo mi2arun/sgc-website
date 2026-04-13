@@ -1,19 +1,26 @@
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig, Access } from 'payload'
+
+const publishedOnly: Access = ({ req: { user } }) => {
+  if (user) return true
+  return { _status: { equals: 'published' } }
+}
 
 export const News: CollectionConfig = {
   slug: 'news',
   access: {
-    read: () => true,
+    read: publishedOnly,
+  },
+  versions: {
+    drafts: true,
   },
   admin: {
     useAsTitle: 'title',
-    defaultColumns: ['title', 'category', 'date', 'status'],
+    defaultColumns: ['title', 'category', 'date', '_status'],
   },
   fields: [
     { name: 'title', type: 'text', required: true },
     { name: 'slug', type: 'text', required: true, unique: true, admin: { position: 'sidebar' } },
     { name: 'date', type: 'date', required: true, admin: { position: 'sidebar' } },
-    { name: 'status', type: 'select', defaultValue: 'draft', options: [{ label: 'Draft', value: 'draft' }, { label: 'Published', value: 'published' }], admin: { position: 'sidebar' } },
     { name: 'category', type: 'select', options: ['Academic', 'Event', 'Achievement', 'General'], admin: { position: 'sidebar' } },
     { name: 'featured', type: 'checkbox', defaultValue: false, admin: { position: 'sidebar' } },
     { name: 'image', type: 'upload', relationTo: 'media' },
