@@ -18,7 +18,7 @@ import ComplianceLinks from '@/components/sections/ComplianceLinks'
 import CTASection from '@/components/sections/CTASection'
 import PortalsSection from '@/components/sections/PortalsSection'
 import EventsCircularsServer from '@/components/sections/EventsCircularsServer'
-import RichTextBlock from '@/components/blocks/RichTextBlock'
+import RichTextBlock from '@/components/sections/RichTextBlock'
 import SectionWrapper from '@/components/blocks/SectionWrapper'
 
 type Block = {
