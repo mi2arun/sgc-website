@@ -1,6 +1,6 @@
 import { Award, Users, Building2, Lightbulb, HeartHandshake, Globe } from "lucide-react";
 
-const reasons = [
+const defaultReasons = [
   {
     icon: Award,
     title: "NAAC Accredited",
@@ -33,13 +33,29 @@ const reasons = [
   },
 ];
 
-export default function WhyJoinSection() {
+const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
+  Award, Users, Building2, Lightbulb, HeartHandshake, Globe,
+};
+
+type Props = {
+  title?: string;
+  reasons?: { icon?: string; heading: string; description?: string }[];
+};
+
+export default function WhyJoinSection({ title, reasons: reasonsProp }: Props) {
+  const reasons = reasonsProp
+    ? reasonsProp.map((r) => ({
+        icon: iconMap[r.icon || ""] || Award,
+        title: r.heading,
+        description: r.description || "",
+      }))
+    : defaultReasons;
   return (
     <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-14">
           <p className="text-accent font-semibold text-sm tracking-widest uppercase mb-3">Why Choose Us</p>
-          <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">Why Join SGC?</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">{title || "Why Join SGC?"}</h2>
           <p className="text-muted max-w-2xl mx-auto">
             Discover what makes Saradha Gangadharan College the right choice for your academic journey.
           </p>

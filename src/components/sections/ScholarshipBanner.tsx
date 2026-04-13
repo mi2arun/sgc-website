@@ -2,7 +2,16 @@ import Link from "next/link";
 import { SCHOLARSHIPS } from "@/lib/constants";
 import { GraduationCap, ArrowRight } from "lucide-react";
 
-export default function ScholarshipBanner() {
+type Props = {
+  title?: string;
+  description?: string;
+  items?: typeof SCHOLARSHIPS;
+  ctaLabel?: string;
+  ctaLink?: string;
+};
+
+export default function ScholarshipBanner({ title, description, items, ctaLabel, ctaLink }: Props) {
+  const data = items || SCHOLARSHIPS;
   return (
     <section className="py-16 bg-gradient-to-br from-[#1e3a5f] to-[#15294a] text-white relative overflow-hidden">
       <div className="absolute inset-0 opacity-5">
@@ -18,14 +27,14 @@ export default function ScholarshipBanner() {
               Financial Aid
             </span>
           </div>
-          <h2 className="text-2xl md:text-3xl font-bold mb-2">Scholarships & Financial Aid</h2>
+          <h2 className="text-2xl md:text-3xl font-bold mb-2">{title || "Scholarships & Financial Aid"}</h2>
           <p className="text-white/60 text-sm max-w-xl mx-auto">
-            We believe financial constraints should never be a barrier to quality education.
+            {description || "We believe financial constraints should never be a barrier to quality education."}
           </p>
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {SCHOLARSHIPS.map((item, i) => (
+          {data.map((item, i) => (
             <div
               key={i}
               className="bg-white/10 backdrop-blur-sm rounded-xl p-5 border border-white/10 hover:border-[#c8a951]/40 transition-colors"
@@ -39,10 +48,10 @@ export default function ScholarshipBanner() {
 
         <div className="text-center mt-8">
           <Link
-            href="/admissions/scholarships"
+            href={ctaLink || "/admissions/scholarships"}
             className="inline-flex items-center gap-2 bg-[#c8a951] text-[#1e3a5f] px-6 py-3 rounded-lg font-semibold text-sm hover:bg-[#d4b85c] transition-colors"
           >
-            View All Scholarships <ArrowRight className="w-4 h-4" />
+            {ctaLabel || "View All Scholarships"} <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
       </div>

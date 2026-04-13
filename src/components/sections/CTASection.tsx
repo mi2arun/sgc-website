@@ -2,7 +2,15 @@ import Link from "next/link";
 import { ArrowRight, Phone } from "lucide-react";
 import { SITE_CONFIG } from "@/lib/constants";
 
-export default function CTASection() {
+type Props = {
+  heading?: string;
+  description?: string;
+  buttonLabel?: string;
+  buttonLink?: string;
+  phone?: string;
+};
+
+export default function CTASection({ heading, description, buttonLabel, buttonLink, phone }: Props) {
   return (
     <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -14,22 +22,21 @@ export default function CTASection() {
           <div className="relative grid md:grid-cols-2 gap-8 items-center">
             <div>
               <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4 leading-tight">
-                Ready to Begin Your Journey?
+                {heading || "Ready to Begin Your Journey?"}
               </h2>
               <p className="text-muted leading-relaxed mb-6">
-                Take the first step towards a bright future. Apply for admission today and become
-                a part of the SGC family. Our counsellors are here to help you choose the right programme.
+                {description || "Take the first step towards a bright future. Apply for admission today and become a part of the SGC family. Our counsellors are here to help you choose the right programme."}
               </p>
               <div className="flex flex-wrap gap-4">
                 <Link
-                  href="/admissions/apply"
+                  href={buttonLink || "/admissions/apply"}
                   className="inline-flex items-center gap-2 bg-primary hover:bg-primary-light text-white font-semibold px-7 py-3.5 rounded-lg transition-colors text-sm"
                 >
-                  Apply Now
+                  {buttonLabel || "Apply Now"}
                   <ArrowRight className="w-4 h-4" />
                 </Link>
                 <a
-                  href={`tel:${SITE_CONFIG.phone}`}
+                  href={`tel:${phone || SITE_CONFIG.phone}`}
                   className="inline-flex items-center gap-2 border-2 border-primary/20 hover:border-primary/40 text-primary font-medium px-7 py-3.5 rounded-lg transition-colors text-sm"
                 >
                   <Phone className="w-4 h-4" />

@@ -6,7 +6,13 @@ import { PLACEMENT_STATS } from "@/lib/constants";
 import { TrendingUp, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-export default function PlacementSection() {
+type Props = {
+  stats?: typeof PLACEMENT_STATS;
+  title?: string;
+};
+
+export default function PlacementSection({ stats: statsProp, title }: Props) {
+  const data = statsProp || PLACEMENT_STATS;
   const ref = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -32,7 +38,7 @@ export default function PlacementSection() {
           <div>
             <p className="text-accent font-semibold text-sm tracking-widest uppercase mb-3">Career Growth</p>
             <h2 className="text-3xl md:text-4xl font-bold text-primary mb-5 leading-tight">
-              Placement Excellence
+              {title || "Placement Excellence"}
             </h2>
             <p className="text-muted leading-relaxed mb-8">
               Our dedicated placement cell works tirelessly to connect students with top employers
@@ -67,7 +73,7 @@ export default function PlacementSection() {
               <h3 className="font-bold text-lg text-primary">Sector-wise Placements</h3>
             </div>
             <div className="space-y-7">
-              {PLACEMENT_STATS.map((stat, i) => (
+              {data.map((stat, i) => (
                 <div key={stat.label}>
                   <div className="flex justify-between items-center mb-2">
                     <span className="text-sm font-medium text-foreground">{stat.label}</span>

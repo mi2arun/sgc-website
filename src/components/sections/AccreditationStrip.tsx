@@ -9,7 +9,12 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   AUTONOMOUS: Award,
 };
 
-export default function AccreditationStrip() {
+type Props = {
+  items?: typeof ACCREDITATIONS;
+};
+
+export default function AccreditationStrip({ items }: Props) {
+  const data = items || ACCREDITATIONS;
   return (
     <section className="py-12 bg-gradient-to-b from-[#f8f6f0] to-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -22,7 +27,7 @@ export default function AccreditationStrip() {
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
-          {ACCREDITATIONS.map((item) => {
+          {data.map((item) => {
             const Icon = iconMap[item.name] || Award;
             return (
               <div

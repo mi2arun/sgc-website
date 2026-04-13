@@ -5,17 +5,22 @@ import Link from "next/link";
 import { PROMO_BANNERS } from "@/lib/constants";
 import { ChevronLeft, ChevronRight, Megaphone } from "lucide-react";
 
-export default function PromoBanner() {
+type Props = {
+  banners?: typeof PROMO_BANNERS;
+};
+
+export default function PromoBanner({ banners: bannersProp }: Props) {
+  const data = bannersProp || PROMO_BANNERS;
   const [current, setCurrent] = useState(0);
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % PROMO_BANNERS.length);
+      setCurrent((prev) => (prev + 1) % data.length);
     }, 5000);
     return () => clearInterval(timer);
-  }, []);
+  }, [data.length]);
 
-  const banner = PROMO_BANNERS[current];
+  const banner = data[current];
 
   return (
     <div className="relative bg-[#1e3a5f] text-white overflow-hidden">
@@ -25,7 +30,7 @@ export default function PromoBanner() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 relative">
         <div className="flex items-center justify-between gap-4">
           <button
-            onClick={() => setCurrent((prev) => (prev - 1 + PROMO_BANNERS.length) % PROMO_BANNERS.length)}
+            onClick={() => setCurrent((prev) => (prev - 1 + data.length) % data.length)}
             className="p-1.5 rounded-full hover:bg-white/20 transition-colors shrink-0"
             aria-label="Previous banner"
           >
@@ -47,7 +52,7 @@ export default function PromoBanner() {
           </div>
 
           <button
-            onClick={() => setCurrent((prev) => (prev + 1) % PROMO_BANNERS.length)}
+            onClick={() => setCurrent((prev) => (prev + 1) % data.length)}
             className="p-1.5 rounded-full hover:bg-white/20 transition-colors shrink-0"
             aria-label="Next banner"
           >
@@ -56,7 +61,7 @@ export default function PromoBanner() {
         </div>
 
         <div className="flex justify-center gap-1.5 mt-2">
-          {PROMO_BANNERS.map((_, i) => (
+          {data.map((_, i) => (
             <button
               key={i}
               onClick={() => setCurrent(i)}

@@ -6,7 +6,7 @@ import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { PEOPLE_IMAGES } from "@/lib/images";
 
-const testimonials = [
+const defaultTestimonials = [
   {
     name: "Priya Lakshmi",
     batch: "B.Sc Computer Science, 2024",
@@ -37,7 +37,19 @@ const testimonials = [
   },
 ];
 
-export default function TestimonialsSection() {
+type Props = {
+  items?: { name: string; batch?: string; quote: string; photo?: any }[];
+  title?: string;
+};
+
+export default function TestimonialsSection({ items, title }: Props) {
+  const testimonials = items
+    ? items.map((t) => ({
+        ...t,
+        initials: t.name.split(" ").map((w) => w[0]).join("").slice(0, 2),
+        photo: t.photo && typeof t.photo === "object" ? t.photo.url : (t.photo || PEOPLE_IMAGES.student1),
+      }))
+    : defaultTestimonials;
   const [current, setCurrent] = useState(0);
 
   const prev = () => setCurrent((c) => (c - 1 + testimonials.length) % testimonials.length);
@@ -53,7 +65,7 @@ export default function TestimonialsSection() {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-14">
           <p className="text-accent font-semibold text-sm tracking-widest uppercase mb-3">Testimonials</p>
-          <h2 className="text-3xl md:text-4xl font-bold text-white">What Our Alumni Say</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-white">{title || "What Our Alumni Say"}</h2>
         </div>
 
         <div className="max-w-3xl mx-auto">

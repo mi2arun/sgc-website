@@ -10,13 +10,21 @@ function formatDate(dateStr: string) {
   });
 }
 
-export default function NewsEventsSection() {
+type Props = {
+  events?: typeof EVENTS;
+  news?: typeof NEWS;
+  title?: string;
+};
+
+export default function NewsEventsSection({ events: eventsProp, news: newsProp, title }: Props) {
+  const eventsData = eventsProp || EVENTS;
+  const newsData = newsProp || NEWS;
   return (
     <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-14">
           <p className="text-accent font-semibold text-sm tracking-widest uppercase mb-3">Stay Updated</p>
-          <h2 className="text-3xl md:text-4xl font-bold text-primary">News & Events</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-primary">{title || "News & Events"}</h2>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-10">
@@ -32,7 +40,7 @@ export default function NewsEventsSection() {
               </Link>
             </div>
             <div className="space-y-4">
-              {EVENTS.map((event, i) => (
+              {eventsData.map((event, i) => (
                 <div
                   key={i}
                   className="group bg-secondary hover:bg-white border border-transparent hover:border-primary/10 rounded-xl p-5 transition-all duration-300 hover:shadow-md"
@@ -75,7 +83,7 @@ export default function NewsEventsSection() {
               </Link>
             </div>
             <div className="space-y-4">
-              {NEWS.map((item, i) => (
+              {newsData.map((item, i) => (
                 <div
                   key={i}
                   className="group bg-secondary hover:bg-white border border-transparent hover:border-primary/10 rounded-xl p-5 transition-all duration-300 hover:shadow-md"

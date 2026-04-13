@@ -12,22 +12,28 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
 
 type Filter = "all" | "UG" | "PG";
 
-export default function ProgrammesSection() {
+type Props = {
+  departments?: typeof DEPARTMENTS;
+  title?: string;
+  subtitle?: string;
+};
+
+export default function ProgrammesSection({ departments: deptsProp, title, subtitle }: Props) {
+  const deps = deptsProp || DEPARTMENTS;
   const [filter, setFilter] = useState<Filter>("all");
 
   const filtered = filter === "all"
-    ? DEPARTMENTS
-    : DEPARTMENTS.filter((d) => d.type === filter);
+    ? deps
+    : deps.filter((d) => d.type === filter);
 
   return (
     <section className="py-20 bg-secondary">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <p className="text-accent font-semibold text-sm tracking-widest uppercase mb-3">Our Programmes</p>
-          <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">Academic Excellence Across Disciplines</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">{title || "Academic Excellence Across Disciplines"}</h2>
           <p className="text-muted max-w-2xl mx-auto">
-            Explore our diverse range of undergraduate and postgraduate programmes designed to
-            prepare you for a successful career.
+            {subtitle || "Explore our diverse range of undergraduate and postgraduate programmes designed to prepare you for a successful career."}
           </p>
         </div>
 

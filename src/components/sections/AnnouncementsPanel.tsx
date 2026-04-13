@@ -7,13 +7,19 @@ import { Bell, Download, ChevronRight, Calendar } from "lucide-react";
 
 const categories = ["All", "Examination", "Admission", "Fees", "Academic", "Accreditation"];
 
-export default function AnnouncementsPanel() {
+type Props = {
+  items?: typeof ANNOUNCEMENTS;
+  title?: string;
+};
+
+export default function AnnouncementsPanel({ items, title }: Props) {
+  const data = items || ANNOUNCEMENTS;
   const [activeCategory, setActiveCategory] = useState("All");
 
   const filtered =
     activeCategory === "All"
-      ? ANNOUNCEMENTS
-      : ANNOUNCEMENTS.filter((a) => a.category === activeCategory);
+      ? data
+      : data.filter((a) => a.category === activeCategory);
 
   return (
     <section className="py-12 bg-[#f8f6f0]">
@@ -24,7 +30,7 @@ export default function AnnouncementsPanel() {
               <Bell className="w-5 h-5 text-[#c8a951]" />
             </div>
             <div>
-              <h2 className="text-2xl font-bold text-[#1e3a5f]">Announcements & Circulars</h2>
+              <h2 className="text-2xl font-bold text-[#1e3a5f]">{title || "Announcements & Circulars"}</h2>
               <p className="text-sm text-gray-500">Important notices and updates</p>
             </div>
           </div>

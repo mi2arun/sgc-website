@@ -3,7 +3,15 @@ import Link from "next/link";
 import { GALLERY_IMAGES } from "@/lib/images";
 import { Camera, ChevronRight } from "lucide-react";
 
-export default function GalleryPreview() {
+type Props = {
+  title?: string;
+  images?: { image: any }[];
+};
+
+export default function GalleryPreview({ title, images: imagesProp }: Props) {
+  const galleryImages = imagesProp
+    ? imagesProp.map((img) => (typeof img.image === "object" ? img.image.url : img.image))
+    : GALLERY_IMAGES;
   return (
     <section className="py-16 bg-[#f8f6f0]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -13,7 +21,7 @@ export default function GalleryPreview() {
               <Camera className="w-5 h-5 text-[#c8a951]" />
             </div>
             <div>
-              <h2 className="text-2xl font-bold text-[#1e3a5f]">Campus Gallery</h2>
+              <h2 className="text-2xl font-bold text-[#1e3a5f]">{title || "Campus Gallery"}</h2>
               <p className="text-sm text-gray-500">Life at Saradha Gangadharan College</p>
             </div>
           </div>
@@ -26,7 +34,7 @@ export default function GalleryPreview() {
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
-          {GALLERY_IMAGES.map((src, i) => (
+          {galleryImages.map((src, i) => (
             <div
               key={i}
               className={`relative overflow-hidden rounded-xl group cursor-pointer ${

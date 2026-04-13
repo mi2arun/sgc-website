@@ -9,7 +9,25 @@ const badges = [
   { icon: BookOpen, label: "Autonomous" },
 ];
 
-export default function AboutSection() {
+type Props = {
+  heading?: string;
+  description?: string;
+  chairmanName?: string;
+  chairmanTitle?: string;
+  chairmanOrg?: string;
+  chairmanPhoto?: any;
+  chairmanQuote?: string;
+};
+
+export default function AboutSection({
+  heading,
+  description,
+  chairmanName,
+  chairmanTitle,
+  chairmanOrg,
+  chairmanPhoto,
+  chairmanQuote,
+}: Props) {
   return (
     <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -18,7 +36,7 @@ export default function AboutSection() {
           <div>
             <p className="text-accent font-semibold text-sm tracking-widest uppercase mb-3">Welcome to SGC</p>
             <h2 className="text-3xl md:text-4xl font-bold text-primary mb-5 leading-tight">
-              Excellence in Education<br />Since 2010
+              {heading || <>Excellence in Education<br />Since 2010</>}
             </h2>
             <p className="text-muted leading-relaxed mb-4">
               Saradha Gangadharan College has been a beacon of quality education in Puducherry,
@@ -58,23 +76,21 @@ export default function AboutSection() {
               <div className="relative">
                 <p className="text-accent font-medium text-sm mb-4 uppercase tracking-wide">From the Chairman&apos;s Desk</p>
                 <blockquote className="text-white/90 italic leading-relaxed text-lg mb-6">
-                  &ldquo;Education is the most powerful weapon which you can use to change the world.
-                  At SGC, we are committed to providing an education that transforms lives and
-                  builds a better tomorrow.&rdquo;
+                  &ldquo;{chairmanQuote || "Education is the most powerful weapon which you can use to change the world. At SGC, we are committed to providing an education that transforms lives and builds a better tomorrow."}&rdquo;
                 </blockquote>
                 <div className="flex items-center gap-4">
                   <div className="w-16 h-16 rounded-full overflow-hidden relative ring-2 ring-accent/50 ring-offset-2 ring-offset-primary">
                     <Image
-                      src="/founder.jpg"
-                      alt="Founder - Shri. Swaminathan G"
+                      src={chairmanPhoto && typeof chairmanPhoto === "object" ? chairmanPhoto.url : "/founder.jpg"}
+                      alt={`Founder - ${chairmanName || "Shri. Swaminathan G"}`}
                       fill
                       className="object-cover object-top"
                       sizes="64px"
                     />
                   </div>
                   <div>
-                    <p className="font-semibold">Shri. Swaminathan G</p>
-                    <p className="text-white/60 text-sm">Founder & Chairman, SGC Trust</p>
+                    <p className="font-semibold">{chairmanName || "Shri. Swaminathan G"}</p>
+                    <p className="text-white/60 text-sm">{chairmanTitle || "Founder & Chairman"}, {chairmanOrg || "SGC Trust"}</p>
                   </div>
                 </div>
               </div>

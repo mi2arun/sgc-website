@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 import { HERO_IMAGES } from "@/lib/images";
 import { SITE_CONFIG } from "@/lib/constants";
 
-const slides = [
+const defaultSlides = [
   {
     image: HERO_IMAGES.slide1,
     cta: { label: "Explore Programmes", href: "/academics" },
@@ -23,7 +23,17 @@ const slides = [
   },
 ];
 
-export default function HeroSection() {
+type Props = {
+  slides?: { image: any; ctaLabel?: string; ctaLink?: string }[];
+};
+
+export default function HeroSection({ slides: slidesProp }: Props) {
+  const slides = slidesProp
+    ? slidesProp.map((s) => ({
+        image: typeof s.image === "object" && s.image?.url ? s.image.url : s.image,
+        cta: { label: s.ctaLabel || "Learn More", href: s.ctaLink || "/" },
+      }))
+    : defaultSlides;
   const [current, setCurrent] = useState(0);
   const [mounted, setMounted] = useState(false);
 

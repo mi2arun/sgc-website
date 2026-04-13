@@ -12,15 +12,21 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   MessageSquare, Download,
 };
 
-export default function ComplianceLinks() {
+type Props = {
+  links?: typeof COMPLIANCE_LINKS;
+  title?: string;
+};
+
+export default function ComplianceLinks({ links, title }: Props) {
+  const data = links || COMPLIANCE_LINKS;
   return (
     <section className="py-12 bg-[#f8f6f0]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-center text-sm font-semibold text-[#1e3a5f] uppercase tracking-wider mb-8">
-          Important Links & Compliance
+          {title || "Important Links & Compliance"}
         </h2>
         <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
-          {COMPLIANCE_LINKS.map((item) => {
+          {data.map((item) => {
             const Icon = iconMap[item.icon] || FileText;
             return (
               <Link

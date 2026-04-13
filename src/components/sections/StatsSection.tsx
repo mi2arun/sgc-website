@@ -47,7 +47,12 @@ function StatCard({ stat, index, isVisible }: { stat: typeof STATS[0]; index: nu
   );
 }
 
-export default function StatsSection() {
+type Props = {
+  items?: typeof STATS;
+};
+
+export default function StatsSection({ items }: Props) {
+  const data = items || STATS;
   const ref = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -79,7 +84,7 @@ export default function StatsSection() {
           <h2 className="text-3xl md:text-4xl font-bold text-white">Numbers That Speak</h2>
         </div>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-10">
-          {STATS.map((stat, i) => (
+          {data.map((stat, i) => (
             <StatCard key={stat.label} stat={stat} index={i} isVisible={isVisible} />
           ))}
         </div>

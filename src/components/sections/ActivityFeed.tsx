@@ -10,7 +10,12 @@ const typeColors: Record<string, string> = {
   Collaboration: "bg-teal-100 text-teal-700",
 };
 
-export default function ActivityFeed() {
+type Props = {
+  items?: typeof ACTIVITY_FEED;
+};
+
+export default function ActivityFeed({ items }: Props) {
+  const data = items || ACTIVITY_FEED;
   return (
     <section className="py-16 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -37,7 +42,7 @@ export default function ActivityFeed() {
           <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-gray-200 hidden md:block" />
 
           <div className="space-y-6">
-            {ACTIVITY_FEED.map((item, i) => (
+            {data.map((item, i) => (
               <div key={i} className="relative flex gap-4 md:gap-6 group">
                 {/* Timeline dot */}
                 <div className="hidden md:flex shrink-0 w-12 items-start justify-center pt-5">
