@@ -10,7 +10,7 @@ export default async function CollegeBanner() {
   }
 
   const collegeName = settings?.collegeName || "Saradha Gangadharan College";
-  const phone = settings?.phone || "+91-413-2211800";
+  const phone = settings?.phone || "";
   const logoUrl = settings?.logo && typeof settings.logo === 'object' && settings.logo.url
     ? settings.logo.url
     : "/logo.png";
@@ -40,9 +40,11 @@ export default async function CollegeBanner() {
               <p className="text-muted text-[11px] sm:text-xs leading-snug hidden sm:block">
                 Accredited by NAAC | Affiliated to Pondicherry University | ISO 9001:2015 Certified
               </p>
-              <p className="text-foreground/70 text-[11px] sm:text-xs font-medium mt-0.5 hidden md:block">
-                Lake Road, Velrampet, Puducherry — 605 004 | Ph: {phone}
-              </p>
+              {phone && (
+                <p className="text-foreground/70 text-[11px] sm:text-xs font-medium mt-0.5 hidden md:block">
+                  Lake Road, Velrampet, Puducherry — 605 004 | Ph: {phone}
+                </p>
+              )}
             </div>
           </div>
           <div className="hidden lg:flex flex-col items-center gap-1 shrink-0">

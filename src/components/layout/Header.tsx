@@ -1,16 +1,6 @@
 import { getNavigation } from "@/lib/payload";
 import HeaderClient from "./HeaderClient";
 
-const DEFAULT_NAV = [
-  { label: "Home", link: "/" },
-  { label: "About", link: "/about", children: [
-    { label: "About SGC", link: "/about" },
-    { label: "Vision & Mission", link: "/about/vision-mission" },
-  ]},
-  { label: "Academics", link: "/academics" },
-  { label: "Contact", link: "/contact" },
-];
-
 export default async function Header() {
   let nav;
   try {
@@ -30,7 +20,7 @@ export default async function Header() {
           openInNewTab: child.openInNewTab || false,
         })),
       }))
-    : DEFAULT_NAV;
+    : [];
 
   return <HeaderClient items={items} />;
 }
