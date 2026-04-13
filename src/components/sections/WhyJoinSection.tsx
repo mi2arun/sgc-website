@@ -1,38 +1,5 @@
 import { Award, Users, Building2, Lightbulb, HeartHandshake, Globe } from "lucide-react";
 
-const defaultReasons = [
-  {
-    icon: Award,
-    title: "NAAC Accredited",
-    description: "Recognized by the National Assessment and Accreditation Council for quality education standards.",
-  },
-  {
-    icon: Users,
-    title: "Expert Faculty",
-    description: "Learn from 79+ experienced and qualified faculty members dedicated to student success.",
-  },
-  {
-    icon: Building2,
-    title: "Modern Infrastructure",
-    description: "State-of-the-art laboratories, library, smart classrooms, and sports facilities on campus.",
-  },
-  {
-    icon: Lightbulb,
-    title: "Research Opportunities",
-    description: "Dedicated research fund, incentive schemes, and innovation programmes for aspiring researchers.",
-  },
-  {
-    icon: HeartHandshake,
-    title: "Industry Connect",
-    description: "Strong MoUs with leading companies ensuring internships, projects, and placement opportunities.",
-  },
-  {
-    icon: Globe,
-    title: "Holistic Development",
-    description: "NCC, NSS, clubs, cultural events, and sports activities for all-round personality development.",
-  },
-];
-
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   Award, Users, Building2, Lightbulb, HeartHandshake, Globe,
 };
@@ -49,7 +16,8 @@ export default function WhyJoinSection({ title, reasons: reasonsProp }: Props) {
         title: r.heading,
         description: r.description || "",
       }))
-    : defaultReasons;
+    : [];
+  if (reasons.length === 0) return null;
   return (
     <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

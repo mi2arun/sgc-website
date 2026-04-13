@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { GALLERY_IMAGES } from "@/lib/images";
 import { Camera, ChevronRight } from "lucide-react";
 
 type Props = {
@@ -11,7 +10,8 @@ type Props = {
 export default function GalleryPreview({ title, images: imagesProp }: Props) {
   const galleryImages = imagesProp
     ? imagesProp.map((img) => (typeof img.image === "object" ? img.image.url : img.image))
-    : GALLERY_IMAGES;
+    : [];
+  if (galleryImages.length === 0) return null;
   return (
     <section className="py-16 bg-[#f8f6f0]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

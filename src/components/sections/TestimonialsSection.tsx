@@ -4,38 +4,6 @@ import { useState } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { PEOPLE_IMAGES } from "@/lib/images";
-
-const defaultTestimonials = [
-  {
-    name: "Priya Lakshmi",
-    batch: "B.Sc Computer Science, 2024",
-    quote: "SGC gave me the platform to grow both academically and personally. The faculty mentorship and placement support helped me secure a position at a top IT company.",
-    initials: "PL",
-    photo: PEOPLE_IMAGES.student1,
-  },
-  {
-    name: "Rajesh Kumar",
-    batch: "B.Com, 2023",
-    quote: "The commerce department at SGC is exceptional. The practical exposure through industry visits and guest lectures prepared me well for the corporate world.",
-    initials: "RK",
-    photo: PEOPLE_IMAGES.student2,
-  },
-  {
-    name: "Anitha Devi",
-    batch: "M.A English, 2024",
-    quote: "Pursuing my post-graduation at SGC was the best decision. The research opportunities and library resources are outstanding.",
-    initials: "AD",
-    photo: PEOPLE_IMAGES.student3,
-  },
-  {
-    name: "Mohammed Irfan",
-    batch: "B.B.A, 2023",
-    quote: "From NCC to cultural events, SGC offers a complete college experience. I developed leadership skills that helped me stand out in interviews.",
-    initials: "MI",
-    photo: PEOPLE_IMAGES.student4,
-  },
-];
 
 type Props = {
   items?: { name: string; batch?: string; quote: string; photo?: any }[];
@@ -47,10 +15,12 @@ export default function TestimonialsSection({ items, title }: Props) {
     ? items.map((t) => ({
         ...t,
         initials: t.name.split(" ").map((w) => w[0]).join("").slice(0, 2),
-        photo: t.photo && typeof t.photo === "object" ? t.photo.url : (t.photo || PEOPLE_IMAGES.student1),
+        photo: t.photo && typeof t.photo === "object" ? t.photo.url : (t.photo || ""),
       }))
-    : defaultTestimonials;
+    : [];
   const [current, setCurrent] = useState(0);
+
+  if (testimonials.length === 0) return null;
 
   const prev = () => setCurrent((c) => (c - 1 + testimonials.length) % testimonials.length);
   const next = () => setCurrent((c) => (c + 1) % testimonials.length);
@@ -84,9 +54,15 @@ export default function TestimonialsSection({ items, title }: Props) {
                     &ldquo;{t.quote}&rdquo;
                   </blockquote>
                   <div className="flex items-center justify-center gap-4">
-                    <div className="w-12 h-12 rounded-full overflow-hidden relative border-2 border-accent/30">
-                      <Image src={t.photo} alt={t.name} fill className="object-cover" />
-                    </div>
+                    {t.photo ? (
+                      <div className="w-12 h-12 rounded-full overflow-hidden relative border-2 border-accent/30">
+                        <Image src={t.photo} alt={t.name} fill className="object-cover" />
+                      </div>
+                    ) : (
+                      <div className="w-12 h-12 rounded-full bg-accent/20 flex items-center justify-center border-2 border-accent/30">
+                        <span className="text-white font-semibold text-sm">{t.initials}</span>
+                      </div>
+                    )}
                     <div className="text-left">
                       <p className="font-semibold text-white">{t.name}</p>
                       <p className="text-sm text-white/60">{t.batch}</p>

@@ -1,10 +1,11 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { STATS } from "@/lib/constants";
 import { GraduationCap, Users, BookOpen, Briefcase } from "lucide-react";
 
 const icons = [BookOpen, Users, GraduationCap, Briefcase];
+
+type StatItem = { label: string; value: number; suffix: string };
 
 function useCountUp(target: number, isVisible: boolean) {
   const [count, setCount] = useState(0);
@@ -29,9 +30,9 @@ function useCountUp(target: number, isVisible: boolean) {
   return count;
 }
 
-function StatCard({ stat, index, isVisible }: { stat: typeof STATS[0]; index: number; isVisible: boolean }) {
+function StatCard({ stat, index, isVisible }: { stat: StatItem; index: number; isVisible: boolean }) {
   const count = useCountUp(stat.value, isVisible);
-  const Icon = icons[index];
+  const Icon = icons[index % icons.length];
 
   return (
     <div className="text-center group">
@@ -48,11 +49,11 @@ function StatCard({ stat, index, isVisible }: { stat: typeof STATS[0]; index: nu
 }
 
 type Props = {
-  items?: typeof STATS;
+  items?: StatItem[];
 };
 
 export default function StatsSection({ items }: Props) {
-  const data = items || STATS;
+  const data = items || [];
   const ref = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -69,6 +70,8 @@ export default function StatsSection({ items }: Props) {
     if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
   }, []);
+
+  if (data.length === 0) return null;
 
   return (
     <section ref={ref} className="py-20 bg-gradient-to-br from-primary via-primary-dark to-primary relative overflow-hidden">

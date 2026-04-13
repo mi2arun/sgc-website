@@ -1,37 +1,6 @@
 import Link from "next/link";
 import { FileText, CreditCard, Download, ClipboardList } from "lucide-react";
 
-const defaultActions = [
-  {
-    icon: FileText,
-    label: "Apply Online",
-    description: "Submit your application for admission",
-    href: "/admissions/apply",
-    color: "bg-primary",
-  },
-  {
-    icon: CreditCard,
-    label: "Pay Fees",
-    description: "Online fee payment portal",
-    href: "/admissions/fees",
-    color: "bg-primary-light",
-  },
-  {
-    icon: Download,
-    label: "Prospectus",
-    description: "Download college prospectus",
-    href: "/admissions/prospectus",
-    color: "bg-accent",
-  },
-  {
-    icon: ClipboardList,
-    label: "Exam Results",
-    description: "Check your examination results",
-    href: "/examination/results",
-    color: "bg-success",
-  },
-];
-
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   FileText, CreditCard, Download, ClipboardList,
 };
@@ -49,7 +18,8 @@ export default function QuickAccess({ buttons }: Props) {
         href: b.href,
         color: b.color || "bg-primary",
       }))
-    : defaultActions;
+    : [];
+  if (actions.length === 0) return null;
   return (
     <section className="py-8 bg-[#f8f6f0] relative z-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

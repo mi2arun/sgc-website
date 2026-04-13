@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { DEPARTMENTS } from "@/lib/constants";
 import { BookOpen, BarChart3, Briefcase, Scale, Atom, Calculator, Monitor, Laptop, Globe } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -13,14 +12,16 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
 type Filter = "all" | "UG" | "PG";
 
 type Props = {
-  departments?: typeof DEPARTMENTS;
+  departments?: { name: string; type: string; fees: string; icon: string }[];
   title?: string;
   subtitle?: string;
 };
 
 export default function ProgrammesSection({ departments: deptsProp, title, subtitle }: Props) {
-  const deps = deptsProp || DEPARTMENTS;
+  const deps = deptsProp || [];
   const [filter, setFilter] = useState<Filter>("all");
+
+  if (deps.length === 0) return null;
 
   const filtered = filter === "all"
     ? deps

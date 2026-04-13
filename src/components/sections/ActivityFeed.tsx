@@ -1,4 +1,3 @@
-import { ACTIVITY_FEED } from "@/lib/constants";
 import { ChevronRight, Zap } from "lucide-react";
 import Link from "next/link";
 
@@ -11,11 +10,12 @@ const typeColors: Record<string, string> = {
 };
 
 type Props = {
-  items?: typeof ACTIVITY_FEED;
+  items?: { title: string; date: string; type: string; department: string; description: string }[];
 };
 
 export default function ActivityFeed({ items }: Props) {
-  const data = items || ACTIVITY_FEED;
+  const data = items || [];
+  if (data.length === 0) return null;
   return (
     <section className="py-16 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

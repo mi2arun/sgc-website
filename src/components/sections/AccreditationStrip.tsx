@@ -1,4 +1,3 @@
-import { ACCREDITATIONS } from "@/lib/constants";
 import { Award, ShieldCheck, BadgeCheck, Trophy, Star } from "lucide-react";
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -10,11 +9,12 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
 };
 
 type Props = {
-  items?: typeof ACCREDITATIONS;
+  items?: { name: string; grade?: string; label?: string; description?: string }[];
 };
 
 export default function AccreditationStrip({ items }: Props) {
-  const data = items || ACCREDITATIONS;
+  const data = items || [];
+  if (data.length === 0) return null;
   return (
     <section className="py-12 bg-gradient-to-b from-[#f8f6f0] to-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

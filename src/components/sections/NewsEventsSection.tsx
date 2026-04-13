@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { EVENTS, NEWS } from "@/lib/constants";
 import { Calendar, ArrowRight, Clock, Tag } from "lucide-react";
 
 function formatDate(dateStr: string) {
@@ -11,14 +10,15 @@ function formatDate(dateStr: string) {
 }
 
 type Props = {
-  events?: typeof EVENTS;
-  news?: typeof NEWS;
+  events?: { title: string; date: string; category: string; description: string }[];
+  news?: { title: string; date: string; excerpt: string }[];
   title?: string;
 };
 
 export default function NewsEventsSection({ events: eventsProp, news: newsProp, title }: Props) {
-  const eventsData = eventsProp || EVENTS;
-  const newsData = newsProp || NEWS;
+  const eventsData = eventsProp || [];
+  const newsData = newsProp || [];
+  if (eventsData.length === 0 && newsData.length === 0) return null;
   return (
     <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

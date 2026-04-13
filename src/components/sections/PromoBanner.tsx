@@ -2,23 +2,25 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { PROMO_BANNERS } from "@/lib/constants";
 import { ChevronLeft, ChevronRight, Megaphone } from "lucide-react";
 
 type Props = {
-  banners?: typeof PROMO_BANNERS;
+  banners?: { title: string; subtitle: string; cta: string; href: string; color?: string }[];
 };
 
 export default function PromoBanner({ banners: bannersProp }: Props) {
-  const data = bannersProp || PROMO_BANNERS;
+  const data = bannersProp || [];
   const [current, setCurrent] = useState(0);
 
   useEffect(() => {
+    if (data.length === 0) return;
     const timer = setInterval(() => {
       setCurrent((prev) => (prev + 1) % data.length);
     }, 5000);
     return () => clearInterval(timer);
   }, [data.length]);
+
+  if (data.length === 0) return null;
 
   const banner = data[current];
 

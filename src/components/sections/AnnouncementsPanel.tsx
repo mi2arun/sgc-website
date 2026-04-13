@@ -2,19 +2,20 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ANNOUNCEMENTS } from "@/lib/constants";
 import { Bell, Download, ChevronRight, Calendar } from "lucide-react";
 
 const categories = ["All", "Examination", "Admission", "Fees", "Academic", "Accreditation"];
 
 type Props = {
-  items?: typeof ANNOUNCEMENTS;
+  items?: { title: string; date: string; category: string; isNew?: boolean; href: string }[];
   title?: string;
 };
 
 export default function AnnouncementsPanel({ items, title }: Props) {
-  const data = items || ANNOUNCEMENTS;
+  const data = items || [];
   const [activeCategory, setActiveCategory] = useState("All");
+
+  if (data.length === 0) return null;
 
   const filtered =
     activeCategory === "All"

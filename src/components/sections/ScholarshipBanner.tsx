@@ -1,17 +1,17 @@
 import Link from "next/link";
-import { SCHOLARSHIPS } from "@/lib/constants";
 import { GraduationCap, ArrowRight } from "lucide-react";
 
 type Props = {
   title?: string;
   description?: string;
-  items?: typeof SCHOLARSHIPS;
+  items?: { name: string; amount: string; eligibility: string }[];
   ctaLabel?: string;
   ctaLink?: string;
 };
 
 export default function ScholarshipBanner({ title, description, items, ctaLabel, ctaLink }: Props) {
-  const data = items || SCHOLARSHIPS;
+  const data = items || [];
+  if (data.length === 0) return null;
   return (
     <section id="scholarships" className="py-16 bg-gradient-to-br from-[#1e3a5f] to-[#15294a] text-white relative overflow-hidden">
       <div className="absolute inset-0 opacity-5">

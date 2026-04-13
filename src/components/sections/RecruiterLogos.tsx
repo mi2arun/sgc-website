@@ -1,4 +1,3 @@
-import { RECRUITERS } from "@/lib/constants";
 import { Building2 } from "lucide-react";
 
 type Props = {
@@ -9,7 +8,8 @@ type Props = {
 export default function RecruiterLogos({ companies: companiesProp, title }: Props) {
   const data = companiesProp
     ? companiesProp.map((c) => (typeof c === "string" ? c : c.name))
-    : RECRUITERS;
+    : [];
+  if (data.length === 0) return null;
   return (
     <section className="py-10 bg-gray-50 border-y border-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { ArrowRight, Phone } from "lucide-react";
-import { SITE_CONFIG } from "@/lib/constants";
 
 type Props = {
   heading?: string;
@@ -35,13 +34,15 @@ export default function CTASection({ heading, description, buttonLabel, buttonLi
                   {buttonLabel || "Apply Now"}
                   <ArrowRight className="w-4 h-4" />
                 </Link>
-                <a
-                  href={`tel:${phone || SITE_CONFIG.phone}`}
-                  className="inline-flex items-center gap-2 border-2 border-primary/20 hover:border-primary/40 text-primary font-medium px-7 py-3.5 rounded-lg transition-colors text-sm"
-                >
-                  <Phone className="w-4 h-4" />
-                  Call Us
-                </a>
+                {phone && (
+                  <a
+                    href={`tel:${phone}`}
+                    className="inline-flex items-center gap-2 border-2 border-primary/20 hover:border-primary/40 text-primary font-medium px-7 py-3.5 rounded-lg transition-colors text-sm"
+                  >
+                    <Phone className="w-4 h-4" />
+                    Call Us
+                  </a>
+                )}
               </div>
             </div>
             <div className="hidden md:flex justify-end">

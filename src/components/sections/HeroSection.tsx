@@ -5,23 +5,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { HERO_IMAGES } from "@/lib/images";
-import { SITE_CONFIG } from "@/lib/constants";
-
-const defaultSlides = [
-  {
-    image: HERO_IMAGES.slide1,
-    cta: { label: "Explore Programmes", href: "/academics" },
-  },
-  {
-    image: HERO_IMAGES.slide2,
-    cta: { label: "Apply Now", href: "/admissions/apply" },
-  },
-  {
-    image: HERO_IMAGES.slide3,
-    cta: { label: "Learn More", href: "/research" },
-  },
-];
 
 type Props = {
   slides?: { image: any; ctaLabel?: string; ctaLink?: string }[];
@@ -33,17 +16,20 @@ export default function HeroSection({ slides: slidesProp }: Props) {
         image: typeof s.image === "object" && s.image?.url ? s.image.url : s.image,
         cta: { label: s.ctaLabel || "Learn More", href: s.ctaLink || "/" },
       }))
-    : defaultSlides;
+    : [];
   const [current, setCurrent] = useState(0);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
+    if (slides.length === 0) return;
     const timer = setInterval(() => {
       setCurrent((prev) => (prev + 1) % slides.length);
     }, 6000);
     return () => clearInterval(timer);
-  }, []);
+  }, [slides.length]);
+
+  if (slides.length === 0) return null;
 
   const prev = () => setCurrent((c) => (c - 1 + slides.length) % slides.length);
   const next = () => setCurrent((c) => (c + 1) % slides.length);
@@ -107,7 +93,7 @@ export default function HeroSection({ slides: slidesProp }: Props) {
                   <div className="absolute inset-0 rounded-full bg-white/10 blur-xl" />
                   <Image
                     src="/logo.png"
-                    alt={SITE_CONFIG.name}
+                    alt="Saradha Gangadharan College"
                     width={128}
                     height={128}
                     className="relative drop-shadow-2xl"
@@ -167,16 +153,6 @@ export default function HeroSection({ slides: slidesProp }: Props) {
                     </span>
                   ))}
                 </div>
-
-                {/* Address */}
-                <p
-                  className={cn(
-                    "mt-3 text-white/50 text-xs md:text-sm transition-all duration-700 delay-[1100ms]",
-                    mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-                  )}
-                >
-                  Lake Road, Velrampet, Puducherry — 605 004 &nbsp;|&nbsp; Ph: {SITE_CONFIG.phone}
-                </p>
 
                 {/* CTA buttons */}
                 <div

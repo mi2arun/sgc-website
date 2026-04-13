@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Award, Shield, BookOpen, ArrowRight } from "lucide-react";
-import { PEOPLE_IMAGES } from "@/lib/images";
 
 const badges = [
   { icon: Award, label: "NAAC Accredited" },
@@ -39,15 +38,7 @@ export default function AboutSection({
               {heading || <>Excellence in Education<br />Since 2010</>}
             </h2>
             <p className="text-muted leading-relaxed mb-4">
-              Saradha Gangadharan College has been a beacon of quality education in Puducherry,
-              offering a diverse range of undergraduate and postgraduate programmes. Our commitment
-              to academic excellence, research, and holistic development has made us one of the
-              most sought-after institutions in the region.
-            </p>
-            <p className="text-muted leading-relaxed mb-8">
-              With a state-of-the-art campus, dedicated faculty, and a vibrant student community,
-              SGC provides an environment that nurtures talent, encourages innovation, and prepares
-              students for the challenges of the modern world.
+              {description || "Saradha Gangadharan College has been a beacon of quality education in Puducherry, offering a diverse range of undergraduate and postgraduate programmes. Our commitment to academic excellence, research, and holistic development has made us one of the most sought-after institutions in the region."}
             </p>
 
             {/* Badges */}

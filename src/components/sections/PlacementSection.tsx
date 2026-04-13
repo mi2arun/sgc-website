@@ -2,17 +2,16 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { PLACEMENT_STATS } from "@/lib/constants";
 import { TrendingUp, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 type Props = {
-  stats?: typeof PLACEMENT_STATS;
+  stats?: { label: string; percentage: number }[];
   title?: string;
 };
 
 export default function PlacementSection({ stats: statsProp, title }: Props) {
-  const data = statsProp || PLACEMENT_STATS;
+  const data = statsProp || [];
   const ref = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -29,6 +28,8 @@ export default function PlacementSection({ stats: statsProp, title }: Props) {
     if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
   }, []);
+
+  if (data.length === 0) return null;
 
   return (
     <section ref={ref} className="py-20 bg-secondary">
