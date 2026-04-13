@@ -1,6 +1,11 @@
-import type { CollectionConfig, Access } from 'payload'
+import type { CollectionConfig, Access, FieldAccess } from 'payload'
 
 const isAdmin: Access = ({ req: { user } }) => {
+  if (!user) return false
+  return (user as any).role === 'super-admin'
+}
+
+const isAdminField: FieldAccess = ({ req: { user } }) => {
   if (!user) return false
   return (user as any).role === 'super-admin'
 }
@@ -35,7 +40,7 @@ export const Users: CollectionConfig = {
       required: true,
       defaultValue: 'content-editor',
       access: {
-        update: isAdmin,
+        update: isAdminField,
       },
       options: [
         { label: 'Super Admin', value: 'super-admin' },
