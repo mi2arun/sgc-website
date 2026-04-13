@@ -2,6 +2,9 @@ import type { CollectionConfig } from 'payload'
 
 export const Announcements: CollectionConfig = {
   slug: 'announcements',
+  access: {
+    read: () => true,
+  },
   admin: {
     useAsTitle: 'title',
     defaultColumns: ['title', 'category', 'date', 'pinned'],

@@ -2,6 +2,9 @@ import type { CollectionConfig } from 'payload'
 
 export const Placements: CollectionConfig = {
   slug: 'placements',
+  access: {
+    read: () => true,
+  },
   admin: {
     useAsTitle: 'company',
     defaultColumns: ['company', 'role', 'year', 'category'],

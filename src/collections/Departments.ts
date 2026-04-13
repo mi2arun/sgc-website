@@ -3,6 +3,9 @@ import { blocks } from '../blocks'
 
 export const Departments: CollectionConfig = {
   slug: 'departments',
+  access: {
+    read: () => true,
+  },
   admin: {
     useAsTitle: 'name',
     defaultColumns: ['name', 'shortName', 'status'],
