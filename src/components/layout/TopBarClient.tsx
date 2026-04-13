@@ -1,6 +1,7 @@
 "use client";
 
 import { Phone, Mail, MapPin } from "lucide-react";
+import SocialIcon from "@/components/ui/SocialIcon";
 
 type Props = {
   phone: string;
@@ -27,16 +28,17 @@ export default function TopBarClient({ phone, email, address, social }: Props) {
             <span>{address}</span>
           </span>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2">
           {social.map(({ label, href }) => (
             <a
               key={label}
               href={href}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-accent transition-colors flex items-center gap-1"
+              className="w-7 h-7 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent hover:text-primary-dark transition-colors"
+              title={label}
             >
-              <span className="text-xs">{label}</span>
+              <SocialIcon name={label} className="w-3.5 h-3.5 block" />
             </a>
           ))}
         </div>

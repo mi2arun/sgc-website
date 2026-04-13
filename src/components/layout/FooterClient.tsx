@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Phone, Mail, MapPin, ArrowUp, ExternalLink, Send } from "lucide-react";
+import SocialIcon from "@/components/ui/SocialIcon";
 
 type FooterLink = { label: string; href: string };
 type FooterColumn = { title: string; links: FooterLink[] };
@@ -86,8 +87,9 @@ export default function FooterClient({
               <div className="flex gap-2">
                 {social.map(({ label, href }) => (
                   <a key={label} href={href} target="_blank" rel="noopener noreferrer"
-                    className="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center hover:bg-accent hover:text-primary-dark transition-colors text-xs font-bold"
-                  >{label.slice(0, 2)}</a>
+                    className="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center hover:bg-accent hover:text-primary-dark transition-colors"
+                    title={label}
+                  ><SocialIcon name={label} className="w-4 h-4 block" /></a>
                 ))}
               </div>
             </div>
