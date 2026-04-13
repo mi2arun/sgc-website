@@ -19,6 +19,7 @@ import { RichTextBlock } from './RichTextBlock'
 import { AccreditationBlock } from './AccreditationBlock'
 import { GalleryPreviewBlock } from './GalleryPreviewBlock'
 import { PortalsBlock } from './PortalsBlock'
+import { EventsCircularsBlock } from './EventsCircularsBlock'
 
 export const blocks = [
   HeroBlock,
@@ -42,4 +43,5 @@ export const blocks = [
   AccreditationBlock,
   GalleryPreviewBlock,
   PortalsBlock,
+  EventsCircularsBlock,
 ]
