@@ -10,7 +10,7 @@ export const sectionFields: Field[] = [
         name: 'bg',
         type: 'select',
         label: 'Background',
-        defaultValue: 'white',
+        defaultValue: 'transparent',
         options: [
           { label: 'White', value: 'white' },
           { label: 'Light (Cream)', value: 'light' },
@@ -23,7 +23,7 @@ export const sectionFields: Field[] = [
         name: 'pad',
         type: 'select',
         label: 'Padding',
-        defaultValue: 'normal',
+        defaultValue: 'none',
         options: [
           { label: 'None', value: 'none' },
           { label: 'Small', value: 'small' },
