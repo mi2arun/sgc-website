@@ -27,6 +27,9 @@ export const Departments: CollectionConfig = {
       name: 'layout',
       type: 'blocks',
       blocks: blocks,
+      admin: {
+        initCollapsed: true,
+      },
     },
   ],
 }

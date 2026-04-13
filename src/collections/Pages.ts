@@ -38,6 +38,9 @@ export const Pages: CollectionConfig = {
       name: 'layout',
       type: 'blocks',
       blocks: blocks,
+      admin: {
+        initCollapsed: true,
+      },
     },
     {
       name: 'meta',
