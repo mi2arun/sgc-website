@@ -67,7 +67,7 @@ export default function EventsCircularsSection({
 
   if (eventList.length === 0 && circularList.length === 0) return null;
 
-  const circularCategories = ["all", ...Array.from(new Set(circularList.map((c) => c.category).filter(Boolean)))];
+  const circularCategories: string[] = ["all", ...Array.from(new Set(circularList.map((c) => c.category).filter((c): c is string => !!c)))];
   const filteredCirculars =
     circularFilter === "all"
       ? circularList
