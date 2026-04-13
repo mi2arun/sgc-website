@@ -18,6 +18,7 @@ import ComplianceLinks from '@/components/sections/ComplianceLinks'
 import CTASection from '@/components/sections/CTASection'
 import PortalsSection from '@/components/sections/PortalsSection'
 import EventsCircularsServer from '@/components/sections/EventsCircularsServer'
+import RichTextBlock from '@/components/blocks/RichTextBlock'
 import SectionWrapper from '@/components/blocks/SectionWrapper'
 
 type Block = {
@@ -50,6 +51,7 @@ const blockComponents: Record<string, React.ComponentType<any>> = {
   'cta': CTASection,
   'portals': PortalsSection,
   'events-circulars': EventsCircularsServer,
+  'rich-text': RichTextBlock,
 }
 
 export default function RenderBlocks({ blocks }: Props) {
