@@ -13,7 +13,7 @@ type Props = {
 export default function ScholarshipBanner({ title, description, items, ctaLabel, ctaLink }: Props) {
   const data = items || SCHOLARSHIPS;
   return (
-    <section className="py-16 bg-gradient-to-br from-[#1e3a5f] to-[#15294a] text-white relative overflow-hidden">
+    <section id="scholarships" className="py-16 bg-gradient-to-br from-[#1e3a5f] to-[#15294a] text-white relative overflow-hidden">
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-10 right-10 w-72 h-72 bg-[#c8a951] rounded-full blur-3xl" />
         <div className="absolute bottom-10 left-10 w-56 h-56 bg-white rounded-full blur-3xl" />

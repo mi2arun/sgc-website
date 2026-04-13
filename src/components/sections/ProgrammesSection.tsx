@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { DEPARTMENTS } from "@/lib/constants";
-import { ArrowRight, BookOpen, BarChart3, Briefcase, Scale, Atom, Calculator, Monitor, Laptop, Globe } from "lucide-react";
+import { BookOpen, BarChart3, Briefcase, Scale, Atom, Calculator, Monitor, Laptop, Globe } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -63,20 +63,20 @@ export default function ProgrammesSection({ departments: deptsProp, title, subti
               <Link
                 key={dept.name}
                 href="/academics"
-                className="group bg-white rounded-xl p-6 border border-border/50 hover:border-primary/20 hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+                className="group bg-white rounded-xl p-6 border border-border/50 hover:bg-primary hover:border-primary hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
               >
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-primary/5 rounded-lg flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors shrink-0">
+                  <div className="w-12 h-12 bg-primary/5 rounded-lg flex items-center justify-center group-hover:bg-white/20 transition-colors shrink-0">
                     <Icon className="w-6 h-6 text-primary group-hover:text-white transition-colors" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <span className="inline-block px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider bg-accent/10 text-accent rounded-full mb-2">
+                    <span className="inline-block px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider bg-accent/10 text-accent group-hover:bg-white/20 group-hover:text-white rounded-full mb-2">
                       {dept.type}
                     </span>
-                    <h3 className="font-semibold text-foreground text-sm leading-snug mb-1 group-hover:text-primary transition-colors">
+                    <h3 className="font-semibold text-foreground text-sm leading-snug mb-1 group-hover:text-white transition-colors">
                       {dept.name}
                     </h3>
-                    <p className="text-xs text-muted">{dept.fees} / semester</p>
+                    <p className="text-xs text-muted group-hover:text-white/70 transition-colors">{dept.fees} / semester</p>
                   </div>
                 </div>
               </Link>
@@ -84,15 +84,6 @@ export default function ProgrammesSection({ departments: deptsProp, title, subti
           })}
         </div>
 
-        <div className="text-center mt-10">
-          <Link
-            href="/academics"
-            className="inline-flex items-center gap-2 bg-primary hover:bg-primary-light text-white font-medium px-7 py-3 rounded-lg transition-colors text-sm"
-          >
-            View All Programmes
-            <ArrowRight className="w-4 h-4" />
-          </Link>
-        </div>
       </div>
     </section>
   );

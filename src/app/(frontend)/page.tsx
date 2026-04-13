@@ -4,7 +4,6 @@ import HeroSection from "@/components/sections/HeroSection";
 import QuickAccess from "@/components/sections/QuickAccess";
 import AnnouncementsPanel from "@/components/sections/AnnouncementsPanel";
 import AboutSection from "@/components/sections/AboutSection";
-import AccreditationStrip from "@/components/sections/AccreditationStrip";
 import ProgrammesSection from "@/components/sections/ProgrammesSection";
 import StatsSection from "@/components/sections/StatsSection";
 import ActivityFeed from "@/components/sections/ActivityFeed";
@@ -27,7 +26,6 @@ export default function HomePage() {
       <QuickAccess />
 
       {/* Trust + Offerings */}
-      <AccreditationStrip />
       <AboutSection />
       <StatsSection />
       <ProgrammesSection />

@@ -1,10 +1,27 @@
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig, Access } from 'payload'
+
+const isAdmin: Access = ({ req: { user } }) => {
+  if (!user) return false
+  return (user as any).role === 'super-admin'
+}
+
+const isAdminOrSelf: Access = ({ req: { user } }) => {
+  if (!user) return false
+  if ((user as any).role === 'super-admin') return true
+  return { id: { equals: user.id } }
+}
 
 export const Users: CollectionConfig = {
   slug: 'users',
   auth: true,
   admin: {
     useAsTitle: 'name',
+  },
+  access: {
+    create: isAdmin,
+    delete: isAdmin,
+    update: isAdminOrSelf,
+    read: () => true,
   },
   fields: [
     {
@@ -17,6 +34,9 @@ export const Users: CollectionConfig = {
       type: 'select',
       required: true,
       defaultValue: 'content-editor',
+      access: {
+        update: isAdmin,
+      },
       options: [
         { label: 'Super Admin', value: 'super-admin' },
         { label: 'Content Editor', value: 'content-editor' },
