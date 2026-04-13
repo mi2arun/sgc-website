@@ -7,6 +7,9 @@ import { fileURLToPath } from 'url'
 
 import { Users } from './src/collections/Users'
 import { Media } from './src/collections/Media'
+import { SiteSettings } from './src/globals/SiteSettings'
+import { Navigation } from './src/globals/Navigation'
+import { FooterContent } from './src/globals/FooterContent'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -19,7 +22,7 @@ export default buildConfig({
     },
   },
   collections: [Users, Media],
-  globals: [],
+  globals: [SiteSettings, Navigation, FooterContent],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || 'default-secret-change-me',
   typescript: {
