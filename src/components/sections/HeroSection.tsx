@@ -11,25 +11,25 @@ type Props = {
 };
 
 export default function HeroSection({ slides: slidesProp }: Props) {
-  const slides = slidesProp
-    ? slidesProp.map((s) => ({
-        image: typeof s.image === "object" && s.image?.url ? s.image.url : s.image,
-        cta: { label: s.ctaLabel || "Learn More", href: s.ctaLink || "/" },
-      }))
-    : [];
+  const slides = (slidesProp || [])
+    .map((s) => ({
+      image: typeof s.image === "object" && s.image?.url ? s.image.url : (typeof s.image === "string" ? s.image : null),
+      cta: { label: s.ctaLabel || "Learn More", href: s.ctaLink || "/" },
+    }))
+    .filter((s) => s.image);
+
+  const hasSlides = slides.length > 0;
   const [current, setCurrent] = useState(0);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
-    if (slides.length === 0) return;
+    if (!hasSlides) return;
     const timer = setInterval(() => {
       setCurrent((prev) => (prev + 1) % slides.length);
     }, 6000);
     return () => clearInterval(timer);
-  }, [slides.length]);
-
-  if (slides.length === 0) return null;
+  }, [slides.length, hasSlides]);
 
   const prev = () => setCurrent((c) => (c - 1 + slides.length) % slides.length);
   const next = () => setCurrent((c) => (c + 1) % slides.length);
@@ -38,7 +38,7 @@ export default function HeroSection({ slides: slidesProp }: Props) {
     <section className="relative overflow-hidden">
       <div className="relative h-[600px] md:h-[680px]">
         {/* Background slides */}
-        {slides.map((slide, i) => (
+        {hasSlides ? slides.map((slide, i) => (
           <div
             key={i}
             className={cn(
@@ -54,7 +54,9 @@ export default function HeroSection({ slides: slidesProp }: Props) {
               priority={i === 0}
             />
           </div>
-        ))}
+        )) : (
+          <div className="absolute inset-0 bg-gradient-to-br from-[#0c1f3d] to-[#162d50]" />
+        )}
 
         {/* Dark overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#0c1f3d]/85 via-[#0c1f3d]/75 to-[#0c1f3d]/90" />
@@ -162,10 +164,10 @@ export default function HeroSection({ slides: slidesProp }: Props) {
                   )}
                 >
                   <Link
-                    href={slides[current].cta.href}
+                    href={hasSlides ? slides[current].cta.href : "/admissions/apply"}
                     className="group inline-flex items-center gap-2 bg-accent hover:bg-accent-light text-primary-dark font-semibold px-6 py-3 rounded-lg transition-all text-sm shadow-lg shadow-accent/20"
                   >
-                    {slides[current].cta.label}
+                    {hasSlides ? slides[current].cta.label : "Apply Now"}
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
                   </Link>
                   <Link
@@ -182,37 +184,41 @@ export default function HeroSection({ slides: slidesProp }: Props) {
       </div>
 
       {/* Navigation Arrows */}
-      <button
-        onClick={prev}
-        className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/[0.08] hover:bg-white/[0.15] backdrop-blur-sm rounded-full flex items-center justify-center text-white transition-all border border-white/[0.1]"
-        aria-label="Previous slide"
-      >
-        <ChevronLeft className="w-5 h-5" />
-      </button>
-      <button
-        onClick={next}
-        className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/[0.08] hover:bg-white/[0.15] backdrop-blur-sm rounded-full flex items-center justify-center text-white transition-all border border-white/[0.1]"
-        aria-label="Next slide"
-      >
-        <ChevronRight className="w-5 h-5" />
-      </button>
-
-      {/* Slide indicators */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-2.5">
-        {slides.map((_, i) => (
+      {hasSlides && (
+        <>
           <button
-            key={i}
-            onClick={() => setCurrent(i)}
-            className={cn(
-              "rounded-full transition-all duration-500",
-              i === current
-                ? "w-8 h-2 bg-accent"
-                : "w-2 h-2 bg-white/30 hover:bg-white/50"
-            )}
-            aria-label={`Go to slide ${i + 1}`}
-          />
-        ))}
-      </div>
+            onClick={prev}
+            className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/[0.08] hover:bg-white/[0.15] backdrop-blur-sm rounded-full flex items-center justify-center text-white transition-all border border-white/[0.1]"
+            aria-label="Previous slide"
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+          <button
+            onClick={next}
+            className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/[0.08] hover:bg-white/[0.15] backdrop-blur-sm rounded-full flex items-center justify-center text-white transition-all border border-white/[0.1]"
+            aria-label="Next slide"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
+
+          {/* Slide indicators */}
+          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-2.5">
+            {slides.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setCurrent(i)}
+                className={cn(
+                  "rounded-full transition-all duration-500",
+                  i === current
+                    ? "w-8 h-2 bg-accent"
+                    : "w-2 h-2 bg-white/30 hover:bg-white/50"
+                )}
+                aria-label={`Go to slide ${i + 1}`}
+              />
+            ))}
+          </div>
+        </>
+      )}
 
       <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-black/10 to-transparent" />
     </section>
