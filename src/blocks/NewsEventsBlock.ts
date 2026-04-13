@@ -2,6 +2,7 @@ import type { Block } from 'payload'
 
 export const NewsEventsBlock: Block = {
   slug: 'news-events',
+  imageURL: '/blocks/news-events.svg',
   labels: { singular: 'News & Events', plural: 'News & Events' },
   fields: [
     { name: 'title', type: 'text', defaultValue: 'Latest News & Events' },

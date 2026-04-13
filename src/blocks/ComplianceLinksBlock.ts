@@ -2,6 +2,7 @@ import type { Block } from 'payload'
 
 export const ComplianceLinksBlock: Block = {
   slug: 'compliance-links',
+  imageURL: '/blocks/compliance-links.svg',
   labels: { singular: 'Compliance Links', plural: 'Compliance Links' },
   fields: [
     { name: 'title', type: 'text', defaultValue: 'Important Links & Compliance' },

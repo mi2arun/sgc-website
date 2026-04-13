@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="250" viewBox="0 0 400 250">
+  <rect width="400" height="250" fill="#f8f6f0"/>
+  <!-- Quote card -->
+  <rect x="50" y="30" width="300" height="190" rx="12" fill="#fff" stroke="#e5e5e5" stroke-width="1.5"/>
+  <!-- Large quote mark -->
+  <text x="80" y="75" font-family="serif" font-size="48" fill="#c8a951" opacity="0.4">"</text>
+  <!-- Quote text lines -->
+  <rect x="80" y="85" width="240" height="8" rx="2" fill="#999"/>
+  <rect x="80" y="100" width="220" height="8" rx="2" fill="#999"/>
+  <rect x="80" y="115" width="200" height="8" rx="2" fill="#999"/>
+  <rect x="80" y="130" width="160" height="8" rx="2" fill="#999"/>
+  <!-- Photo circle -->
+  <circle cx="200" cy="170" r="22" fill="#1e3a5f" opacity="0.15" stroke="#c8a951" stroke-width="2"/>
+  <circle cx="200" cy="165" r="7" fill="#1e3a5f" opacity="0.4"/>
+  <rect x="190" y="175" width="20" height="10" rx="5" fill="#1e3a5f" opacity="0.3"/>
+  <!-- Name and title -->
+  <rect x="155" y="198" width="90" height="8" rx="2" fill="#1e3a5f" opacity="0.7"/>
+  <rect x="165" y="210" width="70" height="6" rx="2" fill="#c8a951"/>
+</svg>

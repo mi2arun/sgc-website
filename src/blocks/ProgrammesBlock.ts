@@ -2,6 +2,7 @@ import type { Block } from 'payload'
 
 export const ProgrammesBlock: Block = {
   slug: 'programmes',
+  imageURL: '/blocks/programmes.svg',
   labels: { singular: 'Programmes Section', plural: 'Programmes Sections' },
   fields: [
     { name: 'title', type: 'text', defaultValue: 'Academic Excellence Across Disciplines' },

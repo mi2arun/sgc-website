@@ -2,6 +2,7 @@ import type { Block } from 'payload'
 
 export const PromoBannerBlock: Block = {
   slug: 'promo-banner',
+  imageURL: '/blocks/promo-banner.svg',
   labels: { singular: 'Promo Banner', plural: 'Promo Banners' },
   fields: [
     {

@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="250" viewBox="0 0 400 250">
+  <rect width="400" height="250" fill="#1e3a5f"/>
+  <!-- 4 big numbers with labels -->
+  <g transform="translate(30,80)">
+    <text x="30" y="30" font-family="sans-serif" font-size="36" font-weight="bold" fill="#c8a951" text-anchor="middle">25+</text>
+    <rect x="5" y="50" width="50" height="6" rx="2" fill="#fff" opacity="0.5"/>
+    <rect x="10" y="62" width="40" height="5" rx="2" fill="#fff" opacity="0.3"/>
+  </g>
+  <g transform="translate(120,80)">
+    <text x="30" y="30" font-family="sans-serif" font-size="36" font-weight="bold" fill="#c8a951" text-anchor="middle">3K+</text>
+    <rect x="5" y="50" width="50" height="6" rx="2" fill="#fff" opacity="0.5"/>
+    <rect x="10" y="62" width="40" height="5" rx="2" fill="#fff" opacity="0.3"/>
+  </g>
+  <g transform="translate(215,80)">
+    <text x="30" y="30" font-family="sans-serif" font-size="36" font-weight="bold" fill="#c8a951" text-anchor="middle">95%</text>
+    <rect x="5" y="50" width="50" height="6" rx="2" fill="#fff" opacity="0.5"/>
+    <rect x="10" y="62" width="40" height="5" rx="2" fill="#fff" opacity="0.3"/>
+  </g>
+  <g transform="translate(310,80)">
+    <text x="30" y="30" font-family="sans-serif" font-size="36" font-weight="bold" fill="#c8a951" text-anchor="middle">50+</text>
+    <rect x="5" y="50" width="50" height="6" rx="2" fill="#fff" opacity="0.5"/>
+    <rect x="10" y="62" width="40" height="5" rx="2" fill="#fff" opacity="0.3"/>
+  </g>
+  <!-- Divider lines -->
+  <line x1="100" y1="95" x2="100" y2="165" stroke="#fff" stroke-width="0.5" opacity="0.2"/>
+  <line x1="195" y1="95" x2="195" y2="165" stroke="#fff" stroke-width="0.5" opacity="0.2"/>
+  <line x1="290" y1="95" x2="290" y2="165" stroke="#fff" stroke-width="0.5" opacity="0.2"/>
+</svg>

@@ -2,6 +2,7 @@ import type { Block } from 'payload'
 
 export const AccreditationBlock: Block = {
   slug: 'accreditation',
+  imageURL: '/blocks/accreditation.svg',
   labels: { singular: 'Accreditation Strip', plural: 'Accreditation Strips' },
   fields: [
     {

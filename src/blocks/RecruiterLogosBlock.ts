@@ -2,6 +2,7 @@ import type { Block } from 'payload'
 
 export const RecruiterLogosBlock: Block = {
   slug: 'recruiter-logos',
+  imageURL: '/blocks/recruiter-logos.svg',
   labels: { singular: 'Recruiter Logos', plural: 'Recruiter Logos' },
   fields: [
     { name: 'title', type: 'text', defaultValue: 'Our Recruiters' },

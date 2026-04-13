@@ -2,6 +2,7 @@ import type { Block } from 'payload'
 
 export const FlashNewsBlock: Block = {
   slug: 'flash-news',
+  imageURL: '/blocks/flash-news.svg',
   labels: { singular: 'Flash News', plural: 'Flash News' },
   fields: [
     {

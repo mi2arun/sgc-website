@@ -2,6 +2,7 @@ import type { Block } from 'payload'
 
 export const AboutBlock: Block = {
   slug: 'about',
+  imageURL: '/blocks/about.svg',
   labels: { singular: 'About Section', plural: 'About Sections' },
   fields: [
     { name: 'heading', type: 'text', defaultValue: 'Excellence in Education Since 2010' },

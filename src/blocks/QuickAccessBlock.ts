@@ -2,6 +2,7 @@ import type { Block } from 'payload'
 
 export const QuickAccessBlock: Block = {
   slug: 'quick-access',
+  imageURL: '/blocks/quick-access.svg',
   labels: { singular: 'Quick Access', plural: 'Quick Access' },
   fields: [
     {

@@ -2,6 +2,7 @@ import type { Block } from 'payload'
 
 export const CTABlock: Block = {
   slug: 'cta',
+  imageURL: '/blocks/cta.svg',
   labels: { singular: 'Call to Action', plural: 'Call to Actions' },
   fields: [
     { name: 'heading', type: 'text', required: true },

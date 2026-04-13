@@ -2,6 +2,7 @@ import type { Block } from 'payload'
 
 export const PlacementBlock: Block = {
   slug: 'placements',
+  imageURL: '/blocks/placements.svg',
   labels: { singular: 'Placement Section', plural: 'Placement Sections' },
   fields: [
     { name: 'title', type: 'text', defaultValue: 'Placement Highlights' },

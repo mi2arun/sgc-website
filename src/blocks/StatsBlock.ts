@@ -2,6 +2,7 @@ import type { Block } from 'payload'
 
 export const StatsBlock: Block = {
   slug: 'stats',
+  imageURL: '/blocks/stats.svg',
   labels: { singular: 'Stats Section', plural: 'Stats Sections' },
   fields: [
     {

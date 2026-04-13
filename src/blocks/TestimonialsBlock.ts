@@ -2,6 +2,7 @@ import type { Block } from 'payload'
 
 export const TestimonialsBlock: Block = {
   slug: 'testimonials',
+  imageURL: '/blocks/testimonials.svg',
   labels: { singular: 'Testimonials', plural: 'Testimonials' },
   fields: [
     { name: 'title', type: 'text', defaultValue: 'What Our Students Say' },

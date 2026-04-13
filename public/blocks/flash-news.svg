@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="250" viewBox="0 0 400 250">
+  <rect width="400" height="250" fill="#f8f6f0"/>
+  <!-- Thin ticker bar -->
+  <rect x="20" y="105" width="360" height="40" rx="4" fill="#1e3a5f"/>
+  <!-- Flash icon -->
+  <circle cx="45" cy="125" r="12" fill="#c8a951"/>
+  <polygon points="45,116 41,126 45,124 45,134 49,124 45,126" fill="#1e3a5f"/>
+  <!-- Scrolling text indicators -->
+  <rect x="70" y="119" width="80" height="6" rx="3" fill="#fff" opacity="0.8"/>
+  <rect x="160" y="119" width="4" height="12" rx="1" fill="#c8a951" opacity="0.5"/>
+  <rect x="175" y="119" width="60" height="6" rx="3" fill="#fff" opacity="0.5"/>
+  <rect x="245" y="119" width="4" height="12" rx="1" fill="#c8a951" opacity="0.5"/>
+  <rect x="260" y="119" width="90" height="6" rx="3" fill="#fff" opacity="0.3"/>
+  <!-- Scroll arrows -->
+  <polygon points="365,120 365,130 375,125" fill="#c8a951"/>
+  <rect x="70" y="130" width="50" height="4" rx="2" fill="#fff" opacity="0.3"/>
+  <rect x="130" y="130" width="40" height="4" rx="2" fill="#fff" opacity="0.2"/>
+</svg>

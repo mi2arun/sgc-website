@@ -2,6 +2,7 @@ import type { Block } from 'payload'
 
 export const ScholarshipBlock: Block = {
   slug: 'scholarship',
+  imageURL: '/blocks/scholarship.svg',
   labels: { singular: 'Scholarship Banner', plural: 'Scholarship Banners' },
   fields: [
     { name: 'title', type: 'text', defaultValue: 'Scholarships & Financial Aid' },
