@@ -11,6 +11,7 @@ export default async function HomePage() {
       status: { equals: 'published' },
     },
     limit: 1,
+    depth: 2,
   })
 
   const page = docs[0]

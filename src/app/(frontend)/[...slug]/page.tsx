@@ -20,6 +20,7 @@ export default async function DynamicPage({ params }: Args) {
       status: { equals: 'published' },
     },
     limit: 1,
+    depth: 2,
   })
 
   const page = docs[0]
@@ -40,6 +41,7 @@ export async function generateMetadata({ params }: Args): Promise<Metadata> {
       status: { equals: 'published' },
     },
     limit: 1,
+    depth: 2,
   })
 
   const page = docs[0]
