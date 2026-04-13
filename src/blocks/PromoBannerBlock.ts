@@ -1,4 +1,5 @@
 import type { Block } from 'payload'
+import { sectionFields } from './shared/sectionFields'
 
 export const PromoBannerBlock: Block = {
   slug: 'promo-banner',
@@ -16,5 +17,6 @@ export const PromoBannerBlock: Block = {
         { name: 'color', type: 'select', options: ['primary', 'gold', 'accent'], defaultValue: 'primary' },
       ],
     },
+    ...sectionFields,
   ],
 }

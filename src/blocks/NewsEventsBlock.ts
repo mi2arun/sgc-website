@@ -1,4 +1,5 @@
 import type { Block } from 'payload'
+import { sectionFields } from './shared/sectionFields'
 
 export const NewsEventsBlock: Block = {
   slug: 'news-events',
@@ -25,5 +26,6 @@ export const NewsEventsBlock: Block = {
         { name: 'excerpt', type: 'textarea' },
       ],
     },
+    ...sectionFields,
   ],
 }

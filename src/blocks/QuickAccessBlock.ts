@@ -1,4 +1,5 @@
 import type { Block } from 'payload'
+import { sectionFields } from './shared/sectionFields'
 
 export const QuickAccessBlock: Block = {
   slug: 'quick-access',
@@ -16,5 +17,6 @@ export const QuickAccessBlock: Block = {
         { name: 'color', type: 'text', defaultValue: 'primary' },
       ],
     },
+    ...sectionFields,
   ],
 }

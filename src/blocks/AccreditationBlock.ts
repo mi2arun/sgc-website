@@ -1,4 +1,5 @@
 import type { Block } from 'payload'
+import { sectionFields } from './shared/sectionFields'
 
 export const AccreditationBlock: Block = {
   slug: 'accreditation',
@@ -15,5 +16,6 @@ export const AccreditationBlock: Block = {
         { name: 'description', type: 'text' },
       ],
     },
+    ...sectionFields,
   ],
 }

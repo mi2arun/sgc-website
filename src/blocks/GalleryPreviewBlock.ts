@@ -1,4 +1,5 @@
 import type { Block } from 'payload'
+import { sectionFields } from './shared/sectionFields'
 
 export const GalleryPreviewBlock: Block = {
   slug: 'gallery-preview',
@@ -13,5 +14,6 @@ export const GalleryPreviewBlock: Block = {
         { name: 'image', type: 'upload', relationTo: 'media', required: true },
       ],
     },
+    ...sectionFields,
   ],
 }

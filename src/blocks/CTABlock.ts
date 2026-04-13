@@ -1,4 +1,5 @@
 import type { Block } from 'payload'
+import { sectionFields } from './shared/sectionFields'
 
 export const CTABlock: Block = {
   slug: 'cta',
@@ -10,5 +11,6 @@ export const CTABlock: Block = {
     { name: 'buttonLabel', type: 'text', defaultValue: 'Apply Now' },
     { name: 'buttonLink', type: 'text', defaultValue: '/admissions/apply' },
     { name: 'phone', type: 'text' },
+    ...sectionFields,
   ],
 }

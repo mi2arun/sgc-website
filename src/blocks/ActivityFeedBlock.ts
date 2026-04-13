@@ -1,4 +1,5 @@
 import type { Block } from 'payload'
+import { sectionFields } from './shared/sectionFields'
 
 export const ActivityFeedBlock: Block = {
   slug: 'activity-feed',
@@ -16,5 +17,6 @@ export const ActivityFeedBlock: Block = {
         { name: 'description', type: 'textarea' },
       ],
     },
+    ...sectionFields,
   ],
 }

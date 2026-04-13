@@ -1,4 +1,5 @@
 import type { Block } from 'payload'
+import { sectionFields } from './shared/sectionFields'
 
 export const PlacementBlock: Block = {
   slug: 'placements',
@@ -14,5 +15,6 @@ export const PlacementBlock: Block = {
         { name: 'percentage', type: 'number', required: true },
       ],
     },
+    ...sectionFields,
   ],
 }

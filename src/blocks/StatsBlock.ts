@@ -1,4 +1,5 @@
 import type { Block } from 'payload'
+import { sectionFields } from './shared/sectionFields'
 
 export const StatsBlock: Block = {
   slug: 'stats',
@@ -14,5 +15,6 @@ export const StatsBlock: Block = {
         { name: 'suffix', type: 'text', defaultValue: '+' },
       ],
     },
+    ...sectionFields,
   ],
 }

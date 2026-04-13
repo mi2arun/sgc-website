@@ -1,4 +1,5 @@
 import type { Block } from 'payload'
+import { sectionFields } from './shared/sectionFields'
 
 export const ComplianceLinksBlock: Block = {
   slug: 'compliance-links',
@@ -15,5 +16,6 @@ export const ComplianceLinksBlock: Block = {
         { name: 'icon', type: 'text', defaultValue: 'FileText' },
       ],
     },
+    ...sectionFields,
   ],
 }

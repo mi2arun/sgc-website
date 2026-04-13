@@ -1,4 +1,5 @@
 import type { Block } from 'payload'
+import { sectionFields } from './shared/sectionFields'
 
 export const TestimonialsBlock: Block = {
   slug: 'testimonials',
@@ -16,5 +17,6 @@ export const TestimonialsBlock: Block = {
         { name: 'photo', type: 'upload', relationTo: 'media' },
       ],
     },
+    ...sectionFields,
   ],
 }

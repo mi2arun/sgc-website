@@ -1,4 +1,5 @@
 import type { Block } from 'payload'
+import { sectionFields } from './shared/sectionFields'
 
 export const ProgrammesBlock: Block = {
   slug: 'programmes',
@@ -17,5 +18,6 @@ export const ProgrammesBlock: Block = {
         { name: 'icon', type: 'text', defaultValue: 'BookOpen' },
       ],
     },
+    ...sectionFields,
   ],
 }

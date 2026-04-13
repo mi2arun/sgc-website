@@ -1,4 +1,5 @@
 import type { Block } from 'payload'
+import { sectionFields } from './shared/sectionFields'
 
 export const FlashNewsBlock: Block = {
   slug: 'flash-news',
@@ -13,5 +14,6 @@ export const FlashNewsBlock: Block = {
         { name: 'link', type: 'text' },
       ],
     },
+    ...sectionFields,
   ],
 }

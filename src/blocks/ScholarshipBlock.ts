@@ -1,4 +1,5 @@
 import type { Block } from 'payload'
+import { sectionFields } from './shared/sectionFields'
 
 export const ScholarshipBlock: Block = {
   slug: 'scholarship',
@@ -18,5 +19,6 @@ export const ScholarshipBlock: Block = {
     },
     { name: 'ctaLabel', type: 'text', defaultValue: 'View All Scholarships' },
     { name: 'ctaLink', type: 'text', defaultValue: '/admissions/scholarships' },
+    ...sectionFields,
   ],
 }

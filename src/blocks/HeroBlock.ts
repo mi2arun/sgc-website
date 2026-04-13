@@ -1,4 +1,5 @@
 import type { Block } from 'payload'
+import { sectionFields } from './shared/sectionFields'
 
 export const HeroBlock: Block = {
   slug: 'hero',
@@ -14,5 +15,6 @@ export const HeroBlock: Block = {
         { name: 'ctaLink', type: 'text', defaultValue: '/' },
       ],
     },
+    ...sectionFields,
   ],
 }

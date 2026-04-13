@@ -16,6 +16,7 @@ import RecruiterLogos from '@/components/sections/RecruiterLogos'
 import TestimonialsSection from '@/components/sections/TestimonialsSection'
 import ComplianceLinks from '@/components/sections/ComplianceLinks'
 import CTASection from '@/components/sections/CTASection'
+import SectionWrapper from '@/components/blocks/SectionWrapper'
 
 type Block = {
   blockType: string
@@ -56,8 +57,12 @@ export default function RenderBlocks({ blocks }: Props) {
         const Component = blockComponents[block.blockType]
         if (!Component) return null
 
-        const { blockType, id, blockName, ...props } = block
-        return <Component key={id || index} {...props} />
+        const { blockType, id, blockName, sectionSettings, ...props } = block
+        return (
+          <SectionWrapper key={id || index} settings={sectionSettings}>
+            <Component {...props} />
+          </SectionWrapper>
+        )
       })}
     </>
   )

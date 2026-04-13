@@ -1,4 +1,5 @@
 import type { Block } from 'payload'
+import { sectionFields } from './shared/sectionFields'
 
 export const AboutBlock: Block = {
   slug: 'about',
@@ -12,5 +13,6 @@ export const AboutBlock: Block = {
     { name: 'chairmanOrg', type: 'text', defaultValue: 'Sri Saradha Gangadharan Educational Trust' },
     { name: 'chairmanPhoto', type: 'upload', relationTo: 'media' },
     { name: 'chairmanQuote', type: 'textarea' },
+    ...sectionFields,
   ],
 }

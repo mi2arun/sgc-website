@@ -1,4 +1,5 @@
 import type { Block } from 'payload'
+import { sectionFields } from './shared/sectionFields'
 
 export const WhyJoinBlock: Block = {
   slug: 'why-join',
@@ -15,5 +16,6 @@ export const WhyJoinBlock: Block = {
         { name: 'description', type: 'textarea' },
       ],
     },
+    ...sectionFields,
   ],
 }

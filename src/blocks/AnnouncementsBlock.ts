@@ -1,4 +1,5 @@
 import type { Block } from 'payload'
+import { sectionFields } from './shared/sectionFields'
 
 export const AnnouncementsBlock: Block = {
   slug: 'announcements',
@@ -17,5 +18,6 @@ export const AnnouncementsBlock: Block = {
         { name: 'isNew', type: 'checkbox', defaultValue: false },
       ],
     },
+    ...sectionFields,
   ],
 }

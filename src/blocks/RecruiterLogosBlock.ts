@@ -1,4 +1,5 @@
 import type { Block } from 'payload'
+import { sectionFields } from './shared/sectionFields'
 
 export const RecruiterLogosBlock: Block = {
   slug: 'recruiter-logos',
@@ -13,5 +14,6 @@ export const RecruiterLogosBlock: Block = {
         { name: 'name', type: 'text', required: true },
       ],
     },
+    ...sectionFields,
   ],
 }
