@@ -1,165 +1,92 @@
-"use client";
+import { getSettings, getFooter } from "@/lib/payload";
+import FooterClient from "./FooterClient";
 
-import Link from "next/link";
-import Image from "next/image";
-import { Phone, Mail, MapPin, ArrowUp, ExternalLink, Send } from "lucide-react";
-import { SITE_CONFIG, FOOTER_LINKS } from "@/lib/constants";
-
-const socialLinks = [
-  { label: "Fb", href: SITE_CONFIG.social.facebook },
-  { label: "Tw", href: SITE_CONFIG.social.twitter },
-  { label: "Ig", href: SITE_CONFIG.social.instagram },
-  { label: "Yt", href: SITE_CONFIG.social.youtube },
-  { label: "Li", href: SITE_CONFIG.social.linkedin },
+const DEFAULT_COLUMNS = [
+  {
+    title: "Quick Links",
+    links: [
+      { label: "About SGC", href: "/about" },
+      { label: "Admissions", href: "/admissions" },
+      { label: "Departments", href: "/academics/departments" },
+      { label: "Faculty", href: "/faculty" },
+      { label: "Research", href: "/research" },
+      { label: "Placements", href: "/placements" },
+    ],
+  },
+  {
+    title: "Academics",
+    links: [
+      { label: "UG Programmes", href: "/academics/ug-programmes" },
+      { label: "PG Programmes", href: "/academics/pg-programmes" },
+      { label: "Library", href: "/academics/library" },
+      { label: "Academic Calendar", href: "/academics/calendar" },
+      { label: "Examination", href: "/examination" },
+    ],
+  },
+  {
+    title: "Resources",
+    links: [
+      { label: "NAAC", href: "/accreditation/naac" },
+      { label: "IQAC", href: "/accreditation/iqac" },
+      { label: "NIRF", href: "/accreditation/nirf" },
+      { label: "Gallery", href: "/gallery" },
+      { label: "Alumni", href: "/alumni" },
+      { label: "Contact Us", href: "/contact" },
+    ],
+  },
 ];
 
-export default function Footer() {
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+export default async function Footer() {
+  let settings;
+  let footerData;
+  try {
+    [settings, footerData] = await Promise.all([getSettings(), getFooter()]);
+  } catch {
+    settings = null;
+    footerData = null;
+  }
+
+  const logoUrl = settings?.logo && typeof settings.logo === 'object' && settings.logo.url
+    ? settings.logo.url
+    : "/logo.png";
+
+  const social = settings?.social
+    ? [
+        { label: "Facebook", href: settings.social.facebook || "" },
+        { label: "Twitter", href: settings.social.twitter || "" },
+        { label: "Instagram", href: settings.social.instagram || "" },
+        { label: "YouTube", href: settings.social.youtube || "" },
+        { label: "LinkedIn", href: settings.social.linkedin || "" },
+      ].filter((s) => s.href)
+    : [
+        { label: "Facebook", href: "https://facebook.com/sgcpdy" },
+        { label: "Twitter", href: "https://twitter.com/sgcpdy" },
+        { label: "Instagram", href: "https://instagram.com/sgcpdy" },
+        { label: "YouTube", href: "https://youtube.com/@sgcpdy" },
+        { label: "LinkedIn", href: "https://linkedin.com/school/sgcpdy" },
+      ];
+
+  const columns = footerData?.columns && footerData.columns.length > 0
+    ? footerData.columns.map((col: any) => ({
+        title: col.title,
+        links: col.links?.map((l: any) => ({ label: l.label, href: l.href })) || [],
+      }))
+    : DEFAULT_COLUMNS;
 
   return (
-    <footer className="bg-primary-dark text-white">
-      {/* Main Footer */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-          {/* About Column */}
-          <div>
-            <div className="flex items-center gap-3 mb-5">
-              <Image
-                src="/logo.png"
-                alt={SITE_CONFIG.name}
-                width={48}
-                height={48}
-                className="shrink-0"
-              />
-              <div>
-                <h3 className="font-bold text-lg leading-tight">{SITE_CONFIG.shortName}</h3>
-                <p className="text-xs text-white/60">Est. 2010</p>
-              </div>
-            </div>
-            <p className="text-white/70 text-sm leading-relaxed mb-5">
-              An Autonomous Institution affiliated to Pondicherry University, accredited by NAAC, and certified with ISO 9001:2015.
-            </p>
-            <div className="space-y-2.5">
-              <a href={`tel:${SITE_CONFIG.phone}`} className="flex items-center gap-2 text-sm text-white/70 hover:text-accent transition-colors">
-                <Phone className="w-4 h-4 shrink-0" />
-                {SITE_CONFIG.phone}
-              </a>
-              <a href={`mailto:${SITE_CONFIG.email}`} className="flex items-center gap-2 text-sm text-white/70 hover:text-accent transition-colors">
-                <Mail className="w-4 h-4 shrink-0" />
-                {SITE_CONFIG.email}
-              </a>
-              <div className="flex items-start gap-2 text-sm text-white/70">
-                <MapPin className="w-4 h-4 shrink-0 mt-0.5" />
-                {SITE_CONFIG.address}
-              </div>
-            </div>
-          </div>
-
-          {/* Quick Links */}
-          <div>
-            <h3 className="font-semibold text-base mb-5 text-accent">Quick Links</h3>
-            <ul className="space-y-2.5">
-              {FOOTER_LINKS.quickLinks.map((link) => (
-                <li key={link.label}>
-                  <Link href={link.href} className="text-sm text-white/70 hover:text-accent transition-colors">
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Academics */}
-          <div>
-            <h3 className="font-semibold text-base mb-5 text-accent">Academics</h3>
-            <ul className="space-y-2.5">
-              {FOOTER_LINKS.academics.map((link) => (
-                <li key={link.label}>
-                  <Link href={link.href} className="text-sm text-white/70 hover:text-accent transition-colors">
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Resources */}
-          <div>
-            <h3 className="font-semibold text-base mb-5 text-accent">Resources</h3>
-            <ul className="space-y-2.5">
-              {FOOTER_LINKS.resources.map((link) => (
-                <li key={link.label}>
-                  <Link href={link.href} className="text-sm text-white/70 hover:text-accent transition-colors">
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-
-            {/* Social Icons */}
-            <div className="mt-6">
-              <h4 className="font-medium text-sm mb-3 text-white/90">Follow Us</h4>
-              <div className="flex gap-2">
-                {socialLinks.map(({ label, href }) => (
-                  <a
-                    key={label}
-                    href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center hover:bg-accent hover:text-primary-dark transition-colors text-xs font-bold"
-                  >
-                    {label}
-                  </a>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Newsletter */}
-      <div className="border-t border-white/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <div>
-              <h3 className="font-semibold text-base mb-1">Stay Updated</h3>
-              <p className="text-sm text-white/60">Subscribe to receive news, events, and admission updates.</p>
-            </div>
-            <form className="flex w-full md:w-auto" onSubmit={(e) => e.preventDefault()}>
-              <input
-                type="email"
-                placeholder="Your email address"
-                className="flex-1 md:w-64 px-4 py-2.5 bg-white/10 border border-white/20 rounded-l-lg text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-accent"
-              />
-              <button
-                type="submit"
-                className="px-5 py-2.5 bg-accent text-primary-dark rounded-r-lg font-semibold text-sm hover:bg-accent/90 transition-colors flex items-center gap-2"
-              >
-                <Send className="w-4 h-4" />
-                Subscribe
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
-
-      {/* Bottom Bar */}
-      <div className="border-t border-white/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row justify-between items-center gap-3">
-          <p className="text-sm text-white/50">
-            &copy; {new Date().getFullYear()} {SITE_CONFIG.name}. All rights reserved.
-          </p>
-          <button
-            onClick={scrollToTop}
-            className="flex items-center gap-1.5 text-sm text-white/50 hover:text-accent transition-colors"
-          >
-            <ArrowUp className="w-4 h-4" />
-            Back to top
-          </button>
-        </div>
-      </div>
-    </footer>
+    <FooterClient
+      collegeName={settings?.collegeName || "Saradha Gangadharan College"}
+      shortName={settings?.shortName || "SGC"}
+      phone={settings?.phone || "+91-413-2211800"}
+      email={settings?.email || "info@sgc.edu.in"}
+      address={settings?.address || "Puducherry - 605 004, India"}
+      mapUrl={settings?.mapUrl || "https://maps.google.com/?q=Saradha+Gangadharan+College+Puducherry"}
+      logoUrl={logoUrl}
+      social={social}
+      columns={columns}
+      newsletterHeading={footerData?.newsletterHeading || "Stay Updated"}
+      newsletterDescription={footerData?.newsletterDescription || "Subscribe to receive news, events, and admission updates."}
+      copyright={footerData?.copyright || "\u00a9 {year} Saradha Gangadharan College. All rights reserved."}
+    />
   );
 }
