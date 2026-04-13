@@ -19,6 +19,8 @@ import CTASection from '@/components/sections/CTASection'
 import PortalsSection from '@/components/sections/PortalsSection'
 import EventsCircularsServer from '@/components/sections/EventsCircularsServer'
 import RichTextBlock from '@/components/sections/RichTextBlock'
+import GalleryPreviewSection from '@/components/sections/GalleryPreviewSection'
+import FacultyGridServer from '@/components/sections/FacultyGridServer'
 import SectionWrapper from '@/components/blocks/SectionWrapper'
 
 type Block = {
@@ -52,6 +54,8 @@ const blockComponents: Record<string, React.ComponentType<any>> = {
   'portals': PortalsSection,
   'events-circulars': EventsCircularsServer,
   'rich-text': RichTextBlock,
+  'gallery-preview': GalleryPreviewSection,
+  'faculty-grid': FacultyGridServer,
 }
 
 export default function RenderBlocks({ blocks }: Props) {

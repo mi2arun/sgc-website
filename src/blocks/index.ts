@@ -20,6 +20,7 @@ import { AccreditationBlock } from './AccreditationBlock'
 import { GalleryPreviewBlock } from './GalleryPreviewBlock'
 import { PortalsBlock } from './PortalsBlock'
 import { EventsCircularsBlock } from './EventsCircularsBlock'
+import { FacultyGridBlock } from './FacultyGridBlock'
 
 export const blocks = [
   HeroBlock,
@@ -44,4 +45,5 @@ export const blocks = [
   GalleryPreviewBlock,
   PortalsBlock,
   EventsCircularsBlock,
+  FacultyGridBlock,
 ]
