@@ -1,15 +1,15 @@
 import { cn } from '@/lib/utils'
 
-type SectionSettings = {
-  background?: string
-  padding?: string
-  borderTop?: boolean
-  borderBottom?: boolean
-  fullWidth?: boolean
+type StyleSettings = {
+  bg?: string
+  pad?: string
+  bt?: boolean
+  bb?: boolean
+  fw?: boolean
 }
 
 type Props = {
-  settings?: SectionSettings
+  settings?: StyleSettings
   children: React.ReactNode
 }
 
@@ -29,12 +29,12 @@ const paddingClasses: Record<string, string> = {
 }
 
 export default function SectionWrapper({ settings, children }: Props) {
-  if (!settings || settings.background === 'transparent') return <>{children}</>
+  if (!settings || settings.bg === 'transparent') return <>{children}</>
 
-  const bg = bgClasses[settings.background || 'transparent'] || ''
-  const pad = paddingClasses[settings.padding || 'none'] || ''
-  const borderT = settings.borderTop ? 'border-t border-gray-200' : ''
-  const borderB = settings.borderBottom ? 'border-b border-gray-200' : ''
+  const bg = bgClasses[settings.bg || 'transparent'] || ''
+  const pad = paddingClasses[settings.pad || 'none'] || ''
+  const borderT = settings.bt ? 'border-t border-gray-200' : ''
+  const borderB = settings.bb ? 'border-b border-gray-200' : ''
 
   if (!bg && !pad && !borderT && !borderB) return <>{children}</>
 

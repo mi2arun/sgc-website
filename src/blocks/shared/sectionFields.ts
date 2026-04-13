@@ -2,16 +2,14 @@ import type { Field } from 'payload'
 
 export const sectionFields: Field[] = [
   {
-    name: 'sectionSettings',
+    name: 'style',
     type: 'group',
     label: 'Section Design',
-    admin: {
-      condition: () => true,
-    },
     fields: [
       {
-        name: 'background',
+        name: 'bg',
         type: 'select',
+        label: 'Background',
         defaultValue: 'white',
         options: [
           { label: 'White', value: 'white' },
@@ -22,8 +20,9 @@ export const sectionFields: Field[] = [
         ],
       },
       {
-        name: 'padding',
+        name: 'pad',
         type: 'select',
+        label: 'Padding',
         defaultValue: 'normal',
         options: [
           { label: 'None', value: 'none' },
@@ -33,22 +32,22 @@ export const sectionFields: Field[] = [
         ],
       },
       {
-        name: 'borderTop',
+        name: 'bt',
         type: 'checkbox',
         defaultValue: false,
         label: 'Border Top',
       },
       {
-        name: 'borderBottom',
+        name: 'bb',
         type: 'checkbox',
         defaultValue: false,
         label: 'Border Bottom',
       },
       {
-        name: 'fullWidth',
+        name: 'fw',
         type: 'checkbox',
         defaultValue: false,
-        label: 'Full Width (no max-width container)',
+        label: 'Full Width',
       },
     ],
   },

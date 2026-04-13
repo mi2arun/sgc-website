@@ -57,9 +57,9 @@ export default function RenderBlocks({ blocks }: Props) {
         const Component = blockComponents[block.blockType]
         if (!Component) return null
 
-        const { blockType, id, blockName, sectionSettings, ...props } = block
+        const { blockType, id, blockName, style, ...props } = block
         return (
-          <SectionWrapper key={id || index} settings={sectionSettings}>
+          <SectionWrapper key={id || index} settings={style}>
             <Component {...props} />
           </SectionWrapper>
         )
