@@ -8,7 +8,6 @@ export default async function HomePage() {
     collection: 'pages',
     where: {
       slug: { equals: 'home' },
-      status: { equals: 'published' },
     },
     limit: 1,
     depth: 2,

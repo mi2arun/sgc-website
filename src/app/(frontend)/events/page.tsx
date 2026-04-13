@@ -9,7 +9,6 @@ export default async function EventsPage() {
   const payload = await getPayload({ config })
   const { docs } = await payload.find({
     collection: 'events',
-    where: { status: { equals: 'published' } },
     sort: '-date',
     limit: 20,
   })

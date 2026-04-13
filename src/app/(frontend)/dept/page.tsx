@@ -9,7 +9,6 @@ export default async function DepartmentsPage() {
   const payload = await getPayload({ config })
   const { docs } = await payload.find({
     collection: 'departments',
-    where: { status: { equals: 'published' } },
     limit: 20,
   })
 

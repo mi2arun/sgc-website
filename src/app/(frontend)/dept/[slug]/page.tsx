@@ -14,7 +14,7 @@ export default async function DepartmentPage({ params }: Args) {
 
   const { docs } = await payload.find({
     collection: 'departments',
-    where: { slug: { equals: slug }, status: { equals: 'published' } },
+    where: { slug: { equals: slug } },
     limit: 1,
   })
 
@@ -143,7 +143,7 @@ export async function generateMetadata({ params }: Args): Promise<Metadata> {
   const payload = await getPayload({ config })
   const { docs } = await payload.find({
     collection: 'departments',
-    where: { slug: { equals: slug }, status: { equals: 'published' } },
+    where: { slug: { equals: slug } },
     limit: 1,
   })
   const dept = docs[0]

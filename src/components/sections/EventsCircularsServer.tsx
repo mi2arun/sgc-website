@@ -20,7 +20,6 @@ export default async function EventsCircularsServer({
   const [eventsResult, circularsResult] = await Promise.all([
     payload.find({
       collection: 'events',
-      where: { status: { equals: 'published' } },
       sort: '-date',
       limit: eventsLimit,
     }),

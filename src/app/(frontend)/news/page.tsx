@@ -11,7 +11,6 @@ export default async function NewsPage() {
   const payload = await getPayload({ config })
   const { docs } = await payload.find({
     collection: 'news',
-    where: { status: { equals: 'published' } },
     sort: '-date',
     limit: 20,
   })

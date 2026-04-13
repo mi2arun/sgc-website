@@ -17,7 +17,6 @@ export default async function DynamicPage({ params }: Args) {
     collection: 'pages',
     where: {
       slug: { equals: slugString },
-      status: { equals: 'published' },
     },
     limit: 1,
     depth: 2,
@@ -38,7 +37,6 @@ export async function generateMetadata({ params }: Args): Promise<Metadata> {
     collection: 'pages',
     where: {
       slug: { equals: slugString },
-      status: { equals: 'published' },
     },
     limit: 1,
     depth: 2,
