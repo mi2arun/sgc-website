@@ -15,6 +15,9 @@ import { Testimonials } from './src/collections/Testimonials'
 import { Gallery } from './src/collections/Gallery'
 import { Placements } from './src/collections/Placements'
 import { Documents } from './src/collections/Documents'
+import { Departments } from './src/collections/Departments'
+import { Courses } from './src/collections/Courses'
+import { Faculty } from './src/collections/Faculty'
 import { SiteSettings } from './src/globals/SiteSettings'
 import { Navigation } from './src/globals/Navigation'
 import { FooterContent } from './src/globals/FooterContent'
@@ -29,7 +32,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, Pages, News, Events, Announcements, Testimonials, Gallery, Placements, Documents],
+  collections: [Users, Media, Pages, News, Events, Announcements, Testimonials, Gallery, Placements, Documents, Departments, Courses, Faculty],
   globals: [SiteSettings, Navigation, FooterContent],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || 'default-secret-change-me',
