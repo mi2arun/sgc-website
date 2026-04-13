@@ -7,6 +7,7 @@ import { fileURLToPath } from 'url'
 
 import { Users } from './src/collections/Users'
 import { Media } from './src/collections/Media'
+import { Pages } from './src/collections/Pages'
 import { SiteSettings } from './src/globals/SiteSettings'
 import { Navigation } from './src/globals/Navigation'
 import { FooterContent } from './src/globals/FooterContent'
@@ -21,7 +22,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media],
+  collections: [Users, Media, Pages],
   globals: [SiteSettings, Navigation, FooterContent],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || 'default-secret-change-me',
