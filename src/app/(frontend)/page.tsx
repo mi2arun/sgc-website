@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic"
 import { getPayload } from 'payload'
 import config from '@payload-config'
 import RenderBlocks from '@/components/blocks/RenderBlocks'

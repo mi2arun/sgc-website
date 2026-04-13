@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic"
 import { notFound } from 'next/navigation'
 import { getPayload } from 'payload'
 import config from '@payload-config'
