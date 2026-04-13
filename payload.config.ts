@@ -7,6 +7,7 @@ import {
   HeadingFeature,
   LinkFeature,
 } from '@payloadcms/richtext-lexical'
+import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 import sharp from 'sharp'
 import path from 'path'
 import { fileURLToPath } from 'url'
@@ -62,6 +63,18 @@ export default buildConfig({
       }),
     ],
   }),
+  plugins: [
+    ...(process.env.BLOB_READ_WRITE_TOKEN
+      ? [
+          vercelBlobStorage({
+            collections: {
+              media: true,
+            },
+            token: process.env.BLOB_READ_WRITE_TOKEN,
+          }),
+        ]
+      : []),
+  ],
   secret: process.env.PAYLOAD_SECRET || 'default-secret-change-me',
   typescript: {
     outputFile: path.resolve(dirname, 'src/payload-types.ts'),
