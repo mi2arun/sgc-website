@@ -16,6 +16,7 @@ import RecruiterLogos from '@/components/sections/RecruiterLogos'
 import TestimonialsSection from '@/components/sections/TestimonialsSection'
 import ComplianceLinks from '@/components/sections/ComplianceLinks'
 import CTASection from '@/components/sections/CTASection'
+import PortalsSection from '@/components/sections/PortalsSection'
 import SectionWrapper from '@/components/blocks/SectionWrapper'
 
 type Block = {
@@ -46,6 +47,7 @@ const blockComponents: Record<string, React.ComponentType<any>> = {
   'testimonials': TestimonialsSection,
   'compliance-links': ComplianceLinks,
   'cta': CTASection,
+  'portals': PortalsSection,
 }
 
 export default function RenderBlocks({ blocks }: Props) {

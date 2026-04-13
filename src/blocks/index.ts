@@ -18,6 +18,7 @@ import { CTABlock } from './CTABlock'
 import { RichTextBlock } from './RichTextBlock'
 import { AccreditationBlock } from './AccreditationBlock'
 import { GalleryPreviewBlock } from './GalleryPreviewBlock'
+import { PortalsBlock } from './PortalsBlock'
 
 export const blocks = [
   HeroBlock,
@@ -40,4 +41,5 @@ export const blocks = [
   RichTextBlock,
   AccreditationBlock,
   GalleryPreviewBlock,
+  PortalsBlock,
 ]
