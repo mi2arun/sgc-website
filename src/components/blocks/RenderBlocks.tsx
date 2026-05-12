@@ -5,22 +5,24 @@ import QuickAccess from '@/components/sections/QuickAccess'
 import AccreditationStrip from '@/components/sections/AccreditationStrip'
 import AboutSection from '@/components/sections/AboutSection'
 import StatsSection from '@/components/sections/StatsSection'
-import ProgrammesSection from '@/components/sections/ProgrammesSection'
+import ProgrammesServer from '@/components/sections/ProgrammesServer'
 import ScholarshipBanner from '@/components/sections/ScholarshipBanner'
-import AnnouncementsPanel from '@/components/sections/AnnouncementsPanel'
-import NewsEventsSection from '@/components/sections/NewsEventsSection'
+import AnnouncementsServer from '@/components/sections/AnnouncementsServer'
+import NewsEventsServer from '@/components/sections/NewsEventsServer'
 import ActivityFeed from '@/components/sections/ActivityFeed'
 import WhyJoinSection from '@/components/sections/WhyJoinSection'
 import PlacementSection from '@/components/sections/PlacementSection'
 import RecruiterLogos from '@/components/sections/RecruiterLogos'
-import TestimonialsSection from '@/components/sections/TestimonialsSection'
+import TestimonialsServer from '@/components/sections/TestimonialsServer'
 import ComplianceLinks from '@/components/sections/ComplianceLinks'
 import CTASection from '@/components/sections/CTASection'
 import PortalsSection from '@/components/sections/PortalsSection'
 import EventsCircularsServer from '@/components/sections/EventsCircularsServer'
 import RichTextBlock from '@/components/sections/RichTextBlock'
-import GalleryPreviewSection from '@/components/sections/GalleryPreviewSection'
+import GalleryPreviewServer from '@/components/sections/GalleryPreviewServer'
 import FacultyGridServer from '@/components/sections/FacultyGridServer'
+import SingleImageSection from '@/components/sections/SingleImageSection'
+import TwoColumnSection from '@/components/sections/TwoColumnSection'
 import SectionWrapper from '@/components/blocks/SectionWrapper'
 
 type Block = {
@@ -40,22 +42,24 @@ const blockComponents: Record<string, React.ComponentType<any>> = {
   'accreditation': AccreditationStrip,
   'about': AboutSection,
   'stats': StatsSection,
-  'programmes': ProgrammesSection,
+  'programmes': ProgrammesServer,
   'scholarship': ScholarshipBanner,
-  'announcements': AnnouncementsPanel,
-  'news-events': NewsEventsSection,
+  'announcements': AnnouncementsServer,
+  'news-events': NewsEventsServer,
   'activity-feed': ActivityFeed,
   'why-join': WhyJoinSection,
   'placements': PlacementSection,
   'recruiter-logos': RecruiterLogos,
-  'testimonials': TestimonialsSection,
+  'testimonials': TestimonialsServer,
   'compliance-links': ComplianceLinks,
   'cta': CTASection,
   'portals': PortalsSection,
   'events-circulars': EventsCircularsServer,
   'rich-text': RichTextBlock,
-  'gallery-preview': GalleryPreviewSection,
+  'gallery-preview': GalleryPreviewServer,
   'faculty-grid': FacultyGridServer,
+  'single-image': SingleImageSection,
+  'two-column': TwoColumnSection,
 }
 
 export default function RenderBlocks({ blocks }: Props) {

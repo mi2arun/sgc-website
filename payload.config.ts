@@ -6,7 +6,14 @@ import {
   EXPERIMENTAL_TableFeature,
   HeadingFeature,
   LinkFeature,
+  BlocksFeature,
+  HorizontalRuleFeature,
 } from '@payloadcms/richtext-lexical'
+
+import { AlignedImageBlock } from './src/blocks/inline/AlignedImageBlock'
+import { InlineGalleryBlock } from './src/blocks/inline/InlineGalleryBlock'
+import { CalloutBlock } from './src/blocks/inline/CalloutBlock'
+import { InlineButtonBlock } from './src/blocks/inline/InlineButtonBlock'
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 import sharp from 'sharp'
 import path from 'path'
@@ -45,6 +52,7 @@ export default buildConfig({
     features: ({ defaultFeatures }) => [
       ...defaultFeatures,
       EXPERIMENTAL_TableFeature(),
+      HorizontalRuleFeature(),
       HeadingFeature({
         enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4'],
       }),
@@ -60,6 +68,9 @@ export default buildConfig({
             ],
           },
         },
+      }),
+      BlocksFeature({
+        blocks: [AlignedImageBlock, InlineGalleryBlock, CalloutBlock, InlineButtonBlock],
       }),
     ],
   }),

@@ -21,6 +21,8 @@ import { GalleryPreviewBlock } from './GalleryPreviewBlock'
 import { PortalsBlock } from './PortalsBlock'
 import { EventsCircularsBlock } from './EventsCircularsBlock'
 import { FacultyGridBlock } from './FacultyGridBlock'
+import { SingleImageBlock } from './SingleImageBlock'
+import { TwoColumnBlock } from './TwoColumnBlock'
 
 export const blocks = [
   HeroBlock,
@@ -46,4 +48,6 @@ export const blocks = [
   PortalsBlock,
   EventsCircularsBlock,
   FacultyGridBlock,
+  SingleImageBlock,
+  TwoColumnBlock,
 ]
