@@ -68,12 +68,15 @@
 - **Content:** MERGE source — Dr. S. Babu profile is the core content
 - **Notes:** Decide whether senior leadership becomes Faculty records with a "Leadership" designation, or a separate Site Settings group
 
-### `/about/affiliation` — Affiliation & Recognition  ✚
+### `/about/affiliation` — Affiliation & Recognition  ✓ (built 2026-05-12)
 - **Purpose:** Document the official recognitions — Pondicherry University, autonomous status, ISO.
-- **Blocks:** Hero (minimal) → RichText (3 sections: PU / Autonomous / ISO with brief explanations) → CTA
-- **Source:** sgc.edu.in/sgc/home (Autonomous PDF), assets/docs/Affiliation 2024-25.pdf
-- **Content:** DRAFT fresh — write a paragraph each for PU/Autonomous/ISO. LINK to PDFs at bottom.
-- **Notes:** Replaces what source treated as 3 separate menu items
+- **Blocks (actual):** Hero (compact, navy overlay, eyebrow "Officially Recognised", campus building image)
+  → RichText × 4 (PU / Autonomous Status / UGC 2(f) / ISO — each with eyebrow + heading + 1-2
+  paragraphs + inline Button linking to source PDF)
+  → CTA ("Trust the Process · Apply Now")
+- **Source:** sgc.edu.in PDFs (linked directly for now)
+- **Content:** DRAFT fresh prose (not scraped). Autonomy granted 2026.
+- **Notes:** Establishes the template for all `/accreditation/*` pages.
 
 ### `/about/annual-reports` — Annual Reports  ✚
 - **Purpose:** Archive of annual reports for transparency / accreditation.
