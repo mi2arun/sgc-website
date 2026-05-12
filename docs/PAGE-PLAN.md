@@ -255,45 +255,45 @@
 - **Content:** MERGE source — list and describe each amenity
 - **Notes:** Use inline-image aligned blocks inside the RichText
 
-### `/student-support` — Student Support overview  ✚
+### `/student-support` — Student Support overview  ✓ (built 2026-05-12)
 - **Purpose:** Hub for all support cells.
 - **Blocks:** Hero (minimal) → RichText intro → Quick Access (links to each cell) → CTA (Contact Grievance Cell)
 - **Source:** sgc.edu.in/sgc/stu_support (anchor-based)
 - **Content:** DRAFT fresh — short summary per cell
 - **Notes:** Each cell gets its OWN page below — this is just the hub
 
-### `/student-support/sc-st` — SC/ST Cell  ✚
+### `/student-support/sc-st` — SC/ST Cell  ✓ (built 2026-05-12)
 - **Purpose:** Inform students of SC/ST cell, members, procedures, complaint mechanism.
 - **Blocks:** Hero (minimal) → RichText (purpose + members + procedure) → CTA (Contact)
 - **Source:** sgc.edu.in/sgc/stu_support#sc-st-cell
 - **Content:** MERGE source — extract committee members from source page
 - **Notes:** All support-cell pages follow this same pattern
 
-### `/student-support/grievance` — Grievance Redressal Cell  ✚
+### `/student-support/grievance` — Grievance Redressal Cell  ✓ (built 2026-05-12)
 - Same pattern as SC/ST
 - **Source:** sgc.edu.in/sgc/stu_support#grc
 
-### `/student-support/anti-ragging` — Anti-Ragging Cell  ✚
+### `/student-support/anti-ragging` — Anti-Ragging Cell  ✓ (built 2026-05-12)
 - Same pattern
 - **Source:** sgc.edu.in/sgc/stu_support#arc
 
-### `/student-support/icc` — Internal Complaints Committee (ICC)  ✚
+### `/student-support/icc` — Internal Complaints Committee (ICC)  ✓ (built 2026-05-12)
 - Same pattern
 - **Source:** sgc.edu.in/sgc/stu_support#icc
 
-### `/student-support/equal-opportunity` — Equal Opportunity Cell  ✚
+### `/student-support/equal-opportunity` — Equal Opportunity Cell  ✓ (built 2026-05-12)
 - Same pattern
 - **Source:** sgc.edu.in/sgc/stu_support#eoc
 
-### `/student-support/career-development` — Career Development Cell  ✚
+### `/student-support/career-development` — Career Development Cell  ✓ (built 2026-05-12)
 - Same pattern
 - **Source:** sgc.edu.in/sgc/stu_support#cdt
 
-### `/student-support/health-care` — Health Care  ✚
+### `/student-support/health-care` — Health Care  ✓ (built 2026-05-12)
 - **Purpose:** Campus health services, first-aid, partnered hospitals.
 - **Source:** sgc.edu.in/sgc/stu_support#health
 
-### `/student-support/pwd` — Facilities for PwD Students  ✚
+### `/student-support/pwd` — Facilities for PwD Students  ✓ (built 2026-05-12)
 - **Purpose:** Accessibility services.
 - **Source:** sgc.edu.in/sgc/stu_support#facilities
 
