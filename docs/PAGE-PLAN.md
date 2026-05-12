@@ -478,12 +478,54 @@ Per your direction, we will now migrate **one page at a time**, in priority orde
 
 ---
 
-# Open questions for you
+# Decisions made (was: open questions)
 
-| # | Question |
+## 1. Student Support cells → **separate pages, shared template**
+
+Each statutory cell (SC/ST, Grievance, Anti-Ragging, ICC, Equal Opportunity,
+Career Development, Health Care, PwD, Disciplinary) gets its own page using
+the same simple template: Hero (minimal) → RichText (purpose + members +
+complaint procedure). 9 small pages, focused URLs, NAAC-friendly.
+
+## 2. Alumni — **light v1 only**
+
+Single `/alumni` page (or under Placements — decide at build time):
+- Hero with rotating featured alumni stories (3-5)
+- Stats ("5,000+ alumni · 30+ industries")
+- 3-4 alumni profile cards
+- Testimonials carousel
+- Stay Connected CTA → external registration form
+- (DEFERRED to v2: alumni directory, mentorship, job board, donations)
+
+## 3. PDFs → **hybrid: 3 most-recent inline + `/documents` filter view**
+
+Build the `/documents?category=X` filter view once. Parent accreditation
+pages embed the 3-5 most-recent docs as Compliance Links + a "View all →"
+link to the filter view. Editors maintain docs in one place; parent pages
+don't need link-list maintenance.
+
+## 4. Department pages → **enrich via Departments collection, not Page records**
+
+Extend Departments collection schema:
+- HOD message (rich text)
+- Auto-pulled Faculty grid (existing `faculty.department` relation)
+- Auto-pulled Courses list (existing `course.department` relation)
+- Department gallery (new category filter on Gallery collection)
+- Department news/events (new optional dept filter)
+
+Render template at `/dept/<slug>` assembles from collection joins. No Page
+records needed. Single source of truth per data type.
+
+## 5. Pages to drop / consolidate
+
+Drop these source URLs (or fold them into other pages):
+
+| Source URL | Action |
 |---|---|
-| 1 | Should each Student Support cell get its own page (12 pages) or stay as anchors on one page? |
-| 2 | Alumni section design — what's your "entirely new idea"? |
-| 3 | PDF archive pages (NIRF / IQAC AQARs etc.) — list them on the parent page, or build a Documents-collection filter view (e.g., `/documents?category=IQAC`)? |
-| 4 | Should we add Department-specific pages (`/dept/<slug>`) more content (faculty list, courses, events from that dept)? Currently they're auto-rendered from the Departments collection only. |
-| 5 | Are there pages on the source site we should **drop entirely** as no longer relevant? |
+| `/sgc/dept_administration` | Drop — covered by `/about/administration` |
+| `/aqar_2023_2024`, `/aqar_2022_2023`, `/aqar_2021_2022` | Drop year-specific pages; surface as PDFs on `/accreditation/iqac` |
+| `/Sgc/e_content_documents`, `/Sgc/e_content_videos` | Fold into `/academics/library` |
+| PDF-only menu items (PU Affiliation, Recognition, Autonomous, Quality Policy JPG) | Link from `/about/affiliation` and `/accreditation/iso` |
+| `/sgc/research_gallery` | Fold into a gallery filter view, or drop if photos are dated |
+| `/staff` (existing on new site) | Decide at /about/administration build time — likely delete or repurpose |
+| `/design-demo` (existing on new site) | Keep on local for reference; delete from prod after launch |
