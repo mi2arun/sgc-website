@@ -169,26 +169,20 @@
 - **Content:** DRAFT fresh — written from prospect's perspective ("scan these docs first"), not the source's bureaucratic prose.
 - **Notes:** Document list and process steps are sensible defaults — easy to refine per actual SGC requirements via admin.
 
-### `/admissions/fees` — Fee Structure  ✚
-- **Purpose:** Show fees per programme.
-- **Blocks:** Hero (minimal) → RichText intro → Programmes block (already shows fees) → CTA (Online Fee Payment)
-- **Source:** —
-- **Content:** Reuse Programmes block; add explanatory copy
-- **Notes:** Online Fee Payment is on external portal too
+### `/admissions/fees` — Fee Structure  ✓ (built 2026-05-12)
+- **Purpose:** Show fees per programme with online payment route.
+- **Blocks (actual):** Hero (compact, eyebrow "Fees 2026-27") → RichText "How fees work" (explanation + inline Button to fee-payment portal) → Programmes block (auto-renders from Courses collection with All/UG/PG tabs) → RichText with info Callout "Other charges to budget for" → CTA "Have a question about fees? Contact Admissions".
+- **Notes:** Programmes block is single-source-of-truth — edit a Course fee in admin, this page (and any other Programmes block) updates.
 
-### `/admissions/prospectus` — Prospectus  ✚
-- **Purpose:** Download the current prospectus PDF.
-- **Blocks:** Hero (minimal) → RichText (what's inside) → Compliance Links (PDF)
-- **Source:** assets/docs/Pros 2024.pdf
-- **Content:** LINK to PDF + 2-3 line description
-- **Notes:** Update annually
+### `/admissions/prospectus` — Prospectus  ✓ (built 2026-05-12)
+- **Purpose:** Wrapper around the prospectus PDF download with clear "what's inside" preview.
+- **Blocks (actual):** Hero (compact, eyebrow "Prospectus 2026-27") → RichText "A 40-page introduction to SGC" (11-item content checklist + Button to download PDF) → RichText with note Callout "Updated annually" → CTA "Ready to apply? → /admissions/apply".
+- **Notes:** PDF link goes direct to source for now; will move to Vercel Blob when we do the full document migration.
 
-### `/admissions/refund-policy` — Refund Policy  ✚
-- **Purpose:** Document UGC-mandated fee refund policy.
-- **Blocks:** Hero (minimal) → RichText summary → Compliance Links (UGC policy PDF)
-- **Source:** assets/docs/UGC_Guidelines_Fee_Refund_Policy.pdf
-- **Content:** DRAFT fresh summary in our own words + LINK to UGC PDF
-- **Notes:** Required by UGC
+### `/admissions/refund-policy` — Refund Policy  ✓ (built 2026-05-12)
+- **Purpose:** UGC-mandated refund policy explained in plain language.
+- **Blocks (actual):** Hero (compact, eyebrow "Important Information") → RichText "What happens if you withdraw" (refund tiers as bullet list + Button to UGC PDF) → RichText with warning Callout "How to request a refund" (step-by-step process) → CTA "Questions about refunds?".
+- **Notes:** Refund tier percentages match the standard UGC policy. Adjust if SGC has institution-specific deviations.
 
 ---
 
