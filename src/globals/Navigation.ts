@@ -44,6 +44,28 @@ export const Navigation: GlobalConfig = {
               type: 'checkbox',
               defaultValue: false,
             },
+            {
+              name: 'subItems',
+              type: 'array',
+              label: 'Sub-sub-menu Items',
+              fields: [
+                {
+                  name: 'label',
+                  type: 'text',
+                  required: true,
+                },
+                {
+                  name: 'link',
+                  type: 'text',
+                  required: true,
+                },
+                {
+                  name: 'openInNewTab',
+                  type: 'checkbox',
+                  defaultValue: false,
+                },
+              ],
+            },
           ],
         },
       ],

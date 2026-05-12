@@ -18,6 +18,11 @@ export default async function Header() {
           label: child.label,
           link: child.link,
           openInNewTab: child.openInNewTab || false,
+          children: child.subItems?.map((grandchild: any) => ({
+            label: grandchild.label,
+            link: grandchild.link,
+            openInNewTab: grandchild.openInNewTab || false,
+          })),
         })),
       }))
     : [];

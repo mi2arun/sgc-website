@@ -2,13 +2,20 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+
+type NavGrandchild = {
+  label: string;
+  link: string;
+  openInNewTab?: boolean;
+};
 
 type NavChild = {
   label: string;
   link: string;
   openInNewTab?: boolean;
+  children?: NavGrandchild[];
 };
 
 type NavItem = {
@@ -25,6 +32,7 @@ type Props = {
 export default function HeaderClient({ items }: Props) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null);
 
   return (
     <header className="bg-primary sticky top-0 z-50">
@@ -55,16 +63,48 @@ export default function HeaderClient({ items }: Props) {
                 {item.children && item.children.length > 0 && activeDropdown === item.label && (
                   <div className="absolute top-full left-0 pt-1 z-50">
                     <div className="bg-white rounded-lg shadow-xl border border-border/50 py-2 min-w-[220px]">
-                      {item.children.map((child) => (
-                        <Link
-                          key={child.label}
-                          href={child.link}
-                          target={child.openInNewTab ? "_blank" : undefined}
-                          className="block px-4 py-2.5 text-sm text-foreground/70 hover:text-primary hover:bg-primary/5 transition-colors"
-                        >
-                          {child.label}
-                        </Link>
-                      ))}
+                      {item.children.map((child) => {
+                        const hasGrandchildren = !!(child.children && child.children.length > 0);
+                        const submenuKey = `${item.label}::${child.label}`;
+                        return (
+                          <div
+                            key={child.label}
+                            className="relative"
+                            onMouseEnter={() => setActiveSubmenu(hasGrandchildren ? submenuKey : null)}
+                            onMouseLeave={() => setActiveSubmenu(null)}
+                          >
+                            <Link
+                              href={child.link}
+                              target={child.openInNewTab ? "_blank" : undefined}
+                              className={cn(
+                                "flex items-center justify-between px-4 py-2.5 text-sm text-foreground/70 hover:text-primary hover:bg-primary/5 transition-colors",
+                                hasGrandchildren && activeSubmenu === submenuKey && "text-primary bg-primary/5"
+                              )}
+                            >
+                              <span>{child.label}</span>
+                              {hasGrandchildren && <ChevronRight className="w-3.5 h-3.5 shrink-0 ml-2" />}
+                            </Link>
+
+                            {/* Flyout (3rd level) */}
+                            {hasGrandchildren && activeSubmenu === submenuKey && (
+                              <div className="absolute top-0 left-full pl-1 z-50">
+                                <div className="bg-white rounded-lg shadow-xl border border-border/50 py-2 min-w-[220px]">
+                                  {child.children!.map((grandchild) => (
+                                    <Link
+                                      key={grandchild.label}
+                                      href={grandchild.link}
+                                      target={grandchild.openInNewTab ? "_blank" : undefined}
+                                      className="block px-4 py-2.5 text-sm text-foreground/70 hover:text-primary hover:bg-primary/5 transition-colors"
+                                    >
+                                      {grandchild.label}
+                                    </Link>
+                                  ))}
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                        );
+                      })}
                     </div>
                   </div>
                 )}
@@ -111,14 +151,31 @@ export default function HeaderClient({ items }: Props) {
                 {item.children && item.children.length > 0 && (
                   <div className="ml-4 space-y-0.5">
                     {item.children.map((child) => (
-                      <Link
-                        key={child.label}
-                        href={child.link}
-                        className="block px-3 py-2 text-sm text-foreground/60 hover:text-primary transition-colors"
-                        onClick={() => setMobileOpen(false)}
-                      >
-                        {child.label}
-                      </Link>
+                      <div key={child.label}>
+                        <Link
+                          href={child.link}
+                          className="block px-3 py-2 text-sm text-foreground/60 hover:text-primary transition-colors"
+                          onClick={() => {
+                            if (!child.children || child.children.length === 0) setMobileOpen(false);
+                          }}
+                        >
+                          {child.label}
+                        </Link>
+                        {child.children && child.children.length > 0 && (
+                          <div className="ml-4 space-y-0.5">
+                            {child.children.map((grandchild) => (
+                              <Link
+                                key={grandchild.label}
+                                href={grandchild.link}
+                                className="block px-3 py-1.5 text-[13px] text-foreground/50 hover:text-primary transition-colors"
+                                onClick={() => setMobileOpen(false)}
+                              >
+                                {grandchild.label}
+                              </Link>
+                            ))}
+                          </div>
+                        )}
+                      </div>
                     ))}
                   </div>
                 )}
