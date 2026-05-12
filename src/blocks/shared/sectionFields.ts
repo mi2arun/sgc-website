@@ -2,6 +2,16 @@ import type { Field } from 'payload'
 
 export const sectionFields: Field[] = [
   {
+    name: 'enabled',
+    type: 'checkbox',
+    label: 'Enabled',
+    defaultValue: true,
+    admin: {
+      position: 'sidebar',
+      description: 'Uncheck to hide this block on the live site without deleting it',
+    },
+  },
+  {
     name: 'style',
     type: 'group',
     label: 'Section Design',

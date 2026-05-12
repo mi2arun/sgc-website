@@ -70,8 +70,11 @@ export default function RenderBlocks({ blocks }: Props) {
       {blocks.map((block, index) => {
         const Component = blockComponents[block.blockType]
         if (!Component) return null
+        // Hide blocks the editor toggled off in admin. Defaults to enabled
+        // for backwards-compat with rows created before the field existed.
+        if (block.enabled === false) return null
 
-        const { blockType, id, blockName, style, ...props } = block
+        const { blockType, id, blockName, style, enabled, ...props } = block
         return (
           <SectionWrapper key={id || index} settings={style}>
             <Component {...props} />
