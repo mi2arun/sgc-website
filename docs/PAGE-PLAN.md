@@ -96,21 +96,21 @@
 
 # 3. Academics
 
-### `/academics` — Academics overview  ✚
+### `/academics` — Academics overview  ✓ (built 2026-05-12)
 - **Purpose:** Landing page for all academic content. Direct users to UG/PG/Departments/Library.
 - **Blocks:** Hero (marketing, medium) → RichText intro → Programmes block (UG/PG filter tabs) → Faculty Grid (showcase) → CTA (Apply)
 - **Source:** —
 - **Content:** DRAFT fresh
 - **Notes:** No equivalent source page — we're creating a proper landing
 
-### `/academics/ug-programmes` — UG Programmes  ✚
+### `/academics/ug-programmes` — UG Programmes  ✓ (built 2026-05-12)
 - **Purpose:** Detail page for all 9 UG programmes with fees, eligibility, duration.
 - **Blocks:** Hero (marketing, medium) → RichText intro → Programmes block (filter=UG) → CTA (Apply)
 - **Source:** sgc.edu.in/sgc/ug
 - **Content:** Programmes block reads from Courses collection — make sure all 9 UG courses have full details (eligibility, fees, duration, syllabus PDF). MERGE source for individual programme paragraphs.
 - **Notes:** Anchor IDs on this page back the navigation grandchildren: #ba-english, #bcom, #bba, #bcom-cs, #bsc-math, #bsc-physics, #bsc-cs, #bca, #bsc-it
 
-### `/academics/pg-programmes` — PG Programmes  ✚
+### `/academics/pg-programmes` — PG Programmes  ✓ (built 2026-05-12)
 - **Purpose:** Same as UG but for 4 PG programmes.
 - **Blocks:** Hero (marketing, medium) → RichText intro → Programmes block (filter=PG) → CTA
 - **Source:** sgc.edu.in/sgc/pg
@@ -123,14 +123,14 @@
 - **Content:** MERGE source — get the list, format cleanly
 - **Notes:** Consider whether each add-on becomes a Course record (type='Add-on') or stays as listed text
 
-### `/academics/calendar` — Academic Calendar  ✚
+### `/academics/calendar` — Academic Calendar  ✓ (built 2026-05-12)
 - **Purpose:** Important dates: semester start/end, exam windows, holidays.
 - **Blocks:** Hero (minimal) → RichText intro → Compliance Links (downloadable calendar PDF)
 - **Source:** assets/docs/academic_calendar.pdf
 - **Content:** LINK to PDF + short intro
 - **Notes:** Could later become a structured calendar widget; for now PDF link is fine
 
-### `/academics/library` — Library  ✚
+### `/academics/library` — Library  ✓ (built 2026-05-12)
 - **Purpose:** Library resources, hours, e-content access.
 - **Blocks:** Hero (split: library photo + intro) → RichText (general library + departmental libraries) → Portals block (NDL, N-LIST, E-Content links) → CTA
 - **Source:** sgc.edu.in/sgc/general_library
