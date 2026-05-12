@@ -162,12 +162,12 @@
 - **Content:** REFINE existing — content already there from past curation; tighten copy
 - **Notes:** Hero already set
 
-### `/admissions/apply` — Apply Online  ✚
-- **Purpose:** Redirect / wrapper for the external application portal.
-- **Blocks:** Hero (minimal) → RichText (how-to instructions) → CTA (open external portal)
+### `/admissions/apply` — Apply Online  ✓ (built 2026-05-12)
+- **Purpose:** Friendly handoff to the external application portal.
+- **Blocks (actual):** Hero (compact, navy, eyebrow "Admissions 2026-27") → RichText "Before You Begin" (document checklist as bullet list) → RichText "How It Works" (5-step process) → RichText with info Callout (admissions office hours, contact) → CTA "Ready when you are" opening external portal in new tab.
 - **Source:** application.sgc.edu.in (external)
-- **Content:** DRAFT fresh — instructions on what to have ready, then big "Open Application Portal" button
-- **Notes:** External portal lives off-site; this page is a friendly handoff
+- **Content:** DRAFT fresh — written from prospect's perspective ("scan these docs first"), not the source's bureaucratic prose.
+- **Notes:** Document list and process steps are sensible defaults — easy to refine per actual SGC requirements via admin.
 
 ### `/admissions/fees` — Fee Structure  ✚
 - **Purpose:** Show fees per programme.
