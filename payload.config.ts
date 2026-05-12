@@ -49,6 +49,20 @@ export default buildConfig({
     components: {
       actions: ['@/components/admin/FocusModeToggle'],
     },
+    livePreview: {
+      url: ({ data }) => {
+        const base = process.env.PAYLOAD_PUBLIC_SERVER_URL || 'http://localhost:3000'
+        const slug = (data as { slug?: string })?.slug || ''
+        // home and special pages render at `/`; everything else at `/<slug>`
+        return slug === 'home' ? base : `${base}/${slug}`
+      },
+      collections: ['pages'],
+      breakpoints: [
+        { label: 'Mobile', name: 'mobile', width: 375, height: 667 },
+        { label: 'Tablet', name: 'tablet', width: 768, height: 1024 },
+        { label: 'Desktop', name: 'desktop', width: 1440, height: 900 },
+      ],
+    },
   },
   collections: [Users, Media, Pages, News, Events, Announcements, Testimonials, Gallery, Placements, Documents, Departments, Courses, Faculty],
   globals: [SiteSettings, Navigation, FooterContent],
