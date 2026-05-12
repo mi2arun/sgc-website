@@ -11,6 +11,15 @@ type MediaShape = { url?: string | null; alt?: string | null; width?: number | n
 
 type BlockNode<F> = { fields: F; type: 'block'; format: '' | 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | ''; version: number }
 
+type ResizableImageNodeData = {
+  imageId?: number | string
+  url?: string
+  alt?: string
+  caption?: string
+  widthPercent?: number
+  align?: 'left' | 'center' | 'right' | 'full'
+}
+
 const floatClasses: Record<string, string> = {
   left: 'float-left mr-6 mb-4',
   right: 'float-right ml-6 mb-4',
@@ -39,6 +48,42 @@ const aspectClasses: Record<string, string> = {
 
 const jsxConverters: JSXConvertersFunction = ({ defaultConverters }) => ({
   ...defaultConverters,
+  'resizable-image': ({ node }: { node: { type: 'resizable-image'; data: ResizableImageNodeData } }) => {
+    const d = node.data
+    if (!d?.url) return null
+    const widthPct = Math.max(5, Math.min(100, Number(d.widthPercent) || 60))
+    const align = d.align || 'center'
+    const isFloat = align === 'left' || align === 'right'
+    const style: React.CSSProperties = isFloat
+      ? {
+          float: align,
+          width: `${widthPct}%`,
+          marginRight: align === 'left' ? '1.5rem' : 0,
+          marginLeft: align === 'right' ? '1.5rem' : 0,
+          marginBottom: '1rem',
+        }
+      : {
+          display: 'block',
+          width: align === 'full' ? '100%' : `${widthPct}%`,
+          marginLeft: align === 'center' ? 'auto' : 0,
+          marginRight: align === 'center' ? 'auto' : 0,
+          marginTop: '1.5rem',
+          marginBottom: '1.5rem',
+        }
+    return (
+      <figure style={style} className="not-prose">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={d.url}
+          alt={d.alt || ''}
+          style={{ width: '100%', height: 'auto', display: 'block', borderRadius: 8 }}
+        />
+        {d.caption && (
+          <figcaption className="text-sm text-muted mt-2 italic">{d.caption}</figcaption>
+        )}
+      </figure>
+    )
+  },
   blocks: {
     'aligned-image': ({ node }: { node: BlockNode<{
       image?: MediaShape | number | string

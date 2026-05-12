@@ -14,6 +14,7 @@ import { AlignedImageBlock } from './src/blocks/inline/AlignedImageBlock'
 import { InlineGalleryBlock } from './src/blocks/inline/InlineGalleryBlock'
 import { CalloutBlock } from './src/blocks/inline/CalloutBlock'
 import { InlineButtonBlock } from './src/blocks/inline/InlineButtonBlock'
+import { ResizableImageFeature } from './src/blocks/inline/resizableImage/server'
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 import sharp from 'sharp'
 import path from 'path'
@@ -45,6 +46,9 @@ export default buildConfig({
     importMap: {
       baseDir: path.resolve(dirname),
     },
+    components: {
+      actions: ['@/components/admin/FocusModeToggle'],
+    },
   },
   collections: [Users, Media, Pages, News, Events, Announcements, Testimonials, Gallery, Placements, Documents, Departments, Courses, Faculty],
   globals: [SiteSettings, Navigation, FooterContent],
@@ -72,6 +76,7 @@ export default buildConfig({
       BlocksFeature({
         blocks: [AlignedImageBlock, InlineGalleryBlock, CalloutBlock, InlineButtonBlock],
       }),
+      ResizableImageFeature(),
     ],
   }),
   plugins: [
