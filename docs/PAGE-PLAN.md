@@ -317,53 +317,53 @@
 
 # 7. Accreditation
 
-### `/accreditation` — Accreditation overview  ✚
+### `/accreditation` — Accreditation overview  ✓ (built 2026-05-12)
 - **Purpose:** Hub linking NAAC/IQAC/NIRF/AICTE/ISO/UGC content.
 - **Blocks:** Hero (minimal, eyebrow="Quality Assurance") → Accreditation Strip block → CTA
 - **Source:** —
 - **Content:** DRAFT fresh
 - **Notes:** Compliance Links block lists landing pages of each accreditation
 
-### `/accreditation/naac` — NAAC  ✚
+### `/accreditation/naac` — NAAC  ✓ (built 2026-05-12)
 - **Purpose:** Show NAAC A+ grade, SSR cycles, certificates.
 - **Blocks:** Hero (minimal) → RichText (NAAC story: SGC accredited A+ in Cycle II) → Compliance Links (5 PDFs: IIQA, SSR, DVV, Certificate, IIQA Declaration)
 - **Source:** sgc.edu.in/sgc/naac_cycle_II + PDF links
 - **Content:** DRAFT fresh prose; LINK PDFs
 - **Notes:** Anchor IDs: #ssr, #aqar, #best-practices (preserve from nav)
 
-### `/accreditation/iqac` — IQAC  ✚
+### `/accreditation/iqac` — IQAC  ✓ (built 2026-05-12)
 - **Purpose:** Document IQAC composition, meeting minutes, AQAR reports.
 - **Blocks:** Hero (minimal) → RichText intro → Compliance Links (Composition by year) → Compliance Links (Minutes by year) → Compliance Links (AQAR by year)
 - **Source:** Numerous PDFs (4 compositions + 16 minutes + 7 AQAR-related)
 - **Content:** DRAFT short intro; LINK ALL PDFs in organised lists
 - **Notes:** Anchor IDs: #composition, #minutes, #aqar — preserve from nav. Lots of PDFs — could later become a Documents collection filter view.
 
-### `/accreditation/aicte` — AICTE  ✚
+### `/accreditation/aicte` — AICTE  ✓ (built 2026-05-12)
 - **Purpose:** AICTE recognition for BBA programme.
 - **Blocks:** Hero (minimal) → RichText (explanation) → Compliance Links (EOA, LOA, Mandatory Disclosure, feedback portal links)
 - **Source:** sgc.edu.in AICTE PDFs + aicte-india.org feedback URLs
 - **Content:** DRAFT fresh
 
-### `/accreditation/nirf` — NIRF  ✚
+### `/accreditation/nirf` — NIRF  ✓ (built 2026-05-12)
 - **Purpose:** National Institutional Ranking Framework annual reports.
 - **Blocks:** Hero (minimal) → RichText intro → Compliance Links (NIRF reports 2019-2026)
 - **Source:** 8 PDFs
 - **Content:** Short intro + 8-year archive
 
-### `/accreditation/ariia` — ARIIA  ✚
+### `/accreditation/ariia` — ARIIA  ✓ (built 2026-05-12)
 - **Purpose:** Atal Ranking of Institutions on Innovation Achievements.
 - **Blocks:** Hero (minimal) → RichText intro → Compliance Links (ARIIA 2021, 2022 reports)
 - **Source:** 2 PDFs
 - **Notes:** Could fold into /accreditation/nirf as a section if low volume
 
-### `/accreditation/iso` — ISO 9001:2015  ✚
+### `/accreditation/iso` — ISO 9001:2015  ✓ (built 2026-05-12)
 - **Purpose:** ISO certification.
 - **Blocks:** Hero (minimal) → RichText (Quality Policy + certificate context) → Compliance Links (Certificate PDF)
 - **Source:** assets/docs/ISOcertificate.pdf, quality-policy.jpg
 - **Content:** DRAFT fresh
 - **Notes:** Quality Policy is a JPG on source — re-create as text on this page
 
-### `/accreditation/ugc` — UGC Guidelines & Compliance  ✚
+### `/accreditation/ugc` — UGC Guidelines  ✓ (built 2026-05-12)
 - **Purpose:** Documents UGC compliance — guidelines for IDP, SEDG, accessibility, R&D cell, public disclosure.
 - **Blocks:** Hero (minimal) → RichText (what each guideline covers) → Compliance Links (6 PDFs from UGC)
 - **Source:** 6 PDFs (IDP / SEDG / Accessibility / R&D Cell / Public Self-Disclosure / Undertaking)
