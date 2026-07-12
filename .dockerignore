@@ -1,0 +1,15 @@
+node_modules
+.next
+.git
+.vercel
+media
+.playwright-mcp
+.superpowers
+.claude
+*.tsbuildinfo
+.env
+.env*.local
+.env*.backup
+npm-debug.log*
+Dockerfile
+.dockerignore
