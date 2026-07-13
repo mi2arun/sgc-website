@@ -44,7 +44,7 @@ export default function FooterClient({
               <Image src={logoUrl} alt={collegeName} width={48} height={48} className="shrink-0" />
               <div>
                 <h3 className="font-bold text-lg leading-tight">{shortName}</h3>
-                <p className="text-xs text-white/60">Est. 2010</p>
+                <p className="text-xs text-white/60">Est. 2001</p>
               </div>
             </div>
             <p className="text-white/70 text-sm leading-relaxed mb-5">
