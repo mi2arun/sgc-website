@@ -1,9 +1,23 @@
 import {
   RichText as PayloadRichText,
+  LinkJSXConverter,
   type JSXConvertersFunction,
 } from '@payloadcms/richtext-lexical/react'
+import type { SerializedLinkNode } from '@payloadcms/richtext-lexical'
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
+
+// Resolves an "Internal Link" (to a media file or a page) into a real URL.
+// Without this, internal links render as href="#" and don't open.
+const internalDocToHref = ({ linkNode }: { linkNode: SerializedLinkNode }): string => {
+  const value = linkNode.fields?.doc?.value
+  if (value && typeof value === 'object') {
+    const v = value as { url?: string | null; slug?: string | null }
+    if (v.url) return v.url // media (PDF / image) — relative URL like /api/media/file/...
+    if (v.slug) return `/${v.slug}` // a page
+  }
+  return '#'
+}
 
 type Props = { content: unknown }
 
@@ -48,6 +62,7 @@ const aspectClasses: Record<string, string> = {
 
 const jsxConverters: JSXConvertersFunction = ({ defaultConverters }) => ({
   ...defaultConverters,
+  ...LinkJSXConverter({ internalDocToHref }),
   'resizable-image': ({ node }: { node: { type: 'resizable-image'; data: ResizableImageNodeData } }) => {
     const d = node.data
     if (!d?.url) return null
