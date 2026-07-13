@@ -15,7 +15,7 @@ import { InlineGalleryBlock } from './src/blocks/inline/InlineGalleryBlock'
 import { CalloutBlock } from './src/blocks/inline/CalloutBlock'
 import { InlineButtonBlock } from './src/blocks/inline/InlineButtonBlock'
 import { ResizableImageFeature } from './src/blocks/inline/resizableImage/server'
-import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
+import { s3Storage } from '@payloadcms/storage-s3'
 import sharp from 'sharp'
 import path from 'path'
 import { fileURLToPath } from 'url'
@@ -94,13 +94,27 @@ export default buildConfig({
     ],
   }),
   plugins: [
-    ...(process.env.BLOB_READ_WRITE_TOKEN
+    // Object storage for the `media` collection. Migrated off Vercel Blob → S3-compatible
+    // RustFS (self-hosted on the veld platform). Payload proxies file requests through its
+    // own /api/media/file/<name> route (default access control), reading bytes from S3 over
+    // the internal endpoint — so media URLs stay relative and no public S3 exposure is needed.
+    // forcePathStyle is required for RustFS/MinIO-style stores.
+    ...(process.env.S3_BUCKET
       ? [
-          vercelBlobStorage({
+          s3Storage({
             collections: {
               media: true,
             },
-            token: process.env.BLOB_READ_WRITE_TOKEN,
+            bucket: process.env.S3_BUCKET,
+            config: {
+              endpoint: process.env.S3_ENDPOINT || 'http://s3:9000',
+              region: process.env.S3_REGION || 'us-east-1',
+              forcePathStyle: true,
+              credentials: {
+                accessKeyId: process.env.S3_ACCESS_KEY || '',
+                secretAccessKey: process.env.S3_SECRET_KEY || '',
+              },
+            },
           }),
         ]
       : []),
