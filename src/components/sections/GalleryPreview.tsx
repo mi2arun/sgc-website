@@ -13,21 +13,21 @@ export default function GalleryPreview({ title, images: imagesProp }: Props) {
     : [];
   if (galleryImages.length === 0) return null;
   return (
-    <section className="py-16 bg-[#f8f6f0]">
+    <section className="py-16 bg-[#eef3fb]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between mb-10">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-[#1e3a5f] rounded-lg flex items-center justify-center">
-              <Camera className="w-5 h-5 text-[#c8a951]" />
+            <div className="w-10 h-10 bg-[#1c4c9c] rounded-lg flex items-center justify-center">
+              <Camera className="w-5 h-5 text-[#f5c220]" />
             </div>
             <div>
-              <h2 className="text-2xl font-bold text-[#1e3a5f]">{title || "Campus Gallery"}</h2>
+              <h2 className="text-2xl font-bold text-[#1c4c9c]">{title || "Campus Gallery"}</h2>
               <p className="text-sm text-gray-500">Life at Saradha Gangadharan College</p>
             </div>
           </div>
           <Link
             href="/gallery"
-            className="text-sm text-[#1e3a5f] font-medium hover:text-[#c8a951] transition-colors flex items-center gap-1"
+            className="text-sm text-[#1c4c9c] font-medium hover:text-[#f5c220] transition-colors flex items-center gap-1"
           >
             View All <ChevronRight className="w-4 h-4" />
           </Link>
@@ -49,7 +49,7 @@ export default function GalleryPreview({ title, images: imagesProp }: Props) {
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
                   sizes={i === 0 ? "(max-width: 768px) 100vw, 66vw" : "(max-width: 768px) 50vw, 33vw"}
                 />
-                <div className="absolute inset-0 bg-[#1e3a5f]/0 group-hover:bg-[#1e3a5f]/30 transition-colors" />
+                <div className="absolute inset-0 bg-[#1c4c9c]/0 group-hover:bg-[#1c4c9c]/30 transition-colors" />
               </div>
             </div>
           ))}

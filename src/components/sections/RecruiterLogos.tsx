@@ -14,8 +14,8 @@ export default function RecruiterLogos({ companies: companiesProp, title }: Prop
     <section className="py-10 bg-gray-50 border-y border-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-center gap-2 mb-8">
-          <Building2 className="w-5 h-5 text-[#c8a951]" />
-          <h2 className="text-sm font-semibold text-[#1e3a5f] uppercase tracking-wider">
+          <Building2 className="w-5 h-5 text-[#f5c220]" />
+          <h2 className="text-sm font-semibold text-[#1c4c9c] uppercase tracking-wider">
             {title || "Our Recruiters"}
           </h2>
         </div>
@@ -28,7 +28,7 @@ export default function RecruiterLogos({ companies: companiesProp, title }: Prop
             {[...data, ...data].map((name, i) => (
               <div
                 key={i}
-                className="shrink-0 mx-4 px-6 py-3 bg-white rounded-lg border border-gray-200 hover:border-[#c8a951] transition-colors"
+                className="shrink-0 mx-4 px-6 py-3 bg-white rounded-lg border border-gray-200 hover:border-[#f5c220] transition-colors"
               >
                 <span className="text-sm font-semibold text-gray-700 whitespace-nowrap">{name}</span>
               </div>

@@ -74,7 +74,7 @@ export default function EventsCircularsSection({
       : circularList.filter((c) => c.category === circularFilter);
 
   return (
-    <section className="py-16 bg-[#f8f6f0]">
+    <section className="py-16 bg-[#eef3fb]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-8">
           {/* ─── Events Column ─── */}

@@ -21,7 +21,7 @@ export default function QuickAccess({ buttons }: Props) {
     : [];
   if (actions.length === 0) return null;
   return (
-    <section className="py-8 bg-[#f8f6f0] relative z-10">
+    <section className="py-8 bg-[#eef3fb] relative z-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
           {actions.map(({ icon: Icon, label, description, href, color }) => (

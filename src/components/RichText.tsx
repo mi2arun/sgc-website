@@ -48,9 +48,9 @@ const calloutStyles: Record<string, string> = {
 }
 
 const buttonStyles: Record<string, string> = {
-  primary: 'bg-[#1e3a5f] hover:bg-[#15294a] text-white',
-  accent: 'bg-[#c8a951] hover:bg-[#b3964a] text-[#1e3a5f]',
-  outline: 'border border-[#1e3a5f] text-[#1e3a5f] hover:bg-[#1e3a5f] hover:text-white',
+  primary: 'bg-[#1c4c9c] hover:bg-[#143a78] text-white',
+  accent: 'bg-[#f5c220] hover:bg-[#d4a017] text-[#1c4c9c]',
+  outline: 'border border-[#1c4c9c] text-[#1c4c9c] hover:bg-[#1c4c9c] hover:text-white',
 }
 
 const aspectClasses: Record<string, string> = {

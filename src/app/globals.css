@@ -3,15 +3,30 @@
 
 @layer payload-default, payload;
 
+/* Hero display font (Hiroshige Std Book Italic), self-hosted from /public/fonts.
+   Declared as normal style so the italic-drawn glyphs apply to hero headings
+   without needing an `italic` class. */
+@font-face {
+  font-family: 'Hiroshige Std';
+  src: url('/fonts/Hiroshige-Std-Book-Italic.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+.font-hero-display {
+  font-family: 'Hiroshige Std', Georgia, 'Times New Roman', serif;
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --primary: #1e3a5f;
-  --primary-dark: #0f2744;
-  --primary-light: #2d5a8e;
-  --accent: #c8a951;
-  --accent-light: #e8d48b;
-  --secondary: #f8f6f0;
+  --primary: #1c4c9c;
+  --primary-dark: #143a78;
+  --primary-light: #2d69c8;
+  --accent: #f5c220;
+  --accent-light: #f8d25a;
+  --secondary: #eef3fb;
   --muted: #64748b;
   --border: #e2e8f0;
   --card: #ffffff;

@@ -25,6 +25,7 @@ type Props = {
   eyebrow?: string
   title?: string
   titleAccent?: string
+  displayFont?: boolean   // use the Hiroshige serif display font for the title
   subtitle?: string
   trustLine?: string
   badges?: { label: string }[]
@@ -46,10 +47,24 @@ type Props = {
   overlayColor?: 'navy' | 'black' | 'gradient' | 'none'
   showDecorativeRings?: boolean
   showDotPattern?: boolean
+  // Text tab — legibility controls for the hero copy
+  fontColor?: string          // hex; defaults to white
+  textPanel?: boolean         // show a colored backdrop behind the text
+  textPanelColor?: string     // hex of that backdrop
+  textPanelOpacity?: number   // 0-100 transparency of the backdrop
   // Behavior tab
   autoplay?: boolean
   autoplaySpeed?: number
   pauseOnHover?: boolean
+}
+
+const hexToRgba = (hex: string, alpha: number): string => {
+  const h = (hex || '').replace('#', '')
+  const full = h.length === 3 ? h.split('').map((c) => c + c).join('') : h
+  const r = parseInt(full.slice(0, 2), 16) || 0
+  const g = parseInt(full.slice(2, 4), 16) || 0
+  const b = parseInt(full.slice(4, 6), 16) || 0
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`
 }
 
 const resolveUrl = (m: Media): string | null => {
@@ -83,11 +98,11 @@ const overlayStyle = (color: Props['overlayColor'], opacity: number): React.CSSP
   const o = opacity / 100
   if (color === 'black') return { background: `rgba(0,0,0,${o})` }
   if (color === 'gradient') return {
-    background: `linear-gradient(135deg, rgba(12,31,61,${o}) 0%, rgba(22,45,80,${o * 0.9}) 100%)`,
+    background: `linear-gradient(135deg, rgba(16,39,90,${o}) 0%, rgba(23,58,111,${o * 0.9}) 100%)`,
   }
   // navy (default SGC)
   return {
-    background: `linear-gradient(to bottom, rgba(12,31,61,${o * 1.09}) 0%, rgba(12,31,61,${o * 0.96}) 50%, rgba(12,31,61,${o * 1.15}) 100%)`,
+    background: `linear-gradient(to bottom, rgba(16,39,90,${o * 1.09}) 0%, rgba(16,39,90,${o * 0.96}) 50%, rgba(16,39,90,${o * 1.15}) 100%)`,
   }
 }
 
@@ -102,6 +117,7 @@ export default function HeroSection({
   eyebrow,
   title,
   titleAccent,
+  displayFont = false,
   subtitle,
   trustLine,
   badges,
@@ -116,10 +132,14 @@ export default function HeroSection({
   showArrows = true,
   showIndicators = true,
   showScrollIndicator = false,
-  overlayOpacity = 78,
+  overlayOpacity = 50,
   overlayColor = 'navy',
   showDecorativeRings = true,
   showDotPattern = true,
+  fontColor,
+  textPanel = false,
+  textPanelColor = '#0c1f3d',
+  textPanelOpacity = 40,
   autoplay = true,
   autoplaySpeed = 6000,
   pauseOnHover = true,
@@ -173,6 +193,16 @@ export default function HeroSection({
 
   const inlineHeight: React.CSSProperties = height === 'custom' ? { height: `${customHeight}vh` } : {}
 
+  // Legibility: optional custom font colour + an optional translucent panel behind the copy
+  const textColorStyle: React.CSSProperties | undefined = fontColor ? { color: fontColor } : undefined
+  const textPanelStyle: React.CSSProperties = textPanel
+    ? {
+        backgroundColor: hexToRgba(textPanelColor, textPanelOpacity / 100),
+        backdropFilter: 'blur(2px)',
+        WebkitBackdropFilter: 'blur(2px)',
+      }
+    : {}
+
   return (
     <section
       ref={wrapperRef}
@@ -202,17 +232,36 @@ export default function HeroSection({
                 i === current ? 'opacity-100' : 'opacity-0',
               )}
             >
-              <Image
-                src={(slide.mobileImage && typeof window !== 'undefined' && window.innerWidth < 768) ? slide.mobileImage : slide.image!}
-                alt=""
-                fill
-                className="object-cover"
-                priority={i === 0}
-              />
+              {slide.mobileImage ? (
+                <>
+                  <Image
+                    src={slide.mobileImage}
+                    alt=""
+                    fill
+                    className="object-cover md:hidden"
+                    priority={i === 0}
+                  />
+                  <Image
+                    src={slide.image!}
+                    alt=""
+                    fill
+                    className="object-cover hidden md:block"
+                    priority={i === 0}
+                  />
+                </>
+              ) : (
+                <Image
+                  src={slide.image!}
+                  alt=""
+                  fill
+                  className="object-cover"
+                  priority={i === 0}
+                />
+              )}
             </div>
           ))
         ) : (
-          <div className="absolute inset-0 bg-gradient-to-br from-[#0c1f3d] to-[#162d50]" />
+          <div className="absolute inset-0 bg-gradient-to-br from-[#1c4c9c] to-[#143a78]" />
         )}
 
         {/* Overlay */}
@@ -271,10 +320,14 @@ export default function HeroSection({
                   </div>
                 )}
 
-                <div className={cn(
-                  'flex flex-col',
-                  alignment === 'center' ? 'items-center text-center' : alignment === 'right' ? 'items-end text-right' : 'items-start text-left',
-                )}>
+                <div
+                  className={cn(
+                    'flex flex-col',
+                    alignment === 'center' ? 'items-center text-center' : alignment === 'right' ? 'items-end text-right' : 'items-start text-left',
+                    textPanel ? 'rounded-2xl p-6 md:p-8' : '',
+                  )}
+                  style={textPanelStyle}
+                >
                   {eyebrow && (
                     <p
                       className={cn(
@@ -289,8 +342,10 @@ export default function HeroSection({
                   <h1
                     className={cn(
                       'text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] font-bold text-white leading-[1.1] tracking-tight transition-all duration-1000 delay-200',
+                      displayFont && 'font-hero-display',
                       mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6',
                     )}
+                    style={textColorStyle}
                   >
                     {slideTitle ? (
                       <>{slideTitle}</>
@@ -310,6 +365,7 @@ export default function HeroSection({
                         'mt-4 text-white/85 text-base md:text-lg max-w-2xl transition-all duration-700 delay-300',
                         mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4',
                       )}
+                      style={textColorStyle}
                     >
                       {slideSubtitle || subtitle}
                     </p>
@@ -321,9 +377,10 @@ export default function HeroSection({
                         'mt-4 text-white/70 text-sm md:text-base transition-all duration-700 delay-500',
                         mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4',
                       )}
+                      style={textColorStyle}
                     >
                       {effTrustLine.includes('Sri Saradha') ? (
-                        <>An Institution of <span className="text-white/90 font-medium">Sri Saradha Gangadharan Educational Trust</span></>
+                        <>An Institution of <span className="text-white/90 font-medium" style={textColorStyle}>Sri Saradha Gangadharan Educational Trust</span></>
                       ) : (
                         effTrustLine
                       )}

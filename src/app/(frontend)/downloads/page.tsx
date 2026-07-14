@@ -62,7 +62,7 @@ export default async function DownloadsPage() {
                 {grouped[category].map((doc: any) => {
                   const fileUrl = doc.file && typeof doc.file === 'object' ? doc.file.url : null
                   return (
-                    <div key={doc.id} className="flex items-center justify-between bg-[#f8f6f0] rounded-lg px-5 py-4 border border-border/30 hover:border-accent/30 transition-colors">
+                    <div key={doc.id} className="flex items-center justify-between bg-[#eef3fb] rounded-lg px-5 py-4 border border-border/30 hover:border-accent/30 transition-colors">
                       <div className="flex-1 min-w-0">
                         <h3 className="font-medium text-foreground text-sm">{doc.title}</h3>
                         <div className="flex items-center gap-3 mt-1">

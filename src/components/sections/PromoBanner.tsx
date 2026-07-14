@@ -25,9 +25,9 @@ export default function PromoBanner({ banners: bannersProp }: Props) {
   const banner = data[current];
 
   return (
-    <div className="relative bg-[#1e3a5f] text-white overflow-hidden">
+    <div className="relative bg-[#1c4c9c] text-white overflow-hidden">
       <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-0 right-0 w-40 h-40 bg-[#c8a951] rounded-full -translate-y-1/2 translate-x-1/2" />
+        <div className="absolute top-0 right-0 w-40 h-40 bg-[#f5c220] rounded-full -translate-y-1/2 translate-x-1/2" />
       </div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 relative">
         <div className="flex items-center justify-between gap-4">
@@ -47,7 +47,7 @@ export default function PromoBanner({ banners: bannersProp }: Props) {
             </div>
             <Link
               href={banner.href}
-              className="bg-[#c8a951] text-[#1e3a5f] px-4 py-1.5 rounded-full text-xs font-semibold hover:bg-[#d4b85c] transition-colors shrink-0 whitespace-nowrap"
+              className="bg-[#f5c220] text-[#1c4c9c] px-4 py-1.5 rounded-full text-xs font-semibold hover:bg-[#d4a017] transition-colors shrink-0 whitespace-nowrap"
             >
               {banner.cta}
             </Link>

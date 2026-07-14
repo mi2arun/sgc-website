@@ -33,6 +33,13 @@ export const HeroBlock: Block = {
             { name: 'eyebrow', type: 'text', admin: { description: 'Small label above the heading (e.g. "Admissions Open")' } },
             { name: 'title', type: 'text', admin: { description: 'Main heading. Leave blank to use the site name.' } },
             { name: 'titleAccent', type: 'text', admin: { description: 'Highlighted word at the end of the title (rendered in accent colour).' } },
+            {
+              name: 'displayFont',
+              type: 'checkbox',
+              defaultValue: false,
+              label: 'Use decorative serif font for the title',
+              admin: { description: 'Renders the title in the Hiroshige serif font. Turn on only for the college-name hero.' },
+            },
             { name: 'subtitle', type: 'textarea', admin: { description: 'One-line subtitle under the heading.' } },
             { name: 'trustLine', type: 'text', admin: { description: 'Small line under subtitle (e.g. trust/affiliation name).' } },
             {
@@ -133,7 +140,7 @@ export const HeroBlock: Block = {
         // ────────── BACKGROUND ──────────
         {
           label: 'Background',
-          description: 'Overlay darkness and decorative elements.',
+          description: 'Overlay darkness, text legibility, and decorative elements.',
           fields: [
             {
               type: 'row',
@@ -141,10 +148,10 @@ export const HeroBlock: Block = {
                 {
                   name: 'overlayOpacity',
                   type: 'number',
-                  defaultValue: 78,
+                  defaultValue: 50,
                   min: 0,
                   max: 100,
-                  admin: { width: '50%', description: '0 = no overlay (raw image), 100 = solid black. 78 is the SGC default.' },
+                  admin: { width: '50%', description: 'Darkness of the overlay over the photo. 0 = raw image, 100 = solid. Lower it if the image looks too dark; raise it if text is hard to read. Default 50.' },
                 },
                 {
                   name: 'overlayColor',
@@ -157,6 +164,42 @@ export const HeroBlock: Block = {
                     { label: 'Primary gradient', value: 'gradient' },
                     { label: 'None (image only)', value: 'none' },
                   ],
+                },
+              ],
+            },
+            {
+              name: 'fontColor',
+              type: 'text',
+              label: 'Text Colour',
+              admin: {
+                description: 'Hex colour for the hero title / subtitle / trust line, e.g. #ffffff (white) or #0c1f3d (dark navy). Leave blank for white. Use a dark colour when the overlay is light.',
+              },
+            },
+            {
+              type: 'row',
+              fields: [
+                {
+                  name: 'textPanel',
+                  type: 'checkbox',
+                  defaultValue: false,
+                  label: 'Panel behind text',
+                  admin: { width: '34%', description: 'Adds a translucent box behind the copy so it stays readable over busy or light images.' },
+                },
+                {
+                  name: 'textPanelColor',
+                  type: 'text',
+                  defaultValue: '#0c1f3d',
+                  label: 'Panel colour',
+                  admin: { width: '33%', description: 'Hex, e.g. #0c1f3d. Only used when the panel is on.' },
+                },
+                {
+                  name: 'textPanelOpacity',
+                  type: 'number',
+                  defaultValue: 40,
+                  min: 0,
+                  max: 100,
+                  label: 'Panel opacity',
+                  admin: { width: '33%', description: '0 = fully transparent, 100 = solid. ~40 gives a subtle scrim.' },
                 },
               ],
             },

@@ -21,17 +21,17 @@ export default function ActivityFeed({ items }: Props) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between mb-10">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-[#c8a951] rounded-lg flex items-center justify-center">
+            <div className="w-10 h-10 bg-[#f5c220] rounded-lg flex items-center justify-center">
               <Zap className="w-5 h-5 text-white" />
             </div>
             <div>
-              <h2 className="text-2xl font-bold text-[#1e3a5f]">Recent Happenings</h2>
+              <h2 className="text-2xl font-bold text-[#1c4c9c]">Recent Happenings</h2>
               <p className="text-sm text-gray-500">Campus activity feed</p>
             </div>
           </div>
           <Link
             href="/campus-life"
-            className="text-sm text-[#1e3a5f] font-medium hover:text-[#c8a951] transition-colors flex items-center gap-1"
+            className="text-sm text-[#1c4c9c] font-medium hover:text-[#f5c220] transition-colors flex items-center gap-1"
           >
             View All <ChevronRight className="w-4 h-4" />
           </Link>
@@ -46,10 +46,10 @@ export default function ActivityFeed({ items }: Props) {
               <div key={i} className="relative flex gap-4 md:gap-6 group">
                 {/* Timeline dot */}
                 <div className="hidden md:flex shrink-0 w-12 items-start justify-center pt-5">
-                  <div className="w-3 h-3 rounded-full bg-[#1e3a5f] border-2 border-white ring-2 ring-[#1e3a5f]/20 z-10 group-hover:bg-[#c8a951] group-hover:ring-[#c8a951]/20 transition-colors" />
+                  <div className="w-3 h-3 rounded-full bg-[#1c4c9c] border-2 border-white ring-2 ring-[#1c4c9c]/20 z-10 group-hover:bg-[#f5c220] group-hover:ring-[#f5c220]/20 transition-colors" />
                 </div>
 
-                <div className="flex-1 bg-gray-50 rounded-xl p-5 border border-gray-100 hover:border-[#c8a951]/30 hover:shadow-sm transition-all">
+                <div className="flex-1 bg-gray-50 rounded-xl p-5 border border-gray-100 hover:border-[#f5c220]/30 hover:shadow-sm transition-all">
                   <div className="flex flex-wrap items-center gap-2 mb-2">
                     <span className={`text-[10px] px-2 py-0.5 rounded-full font-semibold ${typeColors[item.type] || "bg-gray-100 text-gray-700"}`}>
                       {item.type}

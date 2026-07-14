@@ -15,9 +15,9 @@ type Props = {
 
 // Only these values actually add visual changes worth wrapping
 const bgClasses: Record<string, string> = {
-  light: 'bg-[#f8f6f0]',
-  dark: 'bg-gradient-to-br from-[#1e3a5f] to-[#15294a] text-white',
-  gradient: 'bg-gradient-to-b from-[#f8f6f0] to-white',
+  light: 'bg-[#eef3fb]',
+  dark: 'bg-gradient-to-br from-[#1c4c9c] to-[#143a78] text-white',
+  gradient: 'bg-gradient-to-b from-[#eef3fb] to-white',
 }
 
 const paddingClasses: Record<string, string> = {
