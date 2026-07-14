@@ -18,6 +18,31 @@
   font-family: 'Hiroshige Std', Georgia, 'Times New Roman', serif;
 }
 
+/* Time-boxed card highlight (Quick Access). Colour is driven by the --hl custom
+   property (an "R G B" triplet) set inline per card. */
+@keyframes highlightGlow {
+  0%, 100% {
+    box-shadow: 0 8px 15px -6px rgb(0 0 0 / 0.15), 0 0 0 0 rgb(var(--hl) / 0);
+  }
+  50% {
+    box-shadow: 0 14px 30px -8px rgb(var(--hl) / 0.45), 0 0 0 4px rgb(var(--hl) / 0.5);
+  }
+}
+.animate-highlight-glow {
+  animation: highlightGlow 1.8s ease-in-out infinite;
+}
+@keyframes highlightBadge {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.12); }
+}
+.animate-highlight-badge {
+  animation: highlightBadge 1.8s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-highlight-glow,
+  .animate-highlight-badge { animation: none; }
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
