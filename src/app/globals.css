@@ -43,6 +43,38 @@
   .animate-highlight-badge { animation: none; }
 }
 
+/* Moving-gradient highlight: an animated gradient border (colour from --hl). */
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+.highlight-gradient {
+  position: relative;
+}
+.highlight-gradient::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(
+    115deg,
+    rgb(var(--hl) / 0.2),
+    rgb(var(--hl)) 45%,
+    rgb(var(--hl) / 0.2)
+  );
+  background-size: 200% 100%;
+  animation: gradientMove 2.5s linear infinite;
+  /* show only the 2px border ring */
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .highlight-gradient::before { animation: none; }
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;

@@ -43,15 +43,33 @@ export const QuickAccessBlock: Block = {
           ],
         },
         {
-          name: 'highlightColor',
-          type: 'select',
-          defaultValue: 'gold',
+          type: 'row',
           admin: { condition: (_, sibling) => Boolean(sibling?.highlight) },
-          options: [
-            { label: 'Gold (brand)', value: 'gold' },
-            { label: 'Green', value: 'green' },
-            { label: 'Red', value: 'red' },
-            { label: 'Blue', value: 'blue' },
+          fields: [
+            {
+              name: 'highlightStyle',
+              type: 'select',
+              defaultValue: 'glow',
+              label: 'Animation',
+              admin: { width: '50%' },
+              options: [
+                { label: 'Glow (pulsing halo)', value: 'glow' },
+                { label: 'Gradient (moving border)', value: 'gradient' },
+              ],
+            },
+            {
+              name: 'highlightColor',
+              type: 'select',
+              defaultValue: 'gold',
+              label: 'Colour',
+              admin: { width: '50%' },
+              options: [
+                { label: 'Gold (brand)', value: 'gold' },
+                { label: 'Green', value: 'green' },
+                { label: 'Red', value: 'red' },
+                { label: 'Blue', value: 'blue' },
+              ],
+            },
           ],
         },
         {

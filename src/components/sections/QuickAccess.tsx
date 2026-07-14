@@ -23,6 +23,7 @@ type Button = {
   highlightStart?: string | null;
   highlightEnd?: string | null;
   highlightColor?: string | null;
+  highlightStyle?: string | null;
   badgeText?: string | null;
 };
 
@@ -51,17 +52,18 @@ export default function QuickAccess({ buttons }: Props) {
             const baseColor = b.color?.startsWith("bg-") ? b.color : `bg-${b.color || "primary"}`;
             const hot = isHighlighted(b, now);
             const hlRgb = HL_COLORS[b.highlightColor || "gold"] || HL_COLORS.gold;
+            const hotClass = hot
+              ? b.highlightStyle === "gradient"
+                ? "border-transparent shadow-lg highlight-gradient"
+                : "border-transparent animate-highlight-glow"
+              : "shadow-lg hover:shadow-xl border-border/50";
 
             return (
               <Link
                 key={b.label}
                 href={b.href}
                 style={hot ? ({ "--hl": hlRgb } as React.CSSProperties) : undefined}
-                className={`group relative bg-white rounded-xl p-5 flex items-start gap-4 border transition-all duration-300 hover:-translate-y-1 ${
-                  hot
-                    ? "border-transparent animate-highlight-glow"
-                    : "shadow-lg hover:shadow-xl border-border/50"
-                }`}
+                className={`group relative bg-white rounded-xl p-5 flex items-start gap-4 border transition-all duration-300 hover:-translate-y-1 ${hotClass}`}
               >
                 {hot && b.badgeText && (
                   <span
