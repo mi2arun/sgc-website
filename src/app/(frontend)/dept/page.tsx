@@ -70,7 +70,7 @@ export default async function DepartmentsPage() {
                   <h2 className="text-base md:text-[1.05rem] font-semibold text-primary leading-snug line-clamp-2">
                     {dept.name}
                   </h2>
-                  {dept.hod?.name && (
+                  {dept.hod && typeof dept.hod === 'object' && dept.hod.name && (
                     <p className="text-sm text-muted mt-1 truncate">HOD: {dept.hod.name}</p>
                   )}
                 </div>

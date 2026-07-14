@@ -54,19 +54,22 @@ export default async function DepartmentPage({ params }: Args) {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-accent font-semibold text-sm tracking-widest uppercase mb-3">Department</p>
           <h1 className="text-3xl md:text-4xl font-bold mb-4">{dept.name}</h1>
-          {dept.hod?.name && (
-            <div className="flex items-center gap-4 mt-6">
-              {dept.hod.photo && typeof dept.hod.photo === 'object' && (
-                <div className="w-16 h-16 rounded-full overflow-hidden ring-2 ring-accent/50">
-                  <img src={(dept.hod.photo as any).url} alt={dept.hod.name} className="w-full h-full object-cover" />
+          {dept.hod && typeof dept.hod === 'object' && (dept.hod as any).name && (() => {
+            const hod = dept.hod as any
+            return (
+              <div className="flex items-center gap-4 mt-6">
+                {hod.photo && typeof hod.photo === 'object' && (
+                  <div className="w-16 h-16 rounded-full overflow-hidden ring-2 ring-accent/50">
+                    <img src={hod.photo.url} alt={hod.name} className="w-full h-full object-cover" />
+                  </div>
+                )}
+                <div>
+                  <p className="font-semibold">{hod.name}</p>
+                  <p className="text-white/60 text-sm">{hod.designation || 'Head of Department'}</p>
                 </div>
-              )}
-              <div>
-                <p className="font-semibold">{dept.hod.name}</p>
-                <p className="text-white/60 text-sm">{dept.hod.designation || 'Head of Department'}</p>
               </div>
-            </div>
-          )}
+            )
+          })()}
         </div>
       </section>
 

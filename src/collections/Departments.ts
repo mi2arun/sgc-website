@@ -27,12 +27,12 @@ export const Departments: CollectionConfig = {
     { name: 'bannerImage', type: 'upload', relationTo: 'media' },
     {
       name: 'hod',
-      type: 'group',
-      fields: [
-        { name: 'name', type: 'text' },
-        { name: 'designation', type: 'text' },
-        { name: 'photo', type: 'upload', relationTo: 'media' },
-      ],
+      label: 'Head of Department',
+      type: 'relationship',
+      relationTo: 'faculty',
+      admin: {
+        description: 'Pick the HOD from the Faculty list. Their name, photo and designation come from that record — no re-typing.',
+      },
     },
     {
       name: 'layout',
