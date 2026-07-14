@@ -1,3 +1,4 @@
+import { formatSlug } from '@/hooks/formatSlug'
 import type { CollectionConfig, Access } from 'payload'
 
 const publishedOnly: Access = ({ req: { user } }) => {
@@ -19,7 +20,7 @@ export const Events: CollectionConfig = {
   },
   fields: [
     { name: 'title', type: 'text', required: true },
-    { name: 'slug', type: 'text', required: true, unique: true, admin: { position: 'sidebar' } },
+    { name: 'slug', type: 'text', required: true, unique: true, hooks: { beforeValidate: [formatSlug] }, admin: { position: 'sidebar' } },
     { name: 'date', type: 'date', required: true, admin: { position: 'sidebar' } },
     { name: 'time', type: 'text', admin: { position: 'sidebar' } },
     { name: 'venue', type: 'text' },

@@ -12,7 +12,7 @@ export default async function NewsDetailPage({ params }: Args) {
   const payload = await getPayload({ config })
   const { docs } = await payload.find({
     collection: 'news',
-    where: { slug: { equals: slug }, status: { equals: 'published' } },
+    where: { slug: { equals: slug }, _status: { equals: 'published' } },
     limit: 1,
   })
 
@@ -43,7 +43,7 @@ export async function generateMetadata({ params }: Args): Promise<Metadata> {
   const payload = await getPayload({ config })
   const { docs } = await payload.find({
     collection: 'news',
-    where: { slug: { equals: slug }, status: { equals: 'published' } },
+    where: { slug: { equals: slug }, _status: { equals: 'published' } },
     limit: 1,
   })
   const article = docs[0]

@@ -1,3 +1,4 @@
+import { formatSlug } from '@/hooks/formatSlug'
 import type { CollectionConfig } from 'payload'
 
 export const Faculty: CollectionConfig = {
@@ -11,7 +12,7 @@ export const Faculty: CollectionConfig = {
   },
   fields: [
     { name: 'name', type: 'text', required: true },
-    { name: 'slug', type: 'text', required: true, unique: true, admin: { position: 'sidebar' } },
+    { name: 'slug', type: 'text', required: true, unique: true, hooks: { beforeValidate: [formatSlug] }, admin: { position: 'sidebar' } },
     { name: 'photo', type: 'upload', relationTo: 'media' },
     { name: 'designation', type: 'text' },
     { name: 'qualifications', type: 'text' },

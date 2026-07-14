@@ -1,3 +1,4 @@
+import { formatSlug } from '@/hooks/formatSlug'
 import type { CollectionConfig, Access } from 'payload'
 import { blocks } from '../blocks'
 
@@ -20,7 +21,7 @@ export const Departments: CollectionConfig = {
   },
   fields: [
     { name: 'name', type: 'text', required: true },
-    { name: 'slug', type: 'text', required: true, unique: true, admin: { position: 'sidebar' } },
+    { name: 'slug', type: 'text', required: true, unique: true, hooks: { beforeValidate: [formatSlug] }, admin: { position: 'sidebar' } },
     { name: 'shortName', type: 'text', admin: { position: 'sidebar' } },
     { name: 'description', type: 'richText' },
     { name: 'bannerImage', type: 'upload', relationTo: 'media' },
