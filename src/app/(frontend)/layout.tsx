@@ -16,6 +16,7 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.PAYLOAD_PUBLIC_SERVER_URL || 'https://sgc.edu.in'),
   title: {
     default: 'Saradha Gangadharan College | Autonomous Institution',
     template: '%s | SGC',
