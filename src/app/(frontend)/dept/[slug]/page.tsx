@@ -1,5 +1,5 @@
 export const dynamic = "force-dynamic"
-import { notFound } from 'next/navigation'
+import { redirect } from 'next/navigation'
 import { getPayload } from 'payload'
 import config from '@payload-config'
 import Link from 'next/link'
@@ -20,7 +20,7 @@ export default async function DepartmentPage({ params }: Args) {
   })
 
   const dept = docs[0]
-  if (!dept) notFound()
+  if (!dept) redirect('/')
 
   // Fetch faculty for this department
   const { docs: facultyDocs } = await payload.find({

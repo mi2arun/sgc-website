@@ -1,5 +1,5 @@
 export const dynamic = "force-dynamic"
-import { notFound } from 'next/navigation'
+import { redirect } from 'next/navigation'
 import { getPayload } from 'payload'
 import config from '@payload-config'
 import RenderBlocks from '@/components/blocks/RenderBlocks'
@@ -24,7 +24,7 @@ export default async function DynamicPage({ params }: Args) {
   })
 
   const page = docs[0]
-  if (!page) notFound()
+  if (!page) redirect('/')
 
   return <RenderBlocks blocks={(page.layout as any[]) || []} />
 }

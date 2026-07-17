@@ -1,5 +1,5 @@
 export const dynamic = "force-dynamic"
-import { notFound } from 'next/navigation'
+import { redirect } from 'next/navigation'
 import { getPayload } from 'payload'
 import config from '@payload-config'
 import type { Metadata } from 'next'
@@ -17,7 +17,7 @@ export default async function EventDetailPage({ params }: Args) {
   })
 
   const event = docs[0]
-  if (!event) notFound()
+  if (!event) redirect('/')
 
   return (
     <article className="py-16 bg-white">

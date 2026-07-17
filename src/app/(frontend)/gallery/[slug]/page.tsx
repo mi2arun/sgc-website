@@ -1,5 +1,5 @@
 export const dynamic = "force-dynamic"
-import { notFound } from 'next/navigation'
+import { redirect } from 'next/navigation'
 import { getPayload } from 'payload'
 import config from '@payload-config'
 import type { Metadata } from 'next'
@@ -16,7 +16,7 @@ export default async function GalleryDetailPage({ params }: Args) {
   })
 
   const album = docs[0]
-  if (!album) notFound()
+  if (!album) redirect('/')
 
   return (
     <section className="py-16 bg-white">

@@ -1,5 +1,5 @@
 export const dynamic = "force-dynamic"
-import { notFound } from 'next/navigation'
+import { redirect } from 'next/navigation'
 import { getPayload } from 'payload'
 import config from '@payload-config'
 import Link from 'next/link'
@@ -19,7 +19,7 @@ export default async function FacultyProfilePage({ params }: Args) {
   })
 
   const faculty = docs[0]
-  if (!faculty) notFound()
+  if (!faculty) redirect('/')
 
   const photoUrl = faculty.photo && typeof faculty.photo === 'object' ? (faculty.photo as any).url : null
   const deptName = faculty.department && typeof faculty.department === 'object' ? (faculty.department as any).name : null
