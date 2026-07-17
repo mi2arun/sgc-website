@@ -33,6 +33,7 @@ import { Documents } from './src/collections/Documents'
 import { Departments } from './src/collections/Departments'
 import { Courses } from './src/collections/Courses'
 import { Faculty } from './src/collections/Faculty'
+import { Popups } from './src/collections/Popups'
 import { SiteSettings } from './src/globals/SiteSettings'
 import { Navigation } from './src/globals/Navigation'
 import { FooterContent } from './src/globals/FooterContent'
@@ -64,7 +65,7 @@ export default buildConfig({
       ],
     },
   },
-  collections: [Users, Media, Pages, News, Events, Announcements, Testimonials, Gallery, Placements, Documents, Departments, Courses, Faculty],
+  collections: [Users, Media, Pages, News, Events, Announcements, Testimonials, Gallery, Placements, Documents, Departments, Courses, Faculty, Popups],
   globals: [SiteSettings, Navigation, FooterContent],
   editor: lexicalEditor({
     features: ({ defaultFeatures }) => [

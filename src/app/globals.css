@@ -75,6 +75,18 @@
   .highlight-gradient::before { animation: none; }
 }
 
+/* Popup entrance */
+@keyframes popupIn {
+  from { opacity: 0; transform: translateY(8px) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.popup-in {
+  animation: popupIn 0.25s ease-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .popup-in { animation: none; }
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
