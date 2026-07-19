@@ -67,6 +67,19 @@ export default buildConfig({
   },
   collections: [Users, Media, Pages, News, Events, Announcements, Testimonials, Gallery, Placements, Documents, Departments, Courses, Faculty, Popups],
   globals: [SiteSettings, Navigation, FooterContent],
+  endpoints: [
+    {
+      // Purge the cached YouTube channel feed so the site re-pulls latest uploads.
+      path: '/youtube-reindex',
+      method: 'post',
+      handler: async (req) => {
+        if (!req.user) return Response.json({ error: 'Unauthorized' }, { status: 401 })
+        const { clearYoutubeCache } = await import('@/lib/youtube')
+        clearYoutubeCache()
+        return Response.json({ ok: true })
+      },
+    },
+  ],
   editor: lexicalEditor({
     features: ({ defaultFeatures }) => [
       ...defaultFeatures,
