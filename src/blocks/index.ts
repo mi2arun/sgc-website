@@ -23,6 +23,7 @@ import { EventsCircularsBlock } from './EventsCircularsBlock'
 import { FacultyGridBlock } from './FacultyGridBlock'
 import { SingleImageBlock } from './SingleImageBlock'
 import { TwoColumnBlock } from './TwoColumnBlock'
+import { FacebookFeedBlock } from './FacebookFeedBlock'
 
 export const blocks = [
   HeroBlock,
@@ -50,4 +51,5 @@ export const blocks = [
   FacultyGridBlock,
   SingleImageBlock,
   TwoColumnBlock,
+  FacebookFeedBlock,
 ]
