@@ -1,6 +1,7 @@
 import FlashNews from '@/components/sections/FlashNews'
 import FacebookFeed from '@/components/sections/FacebookFeed'
 import SocialConnect from '@/components/sections/SocialConnect'
+import YoutubeVideos from '@/components/sections/YoutubeVideos'
 import HeroSection from '@/components/sections/HeroSection'
 import PromoBanner from '@/components/sections/PromoBanner'
 import QuickAccess from '@/components/sections/QuickAccess'
@@ -64,6 +65,7 @@ const blockComponents: Record<string, React.ComponentType<any>> = {
   'two-column': TwoColumnSection,
   'facebook-feed': FacebookFeed,
   'social-connect': SocialConnect,
+  'youtube': YoutubeVideos,
 }
 
 export default function RenderBlocks({ blocks }: Props) {

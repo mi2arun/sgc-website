@@ -25,6 +25,7 @@ import { SingleImageBlock } from './SingleImageBlock'
 import { TwoColumnBlock } from './TwoColumnBlock'
 import { FacebookFeedBlock } from './FacebookFeedBlock'
 import { SocialConnectBlock } from './SocialConnectBlock'
+import { YoutubeBlock } from './YoutubeBlock'
 
 export const blocks = [
   HeroBlock,
@@ -54,4 +55,5 @@ export const blocks = [
   TwoColumnBlock,
   FacebookFeedBlock,
   SocialConnectBlock,
+  YoutubeBlock,
 ]
