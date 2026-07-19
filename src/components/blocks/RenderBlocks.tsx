@@ -1,5 +1,6 @@
 import FlashNews from '@/components/sections/FlashNews'
 import FacebookFeed from '@/components/sections/FacebookFeed'
+import SocialConnect from '@/components/sections/SocialConnect'
 import HeroSection from '@/components/sections/HeroSection'
 import PromoBanner from '@/components/sections/PromoBanner'
 import QuickAccess from '@/components/sections/QuickAccess'
@@ -62,6 +63,7 @@ const blockComponents: Record<string, React.ComponentType<any>> = {
   'single-image': SingleImageSection,
   'two-column': TwoColumnSection,
   'facebook-feed': FacebookFeed,
+  'social-connect': SocialConnect,
 }
 
 export default function RenderBlocks({ blocks }: Props) {

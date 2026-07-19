@@ -24,6 +24,7 @@ import { FacultyGridBlock } from './FacultyGridBlock'
 import { SingleImageBlock } from './SingleImageBlock'
 import { TwoColumnBlock } from './TwoColumnBlock'
 import { FacebookFeedBlock } from './FacebookFeedBlock'
+import { SocialConnectBlock } from './SocialConnectBlock'
 
 export const blocks = [
   HeroBlock,
@@ -52,4 +53,5 @@ export const blocks = [
   SingleImageBlock,
   TwoColumnBlock,
   FacebookFeedBlock,
+  SocialConnectBlock,
 ]
