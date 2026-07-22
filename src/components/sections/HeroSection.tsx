@@ -81,16 +81,21 @@ const SGC_DEFAULTS = {
   badges: ['NAAC A+', 'UGC Recognized', 'ISO 9001:2015', 'Pondicherry University'],
 }
 
-const heightClass = (h: Props['height'], custom?: number): string => {
-  switch (h) {
-    case 'compact': return 'h-[480px]'
-    case 'medium': return 'h-[560px]'
-    case 'large': return 'h-[600px] md:h-[680px]'
-    case 'tall': return 'h-[780px]'
-    case 'fullscreen': return 'h-screen'
-    case 'custom': return ''  // inline style
-    default: return 'h-[600px] md:h-[680px]'
-  }
+// Fluid heights: the hero scales smoothly with viewport width via clamp(min, Nvw, max)
+// instead of jumping between fixed pixel heights at a breakpoint. This keeps the visible
+// crop of the banner image a consistent shape across screen sizes (no abrupt 768px jump).
+// min = comfortable floor for the copy on small phones; max = cap on very wide desktops.
+const HERO_HEIGHTS: Record<'compact' | 'medium' | 'large' | 'tall', string> = {
+  compact: 'clamp(380px, 44vw, 520px)',
+  medium: 'clamp(440px, 50vw, 620px)',
+  large: 'clamp(480px, 56vw, 720px)',
+  tall: 'clamp(560px, 66vw, 860px)',
+}
+
+const heightStyle = (h: Props['height'], custom?: number): React.CSSProperties => {
+  if (h === 'custom') return { height: `${custom}vh` }
+  if (h === 'fullscreen') return { height: '100vh' }
+  return { height: HERO_HEIGHTS[(h as keyof typeof HERO_HEIGHTS)] ?? HERO_HEIGHTS.large }
 }
 
 const overlayStyle = (color: Props['overlayColor'], opacity: number): React.CSSProperties => {
@@ -191,7 +196,7 @@ export default function HeroSection({
   const slideTitle = activeSlide?.title
   const slideSubtitle = activeSlide?.subtitle
 
-  const inlineHeight: React.CSSProperties = height === 'custom' ? { height: `${customHeight}vh` } : {}
+  const inlineHeight: React.CSSProperties = heightStyle(height, customHeight)
 
   // Legibility: optional custom font colour + an optional translucent panel behind the copy
   const textColorStyle: React.CSSProperties | undefined = fontColor ? { color: fontColor } : undefined
@@ -210,7 +215,7 @@ export default function HeroSection({
       onMouseEnter={pauseOnHover ? () => setPaused(true) : undefined}
       onMouseLeave={pauseOnHover ? () => setPaused(false) : undefined}
     >
-      <div className={cn('relative', heightClass(height))} style={inlineHeight}>
+      <div className="relative" style={inlineHeight}>
         {/* Background: video, slides, or default gradient */}
         {variant === 'video' && videoUrl ? (
           <video

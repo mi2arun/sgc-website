@@ -63,6 +63,19 @@ const aspectClasses: Record<string, string> = {
 const jsxConverters: JSXConvertersFunction = ({ defaultConverters }) => ({
   ...defaultConverters,
   ...LinkJSXConverter({ internalDocToHref }),
+  // Native Lexical `upload` node (a media file embedded directly in the editor).
+  // The built-in converter reads `node.value.url` and crashes when the referenced
+  // media doc was deleted (value === null). Guard it: render nothing for a dangling ref.
+  upload: ({ node }) => {
+    const v = node.value
+    if (!v || typeof v !== 'object') return null
+    const media = v as MediaShape
+    if (!media.url) return null
+    return (
+      // eslint-disable-next-line @next/next/no-img-element
+      <img src={media.url} alt={media.alt || ''} className="mx-auto my-6 max-w-full h-auto rounded-lg" />
+    )
+  },
   'resizable-image': ({ node }: { node: { type: 'resizable-image'; data: ResizableImageNodeData } }) => {
     const d = node.data
     if (!d?.url) return null
