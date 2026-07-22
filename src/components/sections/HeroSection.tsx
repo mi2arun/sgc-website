@@ -81,21 +81,23 @@ const SGC_DEFAULTS = {
   badges: ['NAAC A+', 'UGC Recognized', 'ISO 9001:2015', 'Pondicherry University'],
 }
 
-// Fluid heights: the hero scales smoothly with viewport width via clamp(min, Nvw, max)
-// instead of jumping between fixed pixel heights at a breakpoint. This keeps the visible
-// crop of the banner image a consistent shape across screen sizes (no abrupt 768px jump).
-// min = comfortable floor for the copy on small phones; max = cap on very wide desktops.
-const HERO_HEIGHTS: Record<'compact' | 'medium' | 'large' | 'tall', string> = {
-  compact: 'clamp(380px, 44vw, 520px)',
-  medium: 'clamp(440px, 50vw, 620px)',
-  large: 'clamp(480px, 56vw, 720px)',
-  tall: 'clamp(560px, 66vw, 860px)',
+// Fixed aspect-ratio heights: the hero holds ONE consistent shape at every viewport
+// width and simply scales (height = width / ratio), so the banner image's visible crop
+// never shifts as the window widens — the core fix for "display area changes by screen
+// size". A minHeight floor keeps small/narrow screens tall enough for the overlaid copy
+// (below ~ratio×minHeight the box grows past the ratio; above it, the ratio drives height).
+const HERO_ASPECTS: Record<'compact' | 'medium' | 'large' | 'tall', { ratio: string; minH: number }> = {
+  compact: { ratio: '3 / 1', minH: 360 },   // widest / shortest
+  medium: { ratio: '21 / 8', minH: 420 },   // ~2.6:1
+  large: { ratio: '5 / 2', minH: 480 },     // 2.5:1 (default)
+  tall: { ratio: '2 / 1', minH: 560 },      // 2:1, tallest banner
 }
 
 const heightStyle = (h: Props['height'], custom?: number): React.CSSProperties => {
   if (h === 'custom') return { height: `${custom}vh` }
   if (h === 'fullscreen') return { height: '100vh' }
-  return { height: HERO_HEIGHTS[(h as keyof typeof HERO_HEIGHTS)] ?? HERO_HEIGHTS.large }
+  const a = HERO_ASPECTS[(h as keyof typeof HERO_ASPECTS)] ?? HERO_ASPECTS.large
+  return { aspectRatio: a.ratio, minHeight: `${a.minH}px` }
 }
 
 const overlayStyle = (color: Props['overlayColor'], opacity: number): React.CSSProperties => {
@@ -215,7 +217,7 @@ export default function HeroSection({
       onMouseEnter={pauseOnHover ? () => setPaused(true) : undefined}
       onMouseLeave={pauseOnHover ? () => setPaused(false) : undefined}
     >
-      <div className="relative" style={inlineHeight}>
+      <div className="relative w-full" style={inlineHeight}>
         {/* Background: video, slides, or default gradient */}
         {variant === 'video' && videoUrl ? (
           <video
