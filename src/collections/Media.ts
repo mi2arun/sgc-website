@@ -24,6 +24,11 @@ export const Media: CollectionConfig = {
   },
   upload: {
     mimeTypes: ['image/*', 'application/pdf'],
+    // Draggable focal point in the admin image editor. Editors pick the area of
+    // the photo that must stay visible; the hero applies it as object-position so
+    // the chosen area is kept in frame at every screen size / crop. Stores focalX
+    // / focalY as 0–100 percentages on the media doc.
+    focalPoint: true,
     imageSizes: [
       { name: 'thumbnail', width: 400, height: 300, position: 'centre' },
       { name: 'card', width: 768, height: 512, position: 'centre' },

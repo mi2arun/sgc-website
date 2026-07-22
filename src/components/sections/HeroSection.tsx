@@ -6,7 +6,7 @@ import Link from "next/link";
 import { ChevronLeft, ChevronRight, ArrowRight, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-type Media = { url?: string | null; alt?: string | null } | string | number | null
+type Media = { url?: string | null; alt?: string | null; focalX?: number | null; focalY?: number | null } | string | number | null
 
 type Slide = {
   image: Media
@@ -81,23 +81,34 @@ const SGC_DEFAULTS = {
   badges: ['NAAC A+', 'UGC Recognized', 'ISO 9001:2015', 'Pondicherry University'],
 }
 
-// Fixed aspect-ratio heights: the hero holds ONE consistent shape at every viewport
-// width and simply scales (height = width / ratio), so the banner image's visible crop
-// never shifts as the window widens — the core fix for "display area changes by screen
-// size". A minHeight floor keeps small/narrow screens tall enough for the overlaid copy
-// (below ~ratio×minHeight the box grows past the ratio; above it, the ratio drives height).
-const HERO_ASPECTS: Record<'compact' | 'medium' | 'large' | 'tall', { ratio: string; minH: number }> = {
-  compact: { ratio: '3 / 1', minH: 360 },   // widest / shortest
-  medium: { ratio: '21 / 8', minH: 420 },   // ~2.6:1
-  large: { ratio: '5 / 2', minH: 480 },     // 2.5:1 (default)
-  tall: { ratio: '2 / 1', minH: 560 },      // 2:1, tallest banner
+// Bounded heights: the hero scales gently with viewport width but is CAPPED so it can
+// never grow tall enough to collapse the page layout on wide monitors. Which part of the
+// image stays visible inside this fixed frame is controlled per-image by the focal point
+// (object-position), not by changing the frame's height — so the banner "fits all sizes".
+// clamp(floor, Nvw, cap): floor keeps small screens tall enough for the overlaid copy.
+const HERO_HEIGHTS: Record<'compact' | 'medium' | 'large' | 'tall', string> = {
+  compact: 'clamp(400px, 42vw, 520px)',
+  medium: 'clamp(440px, 46vw, 600px)',
+  large: 'clamp(460px, 50vw, 680px)',
+  tall: 'clamp(520px, 58vw, 780px)',
 }
 
 const heightStyle = (h: Props['height'], custom?: number): React.CSSProperties => {
   if (h === 'custom') return { height: `${custom}vh` }
   if (h === 'fullscreen') return { height: '100vh' }
-  const a = HERO_ASPECTS[(h as keyof typeof HERO_ASPECTS)] ?? HERO_ASPECTS.large
-  return { aspectRatio: a.ratio, minHeight: `${a.minH}px` }
+  return { height: HERO_HEIGHTS[(h as keyof typeof HERO_HEIGHTS)] ?? HERO_HEIGHTS.large }
+}
+
+// Payload focal point → CSS object-position. focalX/focalY are 0–100 percentages;
+// default to centre (50/50) when an image has no focal point set yet.
+const focalPosition = (m: Media): string => {
+  if (m && typeof m === 'object') {
+    const f = m as { focalX?: number | null; focalY?: number | null }
+    const x = typeof f.focalX === 'number' ? f.focalX : 50
+    const y = typeof f.focalY === 'number' ? f.focalY : 50
+    return `${x}% ${y}%`
+  }
+  return '50% 50%'
 }
 
 const overlayStyle = (color: Props['overlayColor'], opacity: number): React.CSSProperties => {
@@ -154,7 +165,9 @@ export default function HeroSection({
   const slides = (slidesProp || [])
     .map((s) => ({
       image: resolveUrl(s.image),
+      imagePosition: focalPosition(s.image),
       mobileImage: resolveUrl(s.mobileImage as Media),
+      mobileImagePosition: focalPosition(s.mobileImage as Media),
       title: s.title,
       subtitle: s.subtitle,
       cta: { label: s.ctaLabel || 'Learn More', href: s.ctaLink || '/' },
@@ -246,6 +259,7 @@ export default function HeroSection({
                     alt=""
                     fill
                     className="object-cover md:hidden"
+                    style={{ objectPosition: slide.mobileImagePosition }}
                     priority={i === 0}
                   />
                   <Image
@@ -253,6 +267,7 @@ export default function HeroSection({
                     alt=""
                     fill
                     className="object-cover hidden md:block"
+                    style={{ objectPosition: slide.imagePosition }}
                     priority={i === 0}
                   />
                 </>
@@ -262,6 +277,7 @@ export default function HeroSection({
                   alt=""
                   fill
                   className="object-cover"
+                  style={{ objectPosition: slide.imagePosition }}
                   priority={i === 0}
                 />
               )}
