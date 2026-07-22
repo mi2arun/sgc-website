@@ -68,6 +68,29 @@ export const HeroBlock: Block = {
               fields: [
                 { name: 'image', type: 'upload', relationTo: 'media', required: true },
                 { name: 'mobileImage', type: 'upload', relationTo: 'media', admin: { description: 'Optional: different crop for narrow viewports.' } },
+                {
+                  type: 'row',
+                  fields: [
+                    {
+                      name: 'imagePosX',
+                      type: 'number',
+                      label: 'Image offset — horizontal (%)',
+                      min: 0,
+                      max: 100,
+                      defaultValue: 50,
+                      admin: { width: '50%', description: '0 = show left edge · 50 = centre · 100 = right edge.' },
+                    },
+                    {
+                      name: 'imagePosY',
+                      type: 'number',
+                      label: 'Image offset — vertical (%)',
+                      min: 0,
+                      max: 100,
+                      defaultValue: 50,
+                      admin: { width: '50%', description: '0 = show top · 50 = centre · 100 = bottom. Lower this to lift the image up (e.g. keep heads in frame).' },
+                    },
+                  ],
+                },
                 { name: 'title', type: 'text', admin: { description: 'Optional: overrides the main title when this slide is showing.' } },
                 { name: 'subtitle', type: 'text', admin: { description: 'Optional: overrides the subtitle for this slide.' } },
                 { name: 'ctaLabel', type: 'text', defaultValue: 'Learn More' },
@@ -119,6 +142,16 @@ export const HeroBlock: Block = {
                   admin: { width: '50%', description: 'Only used when Height = Custom' },
                 },
               ],
+            },
+            {
+              name: 'heightPx',
+              type: 'number',
+              label: 'Banner height (px) — extend / override',
+              min: 200,
+              max: 1200,
+              admin: {
+                description: 'Optional: exact banner height in pixels. Overrides the Height preset above — use this to extend the banner taller (or shorter). Leave blank to use the preset.',
+              },
             },
             {
               name: 'alignment',

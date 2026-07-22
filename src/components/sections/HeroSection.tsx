@@ -11,6 +11,8 @@ type Media = { url?: string | null; alt?: string | null; focalX?: number | null;
 type Slide = {
   image: Media
   mobileImage?: Media
+  imagePosX?: number | null
+  imagePosY?: number | null
   title?: string
   subtitle?: string
   ctaLabel?: string
@@ -37,6 +39,7 @@ type Props = {
   // Layout tab
   height?: 'compact' | 'medium' | 'large' | 'tall' | 'fullscreen' | 'custom'
   customHeight?: number
+  heightPx?: number | null   // exact pixel height, overrides the preset when set
   alignment?: 'left' | 'center' | 'right'
   showBadges?: boolean
   showArrows?: boolean
@@ -93,22 +96,21 @@ const HERO_HEIGHTS: Record<'compact' | 'medium' | 'large' | 'tall', string> = {
   tall: 'clamp(520px, 58vw, 780px)',
 }
 
-const heightStyle = (h: Props['height'], custom?: number): React.CSSProperties => {
+const heightStyle = (h: Props['height'], custom?: number, heightPx?: number | null): React.CSSProperties => {
+  if (typeof heightPx === 'number' && heightPx > 0) return { height: `${heightPx}px` }  // explicit override / extend
   if (h === 'custom') return { height: `${custom}vh` }
   if (h === 'fullscreen') return { height: '100vh' }
   return { height: HERO_HEIGHTS[(h as keyof typeof HERO_HEIGHTS)] ?? HERO_HEIGHTS.large }
 }
 
-// Payload focal point → CSS object-position. focalX/focalY are 0–100 percentages;
-// default to centre (50/50) when an image has no focal point set yet.
-const focalPosition = (m: Media): string => {
-  if (m && typeof m === 'object') {
-    const f = m as { focalX?: number | null; focalY?: number | null }
-    const x = typeof f.focalX === 'number' ? f.focalX : 50
-    const y = typeof f.focalY === 'number' ? f.focalY : 50
-    return `${x}% ${y}%`
-  }
-  return '50% 50%'
+// Which part of the image stays in frame, as CSS object-position. Priority:
+// 1) the slide's explicit offset (imagePosX/imagePosY, 0–100%), 2) the image's
+// Payload focal point (focalX/focalY), 3) centre (50/50).
+const objectPositionFor = (m: Media, posX?: number | null, posY?: number | null): string => {
+  const f = m && typeof m === 'object' ? (m as { focalX?: number | null; focalY?: number | null }) : null
+  const x = typeof posX === 'number' ? posX : typeof f?.focalX === 'number' ? f.focalX : 50
+  const y = typeof posY === 'number' ? posY : typeof f?.focalY === 'number' ? f.focalY : 50
+  return `${x}% ${y}%`
 }
 
 const overlayStyle = (color: Props['overlayColor'], opacity: number): React.CSSProperties => {
@@ -145,6 +147,7 @@ export default function HeroSection({
   videoUrl,
   height = 'large',
   customHeight = 75,
+  heightPx,
   alignment = 'left',
   showBadges = true,
   showArrows = true,
@@ -165,9 +168,9 @@ export default function HeroSection({
   const slides = (slidesProp || [])
     .map((s) => ({
       image: resolveUrl(s.image),
-      imagePosition: focalPosition(s.image),
+      imagePosition: objectPositionFor(s.image, s.imagePosX, s.imagePosY),
       mobileImage: resolveUrl(s.mobileImage as Media),
-      mobileImagePosition: focalPosition(s.mobileImage as Media),
+      mobileImagePosition: objectPositionFor(s.mobileImage as Media, s.imagePosX, s.imagePosY),
       title: s.title,
       subtitle: s.subtitle,
       cta: { label: s.ctaLabel || 'Learn More', href: s.ctaLink || '/' },
@@ -211,7 +214,7 @@ export default function HeroSection({
   const slideTitle = activeSlide?.title
   const slideSubtitle = activeSlide?.subtitle
 
-  const inlineHeight: React.CSSProperties = heightStyle(height, customHeight)
+  const inlineHeight: React.CSSProperties = heightStyle(height, customHeight, heightPx)
 
   // Legibility: optional custom font colour + an optional translucent panel behind the copy
   const textColorStyle: React.CSSProperties | undefined = fontColor ? { color: fontColor } : undefined
